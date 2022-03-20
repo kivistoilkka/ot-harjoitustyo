@@ -7,6 +7,7 @@
 Alla linkit kurssin tehtävien palautuksiin.
 
 ### Viikko 1
+Komentorivin, Gitin ja GitHubin harjoittelua
 
 [gitlog.txt](https://github.com/kivistoilkka/ot-harjoitustyo/blob/master/laskarit/viikko1/gitlog.txt)
 
