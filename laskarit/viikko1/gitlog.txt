@@ -1,0 +1,105 @@
+commit 0782f09c31899fae80f30ddfb7eb56a2032fddd3
+Author: Ilkka Kivistö <[redacted]>
+Date:   Sun Mar 20 18:42:14 2022 +0200
+
+    Tiedosto poistettu ja nimi muutettu
+
+ tiedostoja/file2             | 0
+ tiedostoja/{file1 => file22} | 0
+ 2 files changed, 0 insertions(+), 0 deletions(-)
+
+commit f8b041deeeb69a774616ffec8abbf6a0a681cb8e
+Author: Ilkka Kivistö <[redacted]>
+Date:   Sun Mar 20 18:38:35 2022 +0200
+
+    Tiedostoja lisätty
+
+ tiedostoja/file1 | 0
+ tiedostoja/file2 | 0
+ tiedostoja/file3 | 0
+ 3 files changed, 0 insertions(+), 0 deletions(-)
+
+commit 2dc95468aa88dda2dc2bf0dd67e9ad86873c72a5
+Author: Ilkka Kivistö <[redacted]>
+Date:   Sun Mar 20 18:28:35 2022 +0200
+
+    Muutoksia ekaan ja kolmanteen
+
+ eka.txt    | 14 +++++++++++++-
+ kolmas.txt |  5 ++++-
+ 2 files changed, 17 insertions(+), 2 deletions(-)
+
+commit 8425480907b0992eb1b05c8eb7e96fb3929d60ac
+Author: Ilkka Kivistö <[redacted]>
+Date:   Sun Mar 20 18:18:41 2022 +0200
+
+    Toisen poisto ja ekan uudelleennimentä
+
+ tiedosto.txt => eka.txt | 0
+ toinen.txt              | 1 -
+ 2 files changed, 1 deletion(-)
+
+commit b94ec9f4f358a080ec31ae149acfca3fe544b23f
+Author: Ilkka Kivistö <[redacted]>
+Date:   Sun Mar 20 18:12:34 2022 +0200
+
+    Tekstiä pois ja tilalle
+
+ tiedosto.txt | 5 ++---
+ 1 file changed, 2 insertions(+), 3 deletions(-)
+
+commit fbfee56f49eb6e2091f9ad11d7aa5059f7ba3e2e
+Author: Ilkka Kivistö <[redacted]>
+Date:   Sun Mar 20 18:05:23 2022 +0200
+
+    Paljon tekstiä ensimmäiseen tiedostoon
+
+ tiedosto.txt | 5 +++++
+ 1 file changed, 5 insertions(+)
+
+commit 8959a3179ac69ee0c72d0d591f47c558fab48a1c
+Author: Ilkka Kivistö <[redacted]>
+Date:   Sun Mar 20 17:57:47 2022 +0200
+
+    Hakemiston ja siellä olevan tiedoston lisäys
+
+ stuff/neljas.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 19520de19caaeea22557836d1f6e963064419a00
+Author: Ilkka Kivistö <[redacted]>
+Date:   Sun Mar 20 17:56:23 2022 +0200
+
+    toisen ja kolmannen muutokset
+
+ kolmas.txt | 1 +
+ toinen.txt | 1 +
+ 2 files changed, 2 insertions(+)
+
+commit f1e72e6a15a15903beedf1615230086951b70272
+Author: Ilkka Kivistö <[redacted]>
+Date:   Sun Mar 20 17:54:57 2022 +0200
+
+    kolmas tiedosto luotu
+
+ kolmas.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 7a0e1c3053ad81f0375e44ec2d18e8810143ab4c
+Author: Ilkka Kivistö <[redacted]>
+Date:   Sun Mar 20 17:49:41 2022 +0200
+
+    muutos ja lisäys
+
+ tiedosto.txt | 1 +
+ toinen.txt   | 0
+ 2 files changed, 1 insertion(+)
+
+commit ac9c8d85ad20b12b60ded3dfde6fbeb4b1b431eb
+Author: Ilkka Kivistö <[redacted]>
+Date:   Sun Mar 20 17:46:33 2022 +0200
+
+    tiedosto.txt luotu
+
+ tiedosto.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
