@@ -14,6 +14,8 @@ Komentorivin, Gitin ja GitHubin harjoittelua
 [komentorivi.txt](https://github.com/kivistoilkka/ot-harjoitustyo/blob/master/laskarit/viikko1/komentorivi.txt)
 
 ### Viikko 2
-Alustava määrittelydokumentti
+Alustava määrittelydokumentti ja työaikakirjanpito
 
 [vaatimusmaarittely.md](https://github.com/kivistoilkka/ot-harjoitustyo/blob/master/dokumentaatio/vaatimusmaarittely.md)
+
+[tuntikirjanpito.md](https://github.com/kivistoilkka/ot-harjoitustyo/blob/master/dokumentaatio/tuntikirjanpito.md)
