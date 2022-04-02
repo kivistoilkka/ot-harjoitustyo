@@ -1,34 +1,15 @@
-class Character:
-    def __init__(self, name: str):
-        self._name = name
-        self._archetype = None
-        self._age = None
-        self._talents = []
-        self._attributes = {
-            "physique": None,
-            "precision": None,
-            "logic": None,
-            "empathy": None
-        }
-        self._skills = {
-            "agility": ("physique", None),
-            "close_combat": ("physique", None),
-            "force": ("physique", None),
-            "medicine": ("precision", None),
-            "ranged_combat": ("precision", None),
-            "stealth": ("precision", None),
-            "investigation": ("logic", None),
-            "learning": ("logic", None),
-            "vigilance": ("logic", None),
-            "inspiration": ("empathy", None),
-            "manipulation": ("empathy", None),
-            "observation": ("empathy", None)
-        }
-        self._resources = None
-    
-    def __str__(self):
-        return f"Name: {self._name}"
+from entities.archetype import Archetype
+from entities.character import Character
 
 if __name__ == "__main__":
-    new_character = Character("Albert")
-    print(new_character)
+    albert = Character("Albert Brugge", age=(30, "Middle-aged"))
+    print(albert)
+
+    albert.set_age(51)
+    print(albert)
+
+    talent_list = ["Bookworm", "Erudite", "Knowledge is Reassuring"]
+    equipment_list = [("book collection", "map book"), "writing utensils", ("liquor", "slide rule")]
+    academic = Archetype("Academic", "logic", "learning", talent_list, (4, 6), equipment_list)
+    albert.set_archetype(academic)
+    print(albert)
