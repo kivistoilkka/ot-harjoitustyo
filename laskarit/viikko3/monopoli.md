@@ -5,10 +5,7 @@ classDiagram
     class Pelaaja {
         int rahat
     }
-    class Pelilauta {
-        Ruutu aloitusruutu
-        Ruutu vankila
-    }
+    class Pelilauta
     class Ruutu {
         Ruutu seuraava
         Toiminto toiminto
@@ -32,17 +29,20 @@ classDiagram
     Monopoli "1" -- "2-8" Pelaaja
     Monopoli "1" -- "2" Noppa
     Monopoli "1" --  "1" Pelilauta
-    Pelilauta "1" -- "40" Ruutu
     Pelaaja "1" -- "1" Pelinappula
     Pelinappula ..> Ruutu
 
     Aloitusruutu --|> Ruutu
     Vankila --|> Ruutu
+    Pelilauta "1" -- "40" Ruutu
     Asema --|> Ruutu
     Laitos --|> Ruutu
     Katu --|> Ruutu
     Sattuma --|> Ruutu
     Yhteismaa --|> Ruutu
+
+    Pelilauta "1" -- "1" Aloitusruutu
+    Pelilauta "1" -- "1" Vankila
 
     Ruutu "*" -- "1" Toiminto
     Sattuma "*" -- "*" Kortti
