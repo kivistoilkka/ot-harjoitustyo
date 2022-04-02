@@ -16,6 +16,6 @@ Komentorivin, Gitin ja GitHubin harjoittelua
 ### Viikko 2
 Alustava määrittelydokumentti ja työaikakirjanpito
 
-[vaatimusmaarittely.md](https://github.com/kivistoilkka/ot-harjoitustyo/blob/master/dokumentaatio/vaatimusmaarittely.md)
+[vaatimusmaarittely.md](https://github.com/kivistoilkka/ot-harjoitustyo/blob/master/vaesen-character-app/dokumentaatio/vaatimusmaarittely.md)
 
-[tuntikirjanpito.md](https://github.com/kivistoilkka/ot-harjoitustyo/blob/master/dokumentaatio/tuntikirjanpito.md)
+[tuntikirjanpito.md](https://github.com/kivistoilkka/ot-harjoitustyo/blob/master/vaesen-character-app/dokumentaatio/tuntikirjanpito.md)
