@@ -1,7 +1,7 @@
 from talent import Talent
 
 class Archetype:
-    def __init__(self, name: str, main_attribute: str, main_skill: str, talents: list, resource_boundaries: tuple, equipment: list):
+    def __init__(self, name: str, main_attribute: str, main_skill: str, talents: dict, resource_boundaries: tuple, equipment: list):
         self.__name = name
         self.__main_attribute = main_attribute
         self.__main_skill = main_skill
@@ -36,7 +36,7 @@ if __name__ == "__main__":
     bookworm = Talent("Bookworm", "Gain +2 to...")
     erudite = Talent("Erudite", "You can pass a...")
     knowledge_is_reassuring = Talent("Knowledge is Reassuring", "Ignore Conditions when...")
-    talent_list = [bookworm, erudite, knowledge_is_reassuring]
+    talent_dict = {bookworm.name: bookworm, erudite.name: erudite, knowledge_is_reassuring.name: knowledge_is_reassuring}
     equipment_list = [("book collection", "map book"), "writing utensils", ("liquor", "slide rule")]
-    academic = Archetype("Academic", "logic", "learning", talent_list, (4, 6), equipment_list)
+    academic = Archetype("Academic", "logic", "learning", talent_dict, (4, 6), equipment_list)
     print(academic)

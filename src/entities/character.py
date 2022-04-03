@@ -122,13 +122,11 @@ class Character:
     
     def give_talent(self, name: str):
         if not self._archetype:
-            raise AttributeError("Choose archetype before setting talents")
-        if len(self._talents) == 0:
-            for option in self._archetype.talents:
-                if option.name == name:
-                    self._talents.append(option)
-                    return True
-        return False
+            raise AttributeError("Choose archetype before giving talent")
+        if name not in self._archetype.talents:
+            raise ValueError("Talent not available for the current archetype")
+        self.remove_talents()
+        self._talents.append(self._archetype.talents[name])
     
     def remove_talents(self):
         self._talents = []
@@ -179,14 +177,17 @@ class Character:
 if __name__ == "__main__":
     albert = Character("Albert Brugge", age=30)
     albert.set_age(51)
+
     bookworm = Talent("Bookworm", "Gain +2 to...")
     erudite = Talent("Erudite", "You can pass a...")
     knowledge_is_reassuring = Talent("Knowledge is Reassuring", "Ignore Conditions when...")
-    talent_list = [bookworm, erudite, knowledge_is_reassuring]
+    talent_dict = {bookworm.name: bookworm, erudite.name: erudite, knowledge_is_reassuring.name: knowledge_is_reassuring}
     equipment_list = [("book collection", "map book"), "writing utensils", ("liquor", "slide rule")]
-    academic = Archetype("Academic", "Logic", "Learning", talent_list, (4, 6), equipment_list)
+    academic = Archetype("Academic", "logic", "learning", talent_dict, (4, 6), equipment_list)
+
     albert.set_archetype(academic)
     albert.give_talent("Bookworm")
+    albert.give_talent("Erudite")
     
     print(albert)
     print()
