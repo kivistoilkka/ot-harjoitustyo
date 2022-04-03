@@ -1,3 +1,4 @@
+from cmath import exp
 from entities.archetype import Archetype
 from entities.character import Character
 from entities.talent import Talent
@@ -15,9 +16,12 @@ def main():
     print("Character generator for Vaesen: Nordic Horror Roleplaying game")
     print()
 
-    character_name = input("Name your character: ")
-    #character_name = "Astrid Gregorius"
-    character = Character(character_name)
+    while True:
+        character_name = input("Name your character: ")
+        #character_name = "Astrid Gregorius"
+        if character_name != "":
+            character = Character(character_name)
+            break
 
     while True:
         print()
@@ -32,11 +36,15 @@ def main():
     
     while True:
         print()
-        age = int(input("Age of the character (>17): "))
-        #age = 55
-        if age > 17:
-            character.set_age(age)
-            break
+        age = input("Age of the character (>17): ")
+        #age = "55"
+        try:
+            age = int(age)
+            if age > 17:
+                character.set_age(age)
+                break
+        except ValueError:
+            print("Give the value in integer")
     
     while True:
         print()
@@ -50,7 +58,7 @@ def main():
             break
     print()
 
-    print("Add points to attributes")
+    print("Add points to attributes (range 2-4, for main attribute 2-5)")
     while True:
         print()
         print("1 - show attributes, 2 - add point, 3 - remove point, 4 - reset, 0 - ready")
@@ -92,7 +100,7 @@ def main():
                 character.reset_attributes()
     print()
 
-    print("Add points to skills and resources")
+    print("Add points to skills and resources (range 0-2, for main skill 0-3)")
     while True:
         print()
         print("1 - show skills and resources", end="")
@@ -113,25 +121,37 @@ def main():
         
         elif command == "2":
             name = input("Name of the skill: ")
-            amount = abs(int(input("Points to be added: ")))
-            if name in character.skills:
-                try:
-                    character.change_skill(name, amount)
-                except:
-                    print("More points cannot be added to this skill")
-            else:
-                print("Skill not found")
+            amount = input("Points to be added: ")
+            try:
+                amount = int(amount)
+                if amount < 0:
+                    print("Value must be positive")
+                elif name in character.skills:
+                    try:
+                        character.change_skill(name, amount)
+                    except:
+                        print("More points cannot be added to this skill")
+                else:
+                    print("Skill not found")
+            except ValueError:
+                print("Give the value in integer")
         
         elif command == "3":
             name = input("Name of the skill: ")
-            amount = int(input("Points to be removed: "))
-            if name in character.skills:
-                try:
-                    character.change_skill(name, -abs(int(amount)))
-                except:
-                    print("More points cannot be removed from this skill")
-            else:
-                print("Skill not found")
+            amount = input("Points to be removed: ")
+            try:
+                amount = int(amount)
+                if amount < 0:
+                    print("Value must be positive")
+                elif name in character.skills:
+                    try:
+                        character.change_skill(name, -amount)
+                    except:
+                        print("More points cannot be removed from this skill")
+                else:
+                    print("Skill not found")
+            except ValueError:
+                print("Give the value in integer")
         
         elif command == "4":
             confirm = input("Type 'yes' if you want to reset all of the skills: ")
@@ -163,6 +183,11 @@ def main():
         for line in character.full_character_sheet():
             print(line)
         print("-------------------------------------")
+    
+    command = input("Type 'yes' if you want to save the character to a text file: ")
+    if command == "yes":
+        filename = input("Name of the file: ")
+        character.save_to_file(filename)
 
 if __name__ == "__main__":
     main()

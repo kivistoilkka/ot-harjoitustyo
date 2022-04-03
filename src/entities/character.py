@@ -57,7 +57,7 @@ class Character:
         
         character_sheet.append("Talents:")
         for talent in self._talents:
-            character_sheet.append(talent)
+            character_sheet.append(str(talent))
         character_sheet.append("")
         
         character_sheet.append("Attributes:")
@@ -241,7 +241,11 @@ class Character:
     def reset_skills(self):
         for name in self._skills:
             self._skills[name] = 0
-
+    
+    def save_to_file(self, filename: str):
+        with open(filename, "w") as file:
+            for line in self.full_character_sheet():
+                file.write(line + "\n")
 
 if __name__ == "__main__":
     from talent import Talent
