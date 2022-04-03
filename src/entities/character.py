@@ -87,12 +87,17 @@ class Character:
         self.__main_attribute = archetype.main_attribute
         self.__main_skill = archetype.main_skill
         self._resources = archetype.resource_boundaries[0]
+        #TODO check resources on update
+        #TODO check attributes (only current archetypes main attribute can be 5) on update
+        #TODO check skills (only current archetypes main skill can be 3 at the start) on update
     
     def set_age(self, age: int):
         if age < 17:
             raise ValueError("Age must be 17 or higher")
         self._age = age
         self.__set_age_related_modifiers(age)
+        #TODO check resources on update
+        #TODO check values of attributes and skills on update
     
     def age_group(self, age: int):
         if age < 17:
@@ -163,7 +168,9 @@ class Character:
     
     def change_resources(self, amount: int):
         if not self._archetype:
-            raise AttributeError("Choose archetype before setting talents")
+            raise AttributeError("Choose archetype before changing resources")
+        if not self._age:
+            raise AttributeError("Set age before changing resources")
         if amount > self.skill_points_left():
             raise ValueError("Not enough skill points left")
         new_resources = self._resources + amount
@@ -173,6 +180,23 @@ class Character:
             error_message += f"{boundaries[0]} - {boundaries[1]}"
             raise ValueError(error_message)
         self._resources = new_resources
+    
+    def change_attributes(self, attribute: str, amount: int):
+        if not self._age:
+            raise AttributeError("Set age before setting attributes")
+        if not self._archetype:
+            raise AttributeError("Choose archetype before changing attributes")
+        if amount > self.attribute_points_left():
+            raise ValueError("Not enough attribute points left")
+        if attribute not in self._attributes:
+            raise ValueError("Given attribute does not exist")
+        
+        new_value = self._attributes[attribute] + amount
+        if 2 <= new_value <= 4 or (new_value == 5 and attribute == self.__main_attribute):
+            self._attributes[attribute] = new_value
+        else:
+            raise ValueError("Given value not allowed")
+
 
 if __name__ == "__main__":
     albert = Character("Albert Brugge", age=30)
@@ -183,7 +207,7 @@ if __name__ == "__main__":
     knowledge_is_reassuring = Talent("Knowledge is Reassuring", "Ignore Conditions when...")
     talent_dict = {bookworm.name: bookworm, erudite.name: erudite, knowledge_is_reassuring.name: knowledge_is_reassuring}
     equipment_list = [("book collection", "map book"), "writing utensils", ("liquor", "slide rule")]
-    academic = Archetype("Academic", "logic", "learning", talent_dict, (4, 6), equipment_list)
+    academic = Archetype("Academic", "Logic", "Learning", talent_dict, (4, 6), equipment_list)
 
     albert.set_archetype(academic)
     albert.give_talent("Bookworm")
@@ -195,5 +219,13 @@ if __name__ == "__main__":
     albert.change_resources(2)
     albert.change_resources(-2)
     albert.change_resources(1)
+
+    albert.change_attributes("Logic", 2)
+    albert.change_attributes("Logic", -2)
+    albert.change_attributes("Logic", 3)
+    albert.change_attributes("Physique", 1)
+    albert.change_attributes("Empathy", 1)
+    albert.change_attributes("Physique", -1)
+    albert.change_attributes("Precision", 1)
     for line in albert.full_character_sheet():
         print(line)

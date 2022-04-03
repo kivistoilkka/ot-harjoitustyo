@@ -38,5 +38,5 @@ if __name__ == "__main__":
     knowledge_is_reassuring = Talent("Knowledge is Reassuring", "Ignore Conditions when...")
     talent_dict = {bookworm.name: bookworm, erudite.name: erudite, knowledge_is_reassuring.name: knowledge_is_reassuring}
     equipment_list = [("book collection", "map book"), "writing utensils", ("liquor", "slide rule")]
-    academic = Archetype("Academic", "logic", "learning", talent_dict, (4, 6), equipment_list)
+    academic = Archetype("Academic", "Logic", "Learning", talent_dict, (4, 6), equipment_list)
     print(academic)
