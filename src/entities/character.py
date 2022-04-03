@@ -88,7 +88,7 @@ class Character:
         self.__main_skill = archetype.main_skill
         self._resources = archetype.resource_boundaries[0]
         self.reset_attributes()
-        #TODO check skills (only current archetypes main skill can be 3 at the start) on update
+        self.reset_skills()
         self.reset_resources()
     
     def set_age(self, age: int):
@@ -97,7 +97,7 @@ class Character:
         self._age = age
         self.__set_age_related_modifiers(age)
         self.reset_attributes()
-        #TODO check values of skills on update
+        self.reset_skills()
         self.reset_resources()
     
     def age_group(self, age: int):
@@ -185,9 +185,9 @@ class Character:
     def reset_resources(self):
         self._resources = None if not self._archetype else self._archetype.resource_boundaries[0]
     
-    def change_attributes(self, attribute: str, amount: int):
+    def change_attribute(self, attribute: str, amount: int):
         if not self._age:
-            raise AttributeError("Set age before setting attributes")
+            raise AttributeError("Set age before changing attributes")
         if not self._archetype:
             raise AttributeError("Choose archetype before changing attributes")
         if amount > self.attribute_points_left():
@@ -199,11 +199,31 @@ class Character:
         if 2 <= new_value <= 4 or (new_value == 5 and attribute == self.__main_attribute):
             self._attributes[attribute] = new_value
         else:
-            raise ValueError("Given value not allowed")
+            raise ValueError("Given value is not allowed")
     
     def reset_attributes(self):
         for name in self._attributes:
             self._attributes[name] = 2
+    
+    def change_skill(self, skill: str, amount: int):
+        if not self._age:
+            raise AttributeError("Set age before changing skills")
+        if not self._archetype:
+            raise AttributeError("Choose archetype before changing skills")
+        if amount > self.skill_points_left():
+            raise ValueError("Not enough skill points left")
+        if skill not in self._skills:
+            raise ValueError("Given skill does not exist")
+        
+        new_value = self._skills[skill] + amount
+        if 0 <= new_value <= 2 or (new_value == 3 and skill == self.__main_skill):
+            self._skills[skill] = new_value
+        else:
+            raise ValueError("Given value is not allowed")
+    
+    def reset_skills(self):
+        for name in self._skills:
+            self._skills[name] = 0
 
 
 if __name__ == "__main__":
@@ -227,16 +247,29 @@ if __name__ == "__main__":
     albert.change_resources(2)
     albert.change_resources(-2)
     albert.change_resources(1)
-    albert.reset_resources()
+    #albert.reset_resources()
 
-    albert.change_attributes("Logic", 2)
-    albert.change_attributes("Logic", -2)
-    albert.change_attributes("Logic", 3)
-    albert.change_attributes("Physique", 1)
-    albert.change_attributes("Empathy", 1)
-    albert.change_attributes("Physique", -1)
-    albert.change_attributes("Precision", 1)
-    albert.reset_attributes()
+    albert.change_attribute("Logic", 2)
+    albert.change_attribute("Logic", -2)
+    albert.change_attribute("Logic", 3)
+    albert.change_attribute("Physique", 1)
+    albert.change_attribute("Empathy", 1)
+    albert.change_attribute("Physique", -1)
+    albert.change_attribute("Precision", 1)
+    #albert.reset_attributes()
+
+    albert.change_skill("Learning", 3)
+    albert.change_skill("Learning", -3)
+    albert.change_skill("Learning", 3)
+    albert.change_skill("Vigilance", 2)
+    albert.change_skill("Medicine", 2)
+    albert.change_skill("Ranged combat", 1)
+    albert.change_skill("Stealth", 1)
+    albert.change_skill("Investigation", 2)
+    albert.change_skill("Inspiration", 1)
+    #albert.change_skill("Manipulation", 1)
+    albert.change_skill("Observation", 1)
+    #albert.reset_skills()
 
     for line in albert.full_character_sheet():
         print(line)
