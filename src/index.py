@@ -48,15 +48,16 @@ def main():
         if name in character.archetype.talents:
             character.give_talent(name)
             break
-    
     print()
+
     print("Add points to attributes")
     while True:
         print()
         print("1 - show attributes, 2 - add point, 3 - remove point, 4 - reset, 0 - ready")
         print("Attribute points left:", character.attribute_points_left())
         command = input("Command: ")
-        
+        #command = "0"
+
         if command == "0":
             break
 
@@ -73,7 +74,7 @@ def main():
                 except:
                     print("More points cannot be added to this attribute")
             else:
-                "Attribute not found"
+                print("Attribute not found")
 
         elif command == "3":
             name = input("Name of the attribute: ")
@@ -83,7 +84,7 @@ def main():
                 except:
                     print("More points cannot be removed from this attribute")
             else:
-                "Attribute not found"
+                print("Attribute not found")
         
         elif command == "4":
             confirm = input("Type 'yes' if you want to reset all of the attributes: ")
@@ -91,6 +92,69 @@ def main():
                 character.reset_attributes()
     print()
 
+    print("Add points to skills and resources")
+    while True:
+        print()
+        print("1 - show skills and resources", end="")
+        print(", 2 - add point to skills, 3 - remove point from skills, 4 - reset skills", end="")
+        print(", 5 - add point to resources, 6 - remove point from resources, 7 - reset resources, 0 - ready")
+        print("Skill points left:", character.skill_points_left())
+        command = input("Command: ")
+        #command = "0"
+        
+        if command == "0":
+            break
+
+        elif command == "1":
+            print()
+            for skill in character.get_skills_as_list():
+                print(skill)
+            print("Resources:", character.resources)
+        
+        elif command == "2":
+            name = input("Name of the skill: ")
+            amount = abs(int(input("Points to be added: ")))
+            if name in character.skills:
+                try:
+                    character.change_skill(name, amount)
+                except:
+                    print("More points cannot be added to this skill")
+            else:
+                print("Skill not found")
+        
+        elif command == "3":
+            name = input("Name of the skill: ")
+            amount = int(input("Points to be removed: "))
+            if name in character.skills:
+                try:
+                    character.change_skill(name, -abs(int(amount)))
+                except:
+                    print("More points cannot be removed from this skill")
+            else:
+                print("Skill not found")
+        
+        elif command == "4":
+            confirm = input("Type 'yes' if you want to reset all of the skills: ")
+            if confirm == "yes":
+                character.reset_skills()
+        
+        elif command == "5":
+            try:
+                character.change_resources(1)
+            except:
+                print("More points cannot be added to resources")
+        
+        elif command == "6":
+            try:
+                character.change_resources(-1)
+            except:
+                print("More points cannot be removed from resources")
+        
+        elif command == "7":
+            confirm = input("Type 'yes' if you want to reset resources: ")
+            if confirm == "yes":
+                character.reset_resources()
+    print()
 
     command = input("Type 'yes' if you want to see the character sheet: ")
     if command == "yes":

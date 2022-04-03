@@ -93,6 +93,10 @@ class Character:
         self.reset_attributes()
         self.reset_skills()
         self.reset_resources()
+
+    @property
+    def age(self):
+        return self._age
     
     def set_age(self, age: int):
         if age < 17:
@@ -168,7 +172,8 @@ class Character:
         points_used_to_skills = reduce(lambda total, skill: total + skill, self._skills.values(), 0)
         return self.__max_skill_points - points_used_to_skills - points_used_to_resources
     
-    def get_resources(self):
+    @property
+    def resources(self):
         return self._resources
     
     def change_resources(self, amount: int):
@@ -212,6 +217,10 @@ class Character:
     def reset_attributes(self):
         for name in self._attributes:
             self._attributes[name] = 2
+    
+    @property
+    def skills(self):
+        return self._skills
     
     def change_skill(self, skill: str, amount: int):
         if not self._age:
