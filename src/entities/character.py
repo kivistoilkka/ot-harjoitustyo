@@ -189,6 +189,10 @@ class Character:
     def reset_resources(self):
         self._resources = None if not self._archetype else self._archetype.resource_boundaries[0]
     
+    @property
+    def attributes(self):
+        return self._attributes
+
     def change_attribute(self, attribute: str, amount: int):
         if not self._age:
             raise AttributeError("Set age before changing attributes")

@@ -16,6 +16,7 @@ def main():
     print()
 
     character_name = input("Name your character: ")
+    #character_name = "Astrid Gregorius"
     character = Character(character_name)
 
     while True:
@@ -24,6 +25,7 @@ def main():
         for archetype in AVAILABLE_ARCHETYPES:
             print("-", archetype)
         name = input("Choose the archetype: ")
+        #name = "Academic"
         if name in AVAILABLE_ARCHETYPES:
             character.set_archetype(AVAILABLE_ARCHETYPES[name])
             break
@@ -31,6 +33,7 @@ def main():
     while True:
         print()
         age = int(input("Age of the character (>17): "))
+        #age = 55
         if age > 17:
             character.set_age(age)
             break
@@ -41,11 +44,55 @@ def main():
         for talent in character.archetype.talents:
             print("-", talent)
         name = input("Choose starting talent: ")
+        #name = "Erudite"
         if name in character.archetype.talents:
             character.give_talent(name)
             break
+    
+    print()
+    print("Add points to attributes")
+    while True:
+        print()
+        print("1 - show attributes, 2 - add point, 3 - remove point, 4 - reset, 0 - ready")
+        print("Attribute points left:", character.attribute_points_left())
+        command = input("Command: ")
+        
+        if command == "0":
+            break
 
-    command = input("Do you want to see the character sheet (yes/no)? ")
+        elif command == "1":
+            print()
+            for attribute in character.get_attributes_as_list():
+                print(attribute)
+
+        elif command == "2":
+            name = input("Name of the attribute: ")
+            if name in character.attributes:
+                try:
+                    character.change_attribute(name, 1)
+                except:
+                    print("More points cannot be added to this attribute")
+            else:
+                "Attribute not found"
+
+        elif command == "3":
+            name = input("Name of the attribute: ")
+            if name in character.attributes:
+                try:
+                    character.change_attribute(name, -1)
+                except:
+                    print("More points cannot be removed from this attribute")
+            else:
+                "Attribute not found"
+        
+        elif command == "4":
+            confirm = input("Type 'yes' if you want to reset all of the attributes: ")
+            if confirm == "yes":
+                character.reset_attributes()
+    print()
+
+
+    command = input("Type 'yes' if you want to see the character sheet: ")
     if command == "yes":
         print()
         print("-------------------------------------")
