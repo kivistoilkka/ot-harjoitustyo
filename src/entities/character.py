@@ -152,13 +152,29 @@ class Character:
         return skill_list
     
     def attribute_points_left(self):
-        return self.__max_attribute_points - reduce(lambda total, attribute: total + attribute, self._attributes.values(), 0)
+        used_points = reduce(lambda total, attribute: total + attribute, self._attributes.values(), 0)
+        return self.__max_attribute_points - used_points
 
     def skill_points_left(self):
-        return self.__max_skill_points - reduce(lambda total, skill: total + skill, self._skills.values(), 0)
+        points_used_to_resources = self._resources - self._archetype.resource_boundaries[0]
+        used_points = reduce(lambda total, skill: total + skill, self._skills.values(), 0)
+        return self.__max_skill_points - used_points - points_used_to_resources
     
     def get_resources(self):
         return self._resources
+    
+    def change_resources(self, amount: int):
+        if not self._archetype:
+            raise AttributeError("Choose archetype before setting talents")
+        if amount > self.skill_points_left():
+            raise ValueError("Not enough skill points left")
+        new_resources = self._resources + amount
+        boundaries = self._archetype.resource_boundaries
+        if new_resources < boundaries[0] or new_resources > boundaries[1] :
+            error_message = f"Chosen archetype allows starting resources between "
+            error_message += f"{boundaries[0]} - {boundaries[1]}"
+            raise ValueError(error_message)
+        self._resources = new_resources
 
 if __name__ == "__main__":
     albert = Character("Albert Brugge", age=30)
@@ -175,5 +191,8 @@ if __name__ == "__main__":
     print(albert)
     print()
 
+    albert.change_resources(2)
+    albert.change_resources(-2)
+    albert.change_resources(1)
     for line in albert.full_character_sheet():
         print(line)
