@@ -27,6 +27,10 @@ class Archetype:
     @property
     def talents(self):
         return self.__talents
+    
+    @property
+    def resource_boundaries(self):
+        return self.__resource_boundaries
 
 if __name__ == "__main__":
     bookworm = Talent("Bookworm", "Gain +2 to...")

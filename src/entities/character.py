@@ -10,6 +10,7 @@ class Character:
         self._archetype = archetype
         self.__main_attribute = None if not self._archetype else self._archetype.main_attribute
         self.__main_skill = None if not self._archetype else self._archetype.main_skill
+        self._resources = None if not self._archetype else self._archetype.resource_boundaries[0]
 
         self._age = age
         self.__max_attribute_points = None
@@ -38,7 +39,6 @@ class Character:
             "Manipulation": 0,
             "Observation": 0
         }
-        self._resources = None
     
     def __str__(self) -> str:
         description = f"{self._name}"
@@ -50,6 +50,35 @@ class Character:
             description += f", main skill {self.__main_skill})"
         return description
     
+    def full_character_sheet(self) -> list:
+        character_sheet = []
+        character_sheet.append(f"{self._name}, {self._age} ({self.age_group(self._age)})")
+        character_sheet.append(self._archetype.name)
+        character_sheet.append("")
+        
+        character_sheet.append("Talents:")
+        for talent in self._talents:
+            character_sheet.append(talent)
+        character_sheet.append("")
+        
+        character_sheet.append("Attributes:")
+        for attribute in self.get_attributes_as_list():
+            character_sheet.append(attribute)
+        character_sheet.append("")
+
+        character_sheet.append("Skills:")
+        for skill in self.get_skills_as_list():
+            character_sheet.append(skill)
+        character_sheet.append("")
+        
+        character_sheet.append(f"Attribute points left: {self.attribute_points_left()}")
+        character_sheet.append(f"Skill/resource points left: {self.skill_points_left()}")
+        character_sheet.append("")
+
+        character_sheet.append(f"Resources: {self._resources}")
+
+        return character_sheet
+    
     def set_name(self, name: str):
         self._name = name
     
@@ -57,6 +86,7 @@ class Character:
         self._archetype = archetype
         self.__main_attribute = archetype.main_attribute
         self.__main_skill = archetype.main_skill
+        self._resources = archetype.resource_boundaries[0]
     
     def set_age(self, age: int):
         if age < 17:
@@ -103,16 +133,16 @@ class Character:
     def remove_talents(self):
         self._talents = []
     
-    def get_attributes(self):
+    def get_attributes_as_list(self):
         attribute_list = []
         for name, value in self._attributes.items():
-            attribute_info = f"{name:10}{value}"
+            attribute_info = f"{name:15}{value}"
             if name == self.__main_attribute:
                 attribute_info += " (Main)"
             attribute_list.append(attribute_info)
         return attribute_list
     
-    def get_skills(self):
+    def get_skills_as_list(self):
         skill_list = []
         for name, value in self._skills.items():
             skill_info = f"{name:15}{value}"
@@ -126,6 +156,9 @@ class Character:
 
     def skill_points_left(self):
         return self.__max_skill_points - reduce(lambda total, skill: total + skill, self._skills.values(), 0)
+    
+    def get_resources(self):
+        return self._resources
 
 if __name__ == "__main__":
     albert = Character("Albert Brugge", age=30)
@@ -137,29 +170,10 @@ if __name__ == "__main__":
     equipment_list = [("book collection", "map book"), "writing utensils", ("liquor", "slide rule")]
     academic = Archetype("Academic", "Logic", "Learning", talent_list, (4, 6), equipment_list)
     albert.set_archetype(academic)
-    print()
+    albert.give_talent("Bookworm")
     
     print(albert)
     print()
 
-    albert.give_talent("Bookworm")
-    print("Talents:")
-    for talent in albert.get_talents():
-        print(talent)
-    print()
-    
-    print("Attributes:")
-    for attribute in albert.get_attributes():
-        print(attribute)
-    print()
-
-    print("Skills:")
-    for skill in albert.get_skills():
-        print(skill)
-    print()
-    
-    print("Attribute points left: ", end="")
-    print(albert.attribute_points_left())
-
-    print("Skill/resource points left: ", end="")
-    print(albert.skill_points_left())
+    for line in albert.full_character_sheet():
+        print(line)
