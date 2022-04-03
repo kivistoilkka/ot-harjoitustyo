@@ -87,17 +87,18 @@ class Character:
         self.__main_attribute = archetype.main_attribute
         self.__main_skill = archetype.main_skill
         self._resources = archetype.resource_boundaries[0]
-        #TODO check resources on update
-        #TODO check attributes (only current archetypes main attribute can be 5) on update
+        self.reset_attributes()
         #TODO check skills (only current archetypes main skill can be 3 at the start) on update
+        self.reset_resources()
     
     def set_age(self, age: int):
         if age < 17:
             raise ValueError("Age must be 17 or higher")
         self._age = age
         self.__set_age_related_modifiers(age)
-        #TODO check resources on update
-        #TODO check values of attributes and skills on update
+        self.reset_attributes()
+        #TODO check values of skills on update
+        self.reset_resources()
     
     def age_group(self, age: int):
         if age < 17:
@@ -160,8 +161,8 @@ class Character:
 
     def skill_points_left(self):
         points_used_to_resources = self._resources - self._archetype.resource_boundaries[0]
-        used_points = reduce(lambda total, skill: total + skill, self._skills.values(), 0)
-        return self.__max_skill_points - used_points - points_used_to_resources
+        points_used_to_skills = reduce(lambda total, skill: total + skill, self._skills.values(), 0)
+        return self.__max_skill_points - points_used_to_skills - points_used_to_resources
     
     def get_resources(self):
         return self._resources
@@ -181,6 +182,9 @@ class Character:
             raise ValueError(error_message)
         self._resources = new_resources
     
+    def reset_resources(self):
+        self._resources = None if not self._archetype else self._archetype.resource_boundaries[0]
+    
     def change_attributes(self, attribute: str, amount: int):
         if not self._age:
             raise AttributeError("Set age before setting attributes")
@@ -196,6 +200,10 @@ class Character:
             self._attributes[attribute] = new_value
         else:
             raise ValueError("Given value not allowed")
+    
+    def reset_attributes(self):
+        for name in self._attributes:
+            self._attributes[name] = 2
 
 
 if __name__ == "__main__":
@@ -219,6 +227,7 @@ if __name__ == "__main__":
     albert.change_resources(2)
     albert.change_resources(-2)
     albert.change_resources(1)
+    albert.reset_resources()
 
     albert.change_attributes("Logic", 2)
     albert.change_attributes("Logic", -2)
@@ -227,5 +236,7 @@ if __name__ == "__main__":
     albert.change_attributes("Empathy", 1)
     albert.change_attributes("Physique", -1)
     albert.change_attributes("Precision", 1)
+    albert.reset_attributes()
+
     for line in albert.full_character_sheet():
         print(line)
