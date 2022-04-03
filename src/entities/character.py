@@ -1,7 +1,6 @@
 from functools import reduce
 
-from archetype import Archetype
-from talent import Talent
+from entities.archetype import Archetype
 
 class Character:
     def __init__(self, name: str, archetype: Archetype = None, age: int = None):
@@ -82,6 +81,10 @@ class Character:
     def set_name(self, name: str):
         self._name = name
     
+    @property
+    def archetype(self):
+        return self._archetype
+    
     def set_archetype(self, archetype: Archetype):
         self._archetype = archetype
         self.__main_attribute = archetype.main_attribute
@@ -123,7 +126,8 @@ class Character:
             self.__max_attribute_points = 13
             self.__max_skill_points = 14
     
-    def get_talents(self):
+    @property
+    def talents(self):
         return self._talents
     
     def give_talent(self, name: str):
@@ -227,6 +231,8 @@ class Character:
 
 
 if __name__ == "__main__":
+    from talent import Talent
+
     albert = Character("Albert Brugge", age=30)
     albert.set_age(51)
 
