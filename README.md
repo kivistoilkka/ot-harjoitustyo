@@ -19,3 +19,11 @@ Alustava määrittelydokumentti ja työaikakirjanpito
 [vaatimusmaarittely.md](https://github.com/kivistoilkka/ot-harjoitustyo/blob/master/vaesen-character-app/dokumentaatio/vaatimusmaarittely.md)
 
 [tuntikirjanpito.md](https://github.com/kivistoilkka/ot-harjoitustyo/blob/master/vaesen-character-app/dokumentaatio/tuntikirjanpito.md)
+
+## Dokumentaatio
+
+[Vaatimusmäärittely](https://github.com/kivistoilkka/ot-harjoitustyo/blob/master/dokumentaatio/vaatimusmaarittely.md)
+
+[Työaikakirjanpito](https://github.com/kivistoilkka/ot-harjoitustyo/blob/master/dokumentaatio/tuntikirjanpito.md)
+
+[Changelog](https://github.com/kivistoilkka/ot-harjoitustyo/blob/master/dokumentaatio/changelog.md)
