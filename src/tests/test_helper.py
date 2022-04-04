@@ -33,7 +33,7 @@ class TestHelper:
         }
 
     def dict_of_archetypes(self):
-        talent_dict = self.dict_of_academic_talents()
+        talent_dict = self.__dict_of_academic_talents()
         equipment_list = [("book collection", "map book"), "writing utensils", ("liquor", "slide rule")]
         academic = Archetype("Academic", "Logic", "Learning", talent_dict, (4, 6), equipment_list)
         return {academic.name: academic}
