@@ -1,24 +1,6 @@
-# Ohjelmistotekniikka, harjoitustyö
+# Vaesen Character App
 
-**Ohjelmistotekniikka**-kurssin harjoitustyö *kevät 2022*.
-
-## Tehtävät
-
-Alla linkit kurssin tehtävien palautuksiin.
-
-### Viikko 1
-Komentorivin, Gitin ja GitHubin harjoittelua
-
-[gitlog.txt](https://github.com/kivistoilkka/ot-harjoitustyo/blob/master/laskarit/viikko1/gitlog.txt)
-
-[komentorivi.txt](https://github.com/kivistoilkka/ot-harjoitustyo/blob/master/laskarit/viikko1/komentorivi.txt)
-
-### Viikko 2
-Alustava määrittelydokumentti ja työaikakirjanpito
-
-[vaatimusmaarittely.md](https://github.com/kivistoilkka/ot-harjoitustyo/blob/master/vaesen-character-app/dokumentaatio/vaatimusmaarittely.md)
-
-[tuntikirjanpito.md](https://github.com/kivistoilkka/ot-harjoitustyo/blob/master/vaesen-character-app/dokumentaatio/tuntikirjanpito.md)
+Sovelluksen avulla käyttäjä voi luoda hahmoja ***Vaesen***-roolipeliin ([pelin julkaisijan sivut](https://freeleaguepublishing.com/en/games/vaesen/)).
 
 ## Dokumentaatio
 
@@ -27,3 +9,26 @@ Alustava määrittelydokumentti ja työaikakirjanpito
 [Työaikakirjanpito](https://github.com/kivistoilkka/ot-harjoitustyo/blob/master/dokumentaatio/tuntikirjanpito.md)
 
 [Changelog](https://github.com/kivistoilkka/ot-harjoitustyo/blob/master/dokumentaatio/changelog.md)
+
+## Komentorivitoiminnot
+### Ohjelman suorittaminen
+Ohjelman suoritus onnistuu komennolla:
+
+```
+poetry run invoke start
+```
+
+### Testaus
+Ohjelman testaus onnistuu komennolla:
+
+```
+poetry run invoke test
+```
+
+### Testikattavuus
+Ohjelmasta voi luoda HTML-muotoisen testikattavuusraportin komennolla:
+
+```
+poetry run invoke coverage-report
+```
+Raportti luodaan _htmlcov_-hakemistoon
