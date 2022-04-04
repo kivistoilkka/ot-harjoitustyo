@@ -41,7 +41,7 @@ def main():
         try:
             age = int(age)
             if age > 17:
-                character.set_age(age)
+                character.age = age
                 break
         except ValueError:
             print("Give the value in integer")

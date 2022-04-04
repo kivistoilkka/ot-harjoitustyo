@@ -11,10 +11,10 @@ class Character:
         self.__main_skill = None if not self._archetype else self._archetype.main_skill
         self._resources = None if not self._archetype else self._archetype.resource_boundaries[0]
 
-        self._age = age
+        self.__age = age
         self.__max_attribute_points = None
         self.__max_skill_points = None
-        if self._age:
+        if self.__age:
             self.__set_age_related_modifiers(age)
 
         self._talents = []
@@ -41,8 +41,8 @@ class Character:
     
     def __str__(self) -> str:
         description = f"{self._name}"
-        if self._age != (None, None):
-            description += f", {self._age} ({self.age_group(self._age)})"
+        if self.__age != None:
+            description += f", {self.__age} ({self.age_group(self.__age)})"
         if self._archetype:
             description += f", {self._archetype.name}"
             description += f" (main attribute {self.__main_attribute}"
@@ -51,7 +51,7 @@ class Character:
     
     def full_character_sheet(self) -> list:
         character_sheet = []
-        character_sheet.append(f"{self._name}, {self._age} ({self.age_group(self._age)})")
+        character_sheet.append(f"{self._name}, {self.__age} ({self.age_group(self.__age)})")
         character_sheet.append(self._archetype.name)
         character_sheet.append("")
         
@@ -78,8 +78,16 @@ class Character:
 
         return character_sheet
     
-    def set_name(self, name: str):
-        self._name = name
+    @property
+    def name(self):
+        return self._name
+
+    @name.setter
+    def name(self, name: str):
+        if name != "":
+            self._name = name
+        else:
+            raise ValueError("Name cannot be an empty string")
     
     @property
     def archetype(self):
@@ -96,16 +104,25 @@ class Character:
 
     @property
     def age(self):
-        return self._age
+        return self.__age
     
-    def set_age(self, age: int):
+    @age.setter
+    def age(self, age: int):
         if age < 17:
             raise ValueError("Age must be 17 or higher")
-        self._age = age
+        self.__age = age
         self.__set_age_related_modifiers(age)
         self.reset_attributes()
         self.reset_skills()
         self.reset_resources()
+
+    @property
+    def max_attribute_points(self):
+        return self.__max_attribute_points
+    
+    @property
+    def max_skill_points(self):
+        return self.__max_skill_points
     
     def age_group(self, age: int):
         if age < 17:
@@ -179,7 +196,7 @@ class Character:
     def change_resources(self, amount: int):
         if not self._archetype:
             raise AttributeError("Choose archetype before changing resources")
-        if not self._age:
+        if not self.__age:
             raise AttributeError("Set age before changing resources")
         if amount > self.skill_points_left():
             raise ValueError("Not enough skill points left")
@@ -197,9 +214,13 @@ class Character:
     @property
     def attributes(self):
         return self._attributes
+    
+    @property
+    def main_attribute(self):
+        return self.__main_attribute
 
     def change_attribute(self, attribute: str, amount: int):
-        if not self._age:
+        if not self.__age:
             raise AttributeError("Set age before changing attributes")
         if not self._archetype:
             raise AttributeError("Choose archetype before changing attributes")
@@ -222,8 +243,12 @@ class Character:
     def skills(self):
         return self._skills
     
+    @property
+    def main_skill(self):
+        return self.__main_skill
+    
     def change_skill(self, skill: str, amount: int):
-        if not self._age:
+        if not self.__age:
             raise AttributeError("Set age before changing skills")
         if not self._archetype:
             raise AttributeError("Choose archetype before changing skills")
