@@ -29,6 +29,10 @@ class Archetype:
     @property
     def resource_boundaries(self):
         return self.__resource_boundaries
+    
+    @property
+    def equipment(self):
+        return self.__equipment
 
 if __name__ == "__main__":
     from talent import Talent

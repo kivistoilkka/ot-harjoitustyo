@@ -38,6 +38,7 @@ class Character:
             "Manipulation": 0,
             "Observation": 0
         }
+        self._equipment = []
     
     def __str__(self) -> str:
         description = f"{self._name}"
@@ -68,6 +69,11 @@ class Character:
         character_sheet.append("Skills:")
         for skill in self.get_skills_as_list():
             character_sheet.append(skill)
+        character_sheet.append("")
+
+        character_sheet.append("Equipment:")
+        for item in self.equipment:
+            character_sheet.append(f"- {item}")
         character_sheet.append("")
         
         character_sheet.append(f"Attribute points left: {self.attribute_points_left()}")
@@ -266,6 +272,14 @@ class Character:
     def reset_skills(self):
         for name in self._skills:
             self._skills[name] = 0
+
+    @property
+    def equipment(self):
+        return self._equipment
+    
+    @equipment.setter
+    def equipment(self, equipment: list):
+        self._equipment = equipment
     
     def save_to_file(self, filename: str):
         with open(filename, "w") as file:

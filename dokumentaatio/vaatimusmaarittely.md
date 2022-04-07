@@ -12,25 +12,27 @@ Sovelluksessa ei ole erillisiä käyttäjäprofiileja, mutta käyttäjä voi kä
 - Käyttäjä voi valita avaako aiemmin luodun hahmokokoelman vai luoko uuden hahmokokoelmatiedoston
 
 ### Varsinaisessa sovelluksessa
-- Käyttäjä voi luoda uuden hahmon
-    - Ensin kysytään hahmon nimi
+- ✅ Käyttäjä voi luoda uuden hahmon
+    - ✅ Ensin kysytään hahmon nimi
     - Hahmosta kysytään sitten seuraavat numeroarvoihin vaikuttavat perustiedot:
-        - Hahmon arkkityyppi
-            - Vaikuttaa pääattribuuttiin, pääkykyyn, ensimmäisen erikoistaidon vaihtoehtoihin, alun resurssien haarukkaan ja aloitusvarusteisiin
-        - Hahmon ikä
-            - Vaikuttaa attribuuttipisteisiin, taitopisteisiin ja resursseihin
-        - Hahmon attribuuttipisteiden jakautuminen
-        - Hahmon taitopisteiden jakautuminen
-            - Taitopisteillä voi kasvattaa resursseja
-        - Hahmon erikoistaito
-            - Voi vaikutaa moniin eri muuttujiin
+        - ✅ Hahmon arkkityyppi
+            - ✅ Vaikuttaa pääattribuuttiin, pääkykyyn, ensimmäisen erikoistaidon vaihtoehtoihin, alun resurssien haarukkaan ja aloitusvarusteisiin
+        - ✅ Hahmon ikä
+            - ✅ Vaikuttaa attribuuttipisteisiin ja taitopisteisiin/resursseihin
+        - ✅ Hahmon attribuuttipisteiden jakautuminen
+        - ✅ Hahmon taitopisteiden jakautuminen
+            -✅ Taitopisteillä voi kasvattaa resursseja 
+        - ✅ Hahmon erikoistait
+            - Voi vaikutaa moniin eri muuttujiin (vaikuttavat vain rajatuissa tilanteissa, ei vaikutusta hahmonluonnissa)
+        - ✅ Hahmon varusteet
     - Lopuksi hahmosta kysytään seuraavat vapaamuotoiset kuvaukset:
         - Hahmon motivaatio
         - Hahmon elämää muuttanut trauma
         - Hahmon synkkä salaisuus
         - Hahmon suhteet muihin pelaajahahmoihin
         - Hahmon muistoesine
-    - Hahmo on mahdollista tallentaa nimeämisen jälkeen
+    - ✅ Hahmo on mahdollista tallentaa nimen, arkkityypin ja iän valitsemisen jälkeen
+        - Kaikkia kolmea on mahdollista muuttaa myöhemmin
 - Käyttäjä voi valita aiemman hahmon tarkasteltavaksi
     - Tämä vain siinä tapauksessa, että hahmokokoelmassa on aiempia hahmoja
     - Hahmon tietojen yhteydessä on mahdollista tarkastella numeroarvoihin vaikuttaneita tekijöitä
@@ -42,8 +44,8 @@ Sovelluksessa ei ole erillisiä käyttäjäprofiileja, mutta käyttäjä voi kä
 ## Jatkokehitysideat
 
 Perusversiossa hahmojen luonnissa tarjolla olevien vaihtoehtojen määrä on rajattu muutamaan kunkin valinnan kohdalla ja niitä lisätään ajan niin salliessa. Loppuun asti viedyssä sovelluksessa olisi tarjolla seuraavat määrät vaihtoehtoja:
-- 10 arkkityyppiä
-- 30 arkkityyppien erikoistaitoa (3 jokaiselle arkkityypille)
+- 10 arkkityyppiä (2 lisätty)
+- 30 arkkityyppien erikoistaitoa, 3 jokaiselle arkkityypille (6 lisätty)
 - Pitkä lista varusteita, näitä lisätään lisättyjen arkkityyppien vaatimusten mukaan
 
 Hahmoja voisi jakaa käyttäjien kesken, tämä vaatii että tuotavien hahmojen tietojen oikeellisuus varmisestaan tuonnin yhteydessä.
