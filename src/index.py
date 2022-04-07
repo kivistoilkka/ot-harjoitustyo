@@ -1,5 +1,6 @@
-from cmath import exp
-from pydoc import doc
+from tkinter import Tk
+from ui.ui import UI
+
 from entities.archetype import Archetype
 from entities.character import Character
 from entities.talent import Talent
@@ -21,7 +22,7 @@ doctor = Archetype("Doctor", "Logic", "Medicine", doctor_talent_dict, (4, 6), do
 
 AVAILABLE_ARCHETYPES = {academic.name: academic, doctor.name: doctor}
 
-def main():
+def text_main():
     print()
     print("Character generator for Vaesen: Nordic Horror Roleplaying game")
     print()
@@ -215,5 +216,16 @@ def main():
         filename = input("Name of the file: ")
         character.save_to_file(filename)
 
+def main():
+    window = Tk()
+    window.title("Vaesen Character App")
+
+    ui = UI(window)
+    ui.start()
+
+    window.mainloop()
+
 if __name__ == "__main__":
+    #text_main()
+
     main()
