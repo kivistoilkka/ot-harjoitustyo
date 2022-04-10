@@ -9,11 +9,13 @@ class Talent:
     @property
     def name(self):
         return self.__name
-    
+
+
 if __name__ == "__main__":
     bookworm = Talent("Bookworm", "Gain +2 to...")
     erudite = Talent("Erudite", "You can pass a...")
-    knowledge_is_reassuring = Talent("Knowledge is Reassuring", "Ignore Conditions when...")
+    knowledge_is_reassuring = Talent(
+        "Knowledge is Reassuring", "Ignore Conditions when...")
 
     print(bookworm)
     print(erudite)

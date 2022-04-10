@@ -1,11 +1,13 @@
 from entities.talent import Talent
 from entities.archetype import Archetype
 
+
 class TestHelper:
     def __dict_of_academic_talents():
         bookworm = Talent("Bookworm", "Gain +2 to...")
         erudite = Talent("Erudite", "You can pass a...")
-        knowledge_is_reassuring = Talent("Knowledge is Reassuring", "Ignore Conditions when...")
+        knowledge_is_reassuring = Talent(
+            "Knowledge is Reassuring", "Ignore Conditions when...")
         return {bookworm.name: bookworm, erudite.name: erudite, knowledge_is_reassuring.name: knowledge_is_reassuring}
 
     def default_character_attributes():
@@ -15,7 +17,7 @@ class TestHelper:
             "Logic": 2,
             "Empathy": 2
         }
-    
+
     def default_character_skills():
         return {
             "Agility": 0,
@@ -34,6 +36,8 @@ class TestHelper:
 
     def dict_of_archetypes(self):
         talent_dict = self.__dict_of_academic_talents()
-        equipment_list = [("book collection", "map book"), "writing utensils", ("liquor", "slide rule")]
-        academic = Archetype("Academic", "Logic", "Learning", talent_dict, (4, 6), equipment_list)
+        equipment_list = [("book collection", "map book"),
+                          "writing utensils", ("liquor", "slide rule")]
+        academic = Archetype("Academic", "Logic", "Learning",
+                             talent_dict, (4, 6), equipment_list)
         return {academic.name: academic}

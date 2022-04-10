@@ -1,5 +1,6 @@
 from tkinter import ttk, constants
 
+
 class MainView:
     def __init__(self, root):
         self._root = root
@@ -9,10 +10,10 @@ class MainView:
 
     def pack(self):
         self._frame.pack(fill=constants.X)
-    
+
     def destroy(self):
         self._frame.destroy()
-    
+
     def _initialize(self):
         self._frame = ttk.Frame(master=self._root)
         header_label = ttk.Label(

@@ -2,6 +2,7 @@ from functools import reduce
 
 from entities.archetype import Archetype
 
+
 class Character:
     def __init__(self, name: str, archetype: Archetype = None, age: int = None):
         self._name = name
@@ -9,7 +10,8 @@ class Character:
         self._archetype = archetype
         self.__main_attribute = None if not self._archetype else self._archetype.main_attribute
         self.__main_skill = None if not self._archetype else self._archetype.main_skill
-        self._resources = None if not self._archetype else self._archetype.resource_boundaries[0]
+        self._resources = None if not self._archetype else self._archetype.resource_boundaries[
+            0]
 
         self.__age = age
         self.__max_attribute_points = None
@@ -39,7 +41,7 @@ class Character:
             "Observation": 0
         }
         self._equipment = []
-    
+
     def __str__(self) -> str:
         description = f"{self._name}"
         if self.__age != None:
@@ -49,18 +51,19 @@ class Character:
             description += f" (main attribute {self.__main_attribute}"
             description += f", main skill {self.__main_skill})"
         return description
-    
+
     def full_character_sheet(self) -> list:
         character_sheet = []
-        character_sheet.append(f"{self._name}, {self.__age} ({self.age_group(self.__age)})")
+        character_sheet.append(
+            f"{self._name}, {self.__age} ({self.age_group(self.__age)})")
         character_sheet.append(self._archetype.name)
         character_sheet.append("")
-        
+
         character_sheet.append("Talents:")
         for talent in self._talents:
             character_sheet.append(str(talent))
         character_sheet.append("")
-        
+
         character_sheet.append("Attributes:")
         for attribute in self.get_attributes_as_list():
             character_sheet.append(attribute)
@@ -75,15 +78,17 @@ class Character:
         for item in self.equipment:
             character_sheet.append(f"- {item}")
         character_sheet.append("")
-        
-        character_sheet.append(f"Attribute points left: {self.attribute_points_left()}")
-        character_sheet.append(f"Skill/resource points left: {self.skill_points_left()}")
+
+        character_sheet.append(
+            f"Attribute points left: {self.attribute_points_left()}")
+        character_sheet.append(
+            f"Skill/resource points left: {self.skill_points_left()}")
         character_sheet.append("")
 
         character_sheet.append(f"Resources: {self._resources}")
 
         return character_sheet
-    
+
     @property
     def name(self):
         return self._name
@@ -94,11 +99,11 @@ class Character:
             self._name = name
         else:
             raise ValueError("Name cannot be an empty string")
-    
+
     @property
     def archetype(self):
         return self._archetype
-    
+
     def set_archetype(self, archetype: Archetype):
         self._archetype = archetype
         self.__main_attribute = archetype.main_attribute
@@ -111,7 +116,7 @@ class Character:
     @property
     def age(self):
         return self.__age
-    
+
     @age.setter
     def age(self, age: int):
         if age < 17:
@@ -125,11 +130,11 @@ class Character:
     @property
     def max_attribute_points(self):
         return self.__max_attribute_points
-    
+
     @property
     def max_skill_points(self):
         return self.__max_skill_points
-    
+
     def age_group(self, age: int):
         if age < 17:
             raise ValueError("Age must be 17 or higher")
@@ -139,7 +144,7 @@ class Character:
             return "Middle aged"
         else:
             return "Old"
-    
+
     def __set_age_related_modifiers(self, age: int):
         if age < 17:
             raise ValueError("Age must be 17 or higher")
@@ -152,11 +157,11 @@ class Character:
         else:
             self.__max_attribute_points = 13
             self.__max_skill_points = 14
-    
+
     @property
     def talents(self):
         return self._talents
-    
+
     def give_talent(self, name: str):
         if not self._archetype:
             raise AttributeError("Choose archetype before giving talent")
@@ -164,10 +169,10 @@ class Character:
             raise ValueError("Talent not available for the current archetype")
         self.remove_talents()
         self._talents.append(self._archetype.talents[name])
-    
+
     def remove_talents(self):
         self._talents = []
-    
+
     def get_attributes_as_list(self):
         attribute_list = []
         for name, value in self._attributes.items():
@@ -176,7 +181,7 @@ class Character:
                 attribute_info += " (Main)"
             attribute_list.append(attribute_info)
         return attribute_list
-    
+
     def get_skills_as_list(self):
         skill_list = []
         for name, value in self._skills.items():
@@ -185,20 +190,23 @@ class Character:
                 skill_info += " (Main)"
             skill_list.append(skill_info)
         return skill_list
-    
+
     def attribute_points_left(self):
-        used_points = reduce(lambda total, attribute: total + attribute, self._attributes.values(), 0)
+        used_points = reduce(lambda total, attribute: total +
+                             attribute, self._attributes.values(), 0)
         return self.__max_attribute_points - used_points
 
     def skill_points_left(self):
-        points_used_to_resources = self._resources - self._archetype.resource_boundaries[0]
-        points_used_to_skills = reduce(lambda total, skill: total + skill, self._skills.values(), 0)
+        points_used_to_resources = self._resources - \
+            self._archetype.resource_boundaries[0]
+        points_used_to_skills = reduce(
+            lambda total, skill: total + skill, self._skills.values(), 0)
         return self.__max_skill_points - points_used_to_skills - points_used_to_resources
-    
+
     @property
     def resources(self):
         return self._resources
-    
+
     def change_resources(self, amount: int):
         if not self._archetype:
             raise AttributeError("Choose archetype before changing resources")
@@ -208,19 +216,20 @@ class Character:
             raise ValueError("Not enough skill points left")
         new_resources = self._resources + amount
         boundaries = self._archetype.resource_boundaries
-        if new_resources < boundaries[0] or new_resources > boundaries[1] :
+        if new_resources < boundaries[0] or new_resources > boundaries[1]:
             error_message = f"Chosen archetype allows starting resources between "
             error_message += f"{boundaries[0]} - {boundaries[1]}"
             raise ValueError(error_message)
         self._resources = new_resources
-    
+
     def reset_resources(self):
-        self._resources = None if not self._archetype else self._archetype.resource_boundaries[0]
-    
+        self._resources = None if not self._archetype else self._archetype.resource_boundaries[
+            0]
+
     @property
     def attributes(self):
         return self._attributes
-    
+
     @property
     def main_attribute(self):
         return self.__main_attribute
@@ -234,25 +243,25 @@ class Character:
             raise ValueError("Not enough attribute points left")
         if attribute not in self._attributes:
             raise ValueError("Given attribute does not exist")
-        
+
         new_value = self._attributes[attribute] + amount
         if 2 <= new_value <= 4 or (new_value == 5 and attribute == self.__main_attribute):
             self._attributes[attribute] = new_value
         else:
             raise ValueError("Given value is not allowed")
-    
+
     def reset_attributes(self):
         for name in self._attributes:
             self._attributes[name] = 2
-    
+
     @property
     def skills(self):
         return self._skills
-    
+
     @property
     def main_skill(self):
         return self.__main_skill
-    
+
     def change_skill(self, skill: str, amount: int):
         if not self.__age:
             raise AttributeError("Set age before changing skills")
@@ -262,13 +271,13 @@ class Character:
             raise ValueError("Not enough skill points left")
         if skill not in self._skills:
             raise ValueError("Given skill does not exist")
-        
+
         new_value = self._skills[skill] + amount
         if 0 <= new_value <= 2 or (new_value == 3 and skill == self.__main_skill):
             self._skills[skill] = new_value
         else:
             raise ValueError("Given value is not allowed")
-    
+
     def reset_skills(self):
         for name in self._skills:
             self._skills[name] = 0
@@ -276,15 +285,16 @@ class Character:
     @property
     def equipment(self):
         return self._equipment
-    
+
     @equipment.setter
     def equipment(self, equipment: list):
         self._equipment = equipment
-    
+
     def save_to_file(self, filename: str):
         with open(filename, "w") as file:
             for line in self.full_character_sheet():
                 file.write(line + "\n")
+
 
 if __name__ == "__main__":
     from talent import Talent
@@ -294,22 +304,26 @@ if __name__ == "__main__":
 
     bookworm = Talent("Bookworm", "Gain +2 to...")
     erudite = Talent("Erudite", "You can pass a...")
-    knowledge_is_reassuring = Talent("Knowledge is Reassuring", "Ignore Conditions when...")
-    talent_dict = {bookworm.name: bookworm, erudite.name: erudite, knowledge_is_reassuring.name: knowledge_is_reassuring}
-    equipment_list = [("book collection", "map book"), "writing utensils", ("liquor", "slide rule")]
-    academic = Archetype("Academic", "Logic", "Learning", talent_dict, (4, 6), equipment_list)
+    knowledge_is_reassuring = Talent(
+        "Knowledge is Reassuring", "Ignore Conditions when...")
+    talent_dict = {bookworm.name: bookworm, erudite.name: erudite,
+                   knowledge_is_reassuring.name: knowledge_is_reassuring}
+    equipment_list = [("book collection", "map book"),
+                      "writing utensils", ("liquor", "slide rule")]
+    academic = Archetype("Academic", "Logic", "Learning",
+                         talent_dict, (4, 6), equipment_list)
 
     albert.set_archetype(academic)
     albert.give_talent("Bookworm")
     albert.give_talent("Erudite")
-    
+
     print(albert)
     print()
 
     albert.change_resources(2)
     albert.change_resources(-2)
     albert.change_resources(1)
-    #albert.reset_resources()
+    # albert.reset_resources()
 
     albert.change_attribute("Logic", 2)
     albert.change_attribute("Logic", -2)
@@ -318,7 +332,7 @@ if __name__ == "__main__":
     albert.change_attribute("Empathy", 1)
     albert.change_attribute("Physique", -1)
     albert.change_attribute("Precision", 1)
-    #albert.reset_attributes()
+    # albert.reset_attributes()
 
     albert.change_skill("Learning", 3)
     albert.change_skill("Learning", -3)
@@ -331,7 +345,7 @@ if __name__ == "__main__":
     albert.change_skill("Inspiration", 1)
     #albert.change_skill("Manipulation", 1)
     albert.change_skill("Observation", 1)
-    #albert.reset_skills()
+    # albert.reset_skills()
 
     for line in albert.full_character_sheet():
         print(line)
