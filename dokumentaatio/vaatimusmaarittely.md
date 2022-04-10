@@ -21,7 +21,7 @@ Sovelluksessa ei ole erillisiä käyttäjäprofiileja, mutta käyttäjä voi kä
             - ✅ Vaikuttaa attribuuttipisteisiin ja taitopisteisiin/resursseihin
         - ✅ Hahmon attribuuttipisteiden jakautuminen
         - ✅ Hahmon taitopisteiden jakautuminen
-            -✅ Taitopisteillä voi kasvattaa resursseja 
+            - ✅ Taitopisteillä voi kasvattaa resursseja 
         - ✅ Hahmon lahjakkuus
             - Voi vaikutaa moniin eri muuttujiin (vaikuttavat vain rajatuissa tilanteissa, ei vaikutusta hahmonluonnissa)
         - ✅ Hahmon varusteet

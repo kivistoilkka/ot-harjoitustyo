@@ -1,9 +1,8 @@
 from tkinter import ttk, constants
 
 class MainView:
-    def __init__(self, root, handle_char_creation):
+    def __init__(self, root):
         self._root = root
-        self._handle_char_creation = handle_char_creation
         self._frame = None
 
         self._initialize()
@@ -16,13 +15,17 @@ class MainView:
     
     def _initialize(self):
         self._frame = ttk.Frame(master=self._root)
-        label = ttk.Label(master=self._frame, text="Welcome to Vaesen Character App!")
-
-        char_create_button = ttk.Button(
+        header_label = ttk.Label(
             master=self._frame,
-            text="Create new character",
-            command=self._handle_char_creation
+            text="Vaesen Character App",
+            background=self._root["bg"],
+            font=("", 20)
+        )
+        introduction_label = ttk.Label(
+            master=self._frame,
+            text="Character generator for Vaesen: Nordic Horror Roleplaying game",
+            background=self._root["bg"]
         )
 
-        label.grid(row=0, column=0)
-        char_create_button.grid(row=1, column=0)
+        header_label.grid(row=0, column=0, padx=5, pady=5)
+        introduction_label.grid(row=1, column=0, padx=5, pady=5)

@@ -19,7 +19,6 @@ doctor_talent_dict = {army_medic.name: army_medic, chief_physician.name: chief_p
 doctor_equipment_list = ["doctor's bag /w medicinal equipment", ("liquor", "wine"), ("weak horse", "strong poison")]
 doctor = Archetype("Doctor", "Logic", "Medicine", doctor_talent_dict, (4, 6), doctor_equipment_list)
 
-
 AVAILABLE_ARCHETYPES = {academic.name: academic, doctor.name: doctor}
 
 def text_main():
