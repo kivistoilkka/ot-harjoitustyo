@@ -19,5 +19,5 @@ def text_main():
 
 
 if __name__ == "__main__":
-    main()
-    # text_main()
+    #main()
+    text_main()

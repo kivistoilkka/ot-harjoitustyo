@@ -9,6 +9,7 @@
 | 7.4. | 1 | Varusteiden lisääminen uutena toiminnallisuutena, toinen arkkityyppivaihtoehto |
 | | 2 | TkInterin perusteiden opiskelu, graafisen käyttöliittymän ensimmäiset näkymät |
 | 8.4. | 1 | Ylävalikko graafiseen käyttöliittymään, uuden hahmon nimen, arkkityypin ja iän valinta |
-| 11.4. | |
+| 11.4. | 2 | Koodin laadun parantamista Pylintin ja autopep8:n avulla, tekstikäyttöliittymän eriytys, character_service.py:n luonti |
+| | x | Arkkityyppi- ja lahjakkuusvaihtoehdot JSON-tiedostoon, repositoriot näille |
 
 | yht | 16 | | 

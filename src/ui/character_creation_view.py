@@ -2,28 +2,22 @@ from tkinter import ttk, constants, StringVar, IntVar
 
 from entities.archetype import Archetype
 from entities.character import Character
-from entities.talent import Talent
 
-bookworm = Talent("Bookworm", "Gain +2 to...")
-erudite = Talent("Erudite", "You can pass a...")
-knowledge_is_reassuring = Talent(
-    "Knowledge is Reassuring", "Ignore Conditions when...")
-academic_talent_dict = {bookworm.name: bookworm, erudite.name: erudite,
-                        knowledge_is_reassuring.name: knowledge_is_reassuring}
+from repositories.talent_repository import talent_repository
+
+talents = talent_repository.find_all()
+
+academic_talents = talent_repository.find_for_archetype("Academic")
 academic_equipment_list = [
     ("book collection", "map book"), "writing utensils", ("liquor", "slide rule")]
 academic = Archetype("Academic", "Logic", "Learning",
-                     academic_talent_dict, (4, 6), academic_equipment_list)
+                     academic_talents, (4, 6), academic_equipment_list)
 
-army_medic = Talent("Army medic", "Gain +2 to...")
-chief_physician = Talent("Chief physician", "When you use...")
-emergency_medicine = Talent("Emergency medicine", "Ignore...")
-doctor_talent_dict = {army_medic.name: army_medic,
-                      chief_physician.name: chief_physician, emergency_medicine.name: emergency_medicine}
+doctor_talents = talent_repository.find_for_archetype("Doctor")
 doctor_equipment_list = ["doctor's bag /w medicinal equipment",
                          ("liquor", "wine"), ("weak horse", "strong poison")]
 doctor = Archetype("Doctor", "Logic", "Medicine",
-                   doctor_talent_dict, (4, 6), doctor_equipment_list)
+                   doctor_talents, (4, 6), doctor_equipment_list)
 
 AVAILABLE_ARCHETYPES = {academic.name: academic, doctor.name: doctor}
 ARCHETYPE_NAMES = list(AVAILABLE_ARCHETYPES.keys())

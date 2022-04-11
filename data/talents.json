@@ -1,0 +1,32 @@
+[
+    {
+        "name": "Bookworm",
+        "description": "Gain +2 to...",
+        "startingOptionFor": "Academic"
+    },
+    {
+        "name": "Erudite",
+        "description": "You can pass a...",
+        "startingOptionFor": "Academic"
+    },
+    {
+        "name": "Knowledge is Reassuring",
+        "description": "Ignore Conditions when...",
+        "startingOptionFor": "Academic"
+    },
+    {
+        "name": "Army medic",
+        "description": "Gain +2 to...",
+        "startingOptionFor": "Doctor"
+    },
+    {
+        "name": "Chief physician",
+        "description": "When you use...",
+        "startingOptionFor": "Doctor"
+    },
+    {
+        "name": "Emergency medicine",
+        "description": "Ignore...",
+        "startingOptionFor": "Doctor"
+    }
+]
