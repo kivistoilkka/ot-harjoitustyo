@@ -19,7 +19,7 @@ class ArchetypeRepository:
 
     def _read(self) -> list:
         self._ensure_file_exists()
-        with open(self._file_path) as file:
+        with open(self._file_path, encoding="UTF-8") as file:
             data = file.read()
         archetype_list = json.loads(data)
         archetypes = []
@@ -30,7 +30,7 @@ class ArchetypeRepository:
             talents = talent_repository.find_for_archetype(name)
             equipment = []
             for item in archetype["equipment"]:
-                if type(item) is list:
+                if isinstance(item, list):
                     equipment.append((item[0], item[1]))
                 else:
                     equipment.append(item)

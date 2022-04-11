@@ -22,7 +22,7 @@ class TalentRespository:
 
     def _read(self) -> list:
         self._ensure_file_exists()
-        with open(self._file_path) as file:
+        with open(self._file_path, encoding="UTF-8") as file:
             data = file.read()
         talents_list = json.loads(data)
         talents = []

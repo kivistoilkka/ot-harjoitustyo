@@ -1,8 +1,5 @@
 from entities.character import Character
 from entities.archetype import Archetype
-from entities.talent import Talent
-
-from entities.character import Character
 
 from repositories.archetype_repository import archetype_repository
 
@@ -45,6 +42,7 @@ class CharacterService:
     def get_talent_options(self):
         if self._character.archetype:
             return self._character.archetype.talents
+        raise ValueError("Choose archetype first")
 
     def give_talent_to_character(self, name: str):
         self._character.give_talent(name)
@@ -66,7 +64,7 @@ class CharacterService:
             try:
                 self._character.change_attribute(attribute, amount)
                 return True
-            except:
+            except ValueError:
                 return False
         return False
 
@@ -93,7 +91,7 @@ class CharacterService:
             try:
                 self._character.change_skill(skill, amount)
                 return True
-            except:
+            except ValueError:
                 return False
         return False
 
@@ -104,7 +102,7 @@ class CharacterService:
         try:
             self._character.change_resources(amount)
             return True
-        except:
+        except ValueError:
             return False
 
     def reset_character_resources(self):
@@ -118,8 +116,9 @@ class CharacterService:
 
     def full_character_sheet(self) -> list:
         character_sheet = []
-        character_sheet.append(
-            f"{self._character.name}, {self._character.age} ({self._character.age_group(self._character.age)})")
+        first_line = f"{self._character.name}, {self._character.age}"
+        first_line += f" ({self._character.age_group(self._character.age)})"
+        character_sheet.append(first_line)
         character_sheet.append(self._character.archetype.name)
         character_sheet.append("")
 
@@ -154,7 +153,7 @@ class CharacterService:
         return character_sheet
 
     def save_character_to_file(self, filename: str):
-        with open(filename, "w") as file:
+        with open(filename, "w", encoding="UTF-8") as file:
             for row in self.full_character_sheet():
                 file.write(row + "\n")
 

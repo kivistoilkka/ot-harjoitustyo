@@ -55,43 +55,6 @@ class Character:
             description += f", main skill {self.__main_skill})"
         return description
 
-    def full_character_sheet(self) -> list:
-        character_sheet = []
-        character_sheet.append(
-            f"{self._name}, {self.__age} ({self.age_group(self.__age)})")
-        character_sheet.append(self._archetype.name)
-        character_sheet.append("")
-
-        character_sheet.append("Talents:")
-        for talent in self._talents:
-            character_sheet.append(str(talent))
-        character_sheet.append("")
-
-        character_sheet.append("Attributes:")
-        for attribute in self.get_attributes_as_list():
-            character_sheet.append(attribute)
-        character_sheet.append("")
-
-        character_sheet.append("Skills:")
-        for skill in self.get_skills_as_list():
-            character_sheet.append(skill)
-        character_sheet.append("")
-
-        character_sheet.append("Equipment:")
-        for item in self.equipment:
-            character_sheet.append(f"- {item}")
-        character_sheet.append("")
-
-        character_sheet.append(
-            f"Attribute points left: {self.attribute_points_left()}")
-        character_sheet.append(
-            f"Skill/resource points left: {self.skill_points_left()}")
-        character_sheet.append("")
-
-        character_sheet.append(f"Resources: {self._resources}")
-
-        return character_sheet
-
     @property
     def name(self):
         return self._name
@@ -166,7 +129,7 @@ class Character:
 
     def give_talent(self, name: str):
         if not self._archetype:
-            raise AttributeError("Choose archetype before giving talent")
+            raise ValueError("Choose archetype before giving talent")
         if name not in self._archetype.talents:
             raise ValueError("Talent not available for the current archetype")
         self.remove_talents()
@@ -193,9 +156,9 @@ class Character:
 
     def change_resources(self, amount: int):
         if not self._archetype:
-            raise AttributeError("Choose archetype before changing resources")
+            raise ValueError("Choose archetype before changing resources")
         if not self.__age:
-            raise AttributeError("Set age before changing resources")
+            raise ValueError("Set age before changing resources")
         if amount > self.skill_points_left():
             raise ValueError("Not enough skill points left")
         new_resources = self._resources + amount
@@ -220,9 +183,9 @@ class Character:
 
     def change_attribute(self, attribute: str, amount: int):
         if not self.__age:
-            raise AttributeError("Set age before changing attributes")
+            raise ValueError("Set age before changing attributes")
         if not self._archetype:
-            raise AttributeError("Choose archetype before changing attributes")
+            raise ValueError("Choose archetype before changing attributes")
         if amount > self.attribute_points_left():
             raise ValueError("Not enough attribute points left")
         if attribute not in self._attributes:
@@ -248,9 +211,9 @@ class Character:
 
     def change_skill(self, skill: str, amount: int):
         if not self.__age:
-            raise AttributeError("Set age before changing skills")
+            raise ValueError("Set age before changing skills")
         if not self._archetype:
-            raise AttributeError("Choose archetype before changing skills")
+            raise ValueError("Choose archetype before changing skills")
         if amount > self.skill_points_left():
             raise ValueError("Not enough skill points left")
         if skill not in self._skills:
