@@ -175,24 +175,6 @@ class Character:
     def remove_talents(self):
         self._talents = []
 
-    def get_attributes_as_list(self):
-        attribute_list = []
-        for name, value in self._attributes.items():
-            attribute_info = f"{name:15}{value}"
-            if name == self.__main_attribute:
-                attribute_info += " (Main)"
-            attribute_list.append(attribute_info)
-        return attribute_list
-
-    def get_skills_as_list(self):
-        skill_list = []
-        for name, value in self._skills.items():
-            skill_info = f"{name:15}{value}"
-            if name == self.__main_skill:
-                skill_info += " (Main)"
-            skill_list.append(skill_info)
-        return skill_list
-
     def attribute_points_left(self):
         used_points = reduce(lambda total, attribute: total +
                              attribute, self._attributes.values(), 0)
@@ -291,8 +273,3 @@ class Character:
     @equipment.setter
     def equipment(self, equipment: list):
         self._equipment = equipment
-
-    def save_to_file(self, filename: str):
-        with open(filename, "w") as file:
-            for row in self.full_character_sheet():
-                file.write(row + "\n")

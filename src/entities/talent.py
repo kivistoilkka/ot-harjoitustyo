@@ -12,6 +12,9 @@ class Talent:
         return self.__name
 
     @property
+    def description(self):
+        return self.__description
+
+    @property
     def starting_option_for(self):
         return self.__starting_option_for
-

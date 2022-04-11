@@ -1,11 +1,8 @@
 from tkinter import ttk, constants, StringVar, IntVar
 
-from entities.character import Character
+from services.character_service import character_service
 
-from repositories.archetype_repository import archetype_repository
-
-AVAILABLE_ARCHETYPES = archetype_repository.find_all()
-ARCHETYPE_NAMES = list(AVAILABLE_ARCHETYPES.keys())
+AVAILABLE_ARCHETYPES = character_service.get_archetype_options()
 
 
 class CharacterCreationView:
@@ -15,8 +12,6 @@ class CharacterCreationView:
         self._character_name_entry = None
         self._character_archetype_checkbox = None
         self._character_age_spinbox = None
-
-        self._character = None
 
         self._initialize()
 
@@ -32,16 +27,14 @@ class CharacterCreationView:
         age_value = self._character_age_spinbox.get()
 
         if name_value and archetype_value and age_value:
-            self._character = Character(name_value)
-            self._character.set_archetype(
-                AVAILABLE_ARCHETYPES[archetype_value])
-            self._character.age = int(age_value)
-            print(self._character)
+            character_service.create_character(
+                name_value, archetype_value, int(age_value))
+            print(character_service.get_character_summary())
 
     def _initialize(self):
         self._frame = ttk.Frame(master=self._root)
         self._character_archetype_var = StringVar()
-        self._character_archetype_var.set(ARCHETYPE_NAMES[0])
+        self._character_archetype_var.set(AVAILABLE_ARCHETYPES[0])
         self._character_age_var = IntVar()
         self._character_age_var.set(17)
 
@@ -65,9 +58,9 @@ class CharacterCreationView:
         )
         self._character_archetype_checkbox = ttk.Combobox(
             master=self._frame,
-            values=ARCHETYPE_NAMES
+            values=AVAILABLE_ARCHETYPES
         )
-        self._character_archetype_checkbox.set(ARCHETYPE_NAMES[0])
+        self._character_archetype_checkbox.set(AVAILABLE_ARCHETYPES[0])
 
         character_age_label = ttk.Label(
             master=self._frame,

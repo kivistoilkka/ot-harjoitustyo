@@ -1,14 +1,7 @@
-from entities.character import Character
-
-from repositories.archetype_repository import archetype_repository
-
-AVAILABLE_ARCHETYPES = archetype_repository.find_all()
+from services.character_service import character_service
 
 
 class CommandLineUI:
-    def __init__(self):
-        self._character = None
-
     def start(self):
         print()
         print("Character generator for Vaesen: Nordic Horror Roleplaying game")
@@ -18,18 +11,17 @@ class CommandLineUI:
             character_name = input("Name your character: ")
             #character_name = "Astrid Gregorius"
             if character_name != "":
-                self._character = Character(character_name)
                 break
 
         while True:
             print()
             print("Archetype options:")
-            for archetype in AVAILABLE_ARCHETYPES:
+            archetype_options = character_service.get_archetype_options()
+            for archetype in archetype_options:
                 print("-", archetype)
-            name = input("Choose the archetype: ")
-            #name = "Academic"
-            if name in AVAILABLE_ARCHETYPES:
-                self._character.set_archetype(AVAILABLE_ARCHETYPES[name])
+            archetype_name = input("Choose the archetype: ")
+            #archetype_name = "Academic"
+            if archetype_name in archetype_options:
                 break
 
         while True:
@@ -39,20 +31,20 @@ class CommandLineUI:
             try:
                 age = int(age)
                 if age > 17:
-                    self._character.age = age
                     break
             except ValueError:
                 print("Give the value in integer")
+        character_service.create_character(character_name, archetype_name, age)
 
         while True:
             print()
             print("Talent options:")
-            for talent in self._character.archetype.talents:
+            for talent in character_service.get_talent_options():
                 print("-", talent)
             name = input("Choose starting talent: ")
             #name = "Erudite"
-            if name in self._character.archetype.talents:
-                self._character.give_talent(name)
+            if name in character_service.get_talent_options():
+                character_service.give_talent_to_character(name)
                 break
         print()
 
@@ -62,7 +54,7 @@ class CommandLineUI:
             print(
                 "1 - show attributes, 2 - add point, 3 - remove point, 4 - reset, 0 - ready")
             print("Attribute points left:",
-                  self._character.attribute_points_left())
+                  character_service.get_character_attribute_points_left())
             command = input("Command: ")
             #command = "0"
 
@@ -71,34 +63,28 @@ class CommandLineUI:
 
             elif command == "1":
                 print()
-                for attribute in self._character.get_attributes_as_list():
+                for attribute in character_service.get_character_attributes_as_list():
                     print(attribute)
 
             elif command == "2":
                 name = input("Name of the attribute: ")
-                if name in self._character.attributes:
-                    try:
-                        self._character.change_attribute(name, 1)
-                    except:
-                        print("More points cannot be added to this attribute")
+                if character_service.change_character_attribute(name, 1):
+                    print(f"1 point added to {name}")
                 else:
-                    print("Attribute not found")
+                    print("Unable to add points")
 
             elif command == "3":
                 name = input("Name of the attribute: ")
-                if name in self._character.attributes:
-                    try:
-                        self._character.change_attribute(name, -1)
-                    except:
-                        print("More points cannot be removed from this attribute")
+                if character_service.change_character_attribute(name, -1):
+                    print(f"1 point removed from {name}")
                 else:
-                    print("Attribute not found")
+                    print("Unable to remove points")
 
             elif command == "4":
                 confirm = input(
                     "Type 'yes' if you want to reset all of the attributes: ")
                 if confirm == "yes":
-                    self._character.reset_attributes()
+                    character_service.reset_character_attributes()
         print()
 
         print("Add points to skills and resources (range 0-2, for main skill 0-3)")
@@ -109,7 +95,8 @@ class CommandLineUI:
                 ", 2 - add point to skills, 3 - remove point from skills, 4 - reset skills", end="")
             print(
                 ", 5 - add point to resources, 6 - remove point from resources, 7 - reset resources, 0 - ready")
-            print("Skill points left:", self._character.skill_points_left())
+            print("Skill points left:",
+                  character_service.get_character_skill_points_left())
             command = input("Command: ")
             #command = "0"
 
@@ -118,9 +105,9 @@ class CommandLineUI:
 
             elif command == "1":
                 print()
-                for skill in self._character.get_skills_as_list():
+                for skill in character_service.get_character_skills_as_list():
                     print(skill)
-                print("Resources:", self._character.resources)
+                print("Resources:", character_service.get_character_resources())
 
             elif command == "2":
                 name = input("Name of the skill: ")
@@ -129,15 +116,12 @@ class CommandLineUI:
                     amount = int(amount)
                     if amount < 0:
                         print("Value must be positive")
-                    elif name in self._character.skills:
-                        try:
-                            self._character.change_skill(name, amount)
-                        except:
-                            print("More points cannot be added to this skill")
+                    elif character_service.change_character_skill(name, amount):
+                        print(f"{amount} points added to {name}")
                     else:
-                        print("Skill not found")
-                except ValueError:
-                    print("Give the value in integer")
+                        print("Unable to add points")
+                except:
+                    print("Unable to add points")
 
             elif command == "3":
                 name = input("Name of the skill: ")
@@ -146,42 +130,41 @@ class CommandLineUI:
                     amount = int(amount)
                     if amount < 0:
                         print("Value must be positive")
-                    elif name in self._character.skills:
-                        try:
-                            self._character.change_skill(name, -amount)
-                        except:
-                            print("More points cannot be removed from this skill")
+                    elif character_service.change_character_skill(name, -amount):
+                        print(f"{amount} points removed from {name}")
                     else:
-                        print("Skill not found")
-                except ValueError:
-                    print("Give the value in integer")
+                        print("Unable to remove points")
+                except:
+                    print("Unable to remove points")
 
             elif command == "4":
                 confirm = input(
                     "Type 'yes' if you want to reset all of the skills: ")
                 if confirm == "yes":
-                    self._character.reset_skills()
+                    character_service.reset_character_skills()
+                    print("Skill points are reset")
 
             elif command == "5":
-                try:
-                    self._character.change_resources(1)
-                except:
+                if character_service.change_character_resources(1):
+                    print("One point has been added to the resources")
+                else:
                     print("More points cannot be added to resources")
 
             elif command == "6":
-                try:
-                    self._character.change_resources(-1)
-                except:
+                if character_service.change_character_resources(-1):
+                    print("One point has been removed from the resources")
+                else:
                     print("More points cannot be removed from resources")
 
             elif command == "7":
                 confirm = input("Type 'yes' if you want to reset resources: ")
                 if confirm == "yes":
-                    self._character.reset_resources()
+                    character_service.reset_character_resources()
         print()
 
         print("Equipment:")
-        options = self._character.archetype.equipment
+        options = character_service.get_equipment_options()
+        items = []
         for option in options:
             if type(option) == tuple:
                 while True:
@@ -194,22 +177,25 @@ class CommandLineUI:
                             break
                     except ValueError:
                         print("Give the value in integer")
-            self._character.equipment.append(option)
+            items.append(option)
             print(option, "added to the equipment list")
+        character_service.set_character_equipment(items)
+        print()
 
         command = input("Type 'yes' if you want to see the character sheet: ")
         if command == "yes":
             print()
             print("-------------------------------------")
-            for line in self._character.full_character_sheet():
+            for line in character_service.full_character_sheet():
                 print(line)
             print("-------------------------------------")
+        print()
 
         command = input(
             "Type 'yes' if you want to save the character to a text file: ")
         if command == "yes":
             filename = input("Name of the file: ")
-            self._character.save_to_file(filename)
+            character_service.save_character_to_file(filename)
 
 
 if __name__ == "__main__":
