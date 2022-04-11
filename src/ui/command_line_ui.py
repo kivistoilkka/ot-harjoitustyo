@@ -25,6 +25,7 @@ doctor = Archetype("Doctor", "Logic", "Medicine",
 
 AVAILABLE_ARCHETYPES = {academic.name: academic, doctor.name: doctor}
 
+
 class CommandLineUI:
     def __init__(self):
         self._character = None
@@ -79,8 +80,10 @@ class CommandLineUI:
         print("Add points to attributes (range 2-4, for main attribute 2-5)")
         while True:
             print()
-            print("1 - show attributes, 2 - add point, 3 - remove point, 4 - reset, 0 - ready")
-            print("Attribute points left:", self._character.attribute_points_left())
+            print(
+                "1 - show attributes, 2 - add point, 3 - remove point, 4 - reset, 0 - ready")
+            print("Attribute points left:",
+                  self._character.attribute_points_left())
             command = input("Command: ")
             #command = "0"
 
@@ -123,8 +126,10 @@ class CommandLineUI:
         while True:
             print()
             print("1 - show skills and resources", end="")
-            print(", 2 - add point to skills, 3 - remove point from skills, 4 - reset skills", end="")
-            print(", 5 - add point to resources, 6 - remove point from resources, 7 - reset resources, 0 - ready")
+            print(
+                ", 2 - add point to skills, 3 - remove point from skills, 4 - reset skills", end="")
+            print(
+                ", 5 - add point to resources, 6 - remove point from resources, 7 - reset resources, 0 - ready")
             print("Skill points left:", self._character.skill_points_left())
             command = input("Command: ")
             #command = "0"
@@ -226,6 +231,7 @@ class CommandLineUI:
         if command == "yes":
             filename = input("Name of the file: ")
             self._character.save_to_file(filename)
+
 
 if __name__ == "__main__":
     ui = CommandLineUI()

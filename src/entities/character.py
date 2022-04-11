@@ -4,6 +4,27 @@ from entities.archetype import Archetype
 
 
 class Character:
+    default_attributes = {
+        "Physique": 2,
+        "Precision": 2,
+        "Logic": 2,
+        "Empathy": 2
+    }
+    default_skills = {
+        "Agility": 0,
+        "Close combat": 0,
+        "Force": 0,
+        "Medicine": 0,
+        "Ranged combat": 0,
+        "Stealth": 0,
+        "Investigation": 0,
+        "Learning": 0,
+        "Vigilance": 0,
+        "Inspiration": 0,
+        "Manipulation": 0,
+        "Observation": 0
+    }
+
     def __init__(self, name: str, archetype: Archetype = None, age: int = None):
         self._name = name
 
@@ -20,31 +41,13 @@ class Character:
             self.__set_age_related_modifiers(age)
 
         self._talents = []
-        self._attributes = {
-            "Physique": 2,
-            "Precision": 2,
-            "Logic": 2,
-            "Empathy": 2
-        }
-        self._skills = {
-            "Agility": 0,
-            "Close combat": 0,
-            "Force": 0,
-            "Medicine": 0,
-            "Ranged combat": 0,
-            "Stealth": 0,
-            "Investigation": 0,
-            "Learning": 0,
-            "Vigilance": 0,
-            "Inspiration": 0,
-            "Manipulation": 0,
-            "Observation": 0
-        }
+        self._attributes = Character.default_attributes
+        self._skills = Character.default_skills
         self._equipment = []
 
     def __str__(self) -> str:
         description = f"{self._name}"
-        if self.__age != None:
+        if self.__age is not None:
             description += f", {self.__age} ({self.age_group(self.__age)})"
         if self._archetype:
             description += f", {self._archetype.name}"
@@ -142,8 +145,7 @@ class Character:
             return "Young"
         if age < 51:
             return "Middle aged"
-        else:
-            return "Old"
+        return "Old"
 
     def __set_age_related_modifiers(self, age: int):
         if age < 17:
@@ -217,7 +219,7 @@ class Character:
         new_resources = self._resources + amount
         boundaries = self._archetype.resource_boundaries
         if new_resources < boundaries[0] or new_resources > boundaries[1]:
-            error_message = f"Chosen archetype allows starting resources between "
+            error_message = "Chosen archetype allows starting resources between "
             error_message += f"{boundaries[0]} - {boundaries[1]}"
             raise ValueError(error_message)
         self._resources = new_resources
@@ -292,8 +294,8 @@ class Character:
 
     def save_to_file(self, filename: str):
         with open(filename, "w") as file:
-            for line in self.full_character_sheet():
-                file.write(line + "\n")
+            for row in self.full_character_sheet():
+                file.write(row + "\n")
 
 
 if __name__ == "__main__":

@@ -1,5 +1,12 @@
 class Archetype:
-    def __init__(self, name: str, main_attribute: str, main_skill: str, talents: dict, resource_boundaries: tuple, equipment: list):
+    def __init__(
+        self, name: str,
+        main_attribute: str,
+        main_skill: str,
+        talents: dict,
+        resource_boundaries: tuple,
+        equipment: list
+    ):
         self.__name = name
         self.__main_attribute = main_attribute
         self.__main_skill = main_skill
@@ -8,7 +15,10 @@ class Archetype:
         self.__equipment = equipment
 
     def __str__(self) -> str:
-        return f"{self.__name}, {self.__main_attribute}, {self.__main_skill}, {self.__talents}, resources {self.__resource_boundaries[0]}-{self.__resource_boundaries[1]}, {self.__equipment}"
+        description = f"{self.__name}, {self.__main_attribute}, {self.__main_skill}, "
+        description += f"{self.__talents}, resources {self.__resource_boundaries[0]}-"
+        description += f"{self.__resource_boundaries[1]}, {self.__equipment}"
+        return description
 
     @property
     def name(self):
@@ -33,19 +43,3 @@ class Archetype:
     @property
     def equipment(self):
         return self.__equipment
-
-
-if __name__ == "__main__":
-    from talent import Talent
-
-    bookworm = Talent("Bookworm", "Gain +2 to...")
-    erudite = Talent("Erudite", "You can pass a...")
-    knowledge_is_reassuring = Talent(
-        "Knowledge is Reassuring", "Ignore Conditions when...")
-    talent_dict = {bookworm.name: bookworm, erudite.name: erudite,
-                   knowledge_is_reassuring.name: knowledge_is_reassuring}
-    equipment_list = [("book collection", "map book"),
-                      "writing utensils", ("liquor", "slide rule")]
-    academic = Archetype("Academic", "Logic", "Learning",
-                         talent_dict, (4, 6), equipment_list)
-    print(academic)
