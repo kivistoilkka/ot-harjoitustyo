@@ -28,5 +28,20 @@
         "name": "Emergency medicine",
         "description": "Ignore...",
         "startingOptionFor": "Doctor"
+    },
+    {
+        "name": "Bloodhound",
+        "description": "Gain +2 to...",
+        "startingOptionFor": "Hunter"
+    },
+    {
+        "name": "Herbalist",
+        "description": "By utilizing...",
+        "startingOptionFor": "Hunter"
+    },
+    {
+        "name": "Marksman",
+        "description": "Gain +2 to...",
+        "startingOptionFor": "Hunter"
     }
 ]

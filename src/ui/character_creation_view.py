@@ -1,25 +1,10 @@
 from tkinter import ttk, constants, StringVar, IntVar
 
-from entities.archetype import Archetype
 from entities.character import Character
 
-from repositories.talent_repository import talent_repository
+from repositories.archetype_repository import archetype_repository
 
-talents = talent_repository.find_all()
-
-academic_talents = talent_repository.find_for_archetype("Academic")
-academic_equipment_list = [
-    ("book collection", "map book"), "writing utensils", ("liquor", "slide rule")]
-academic = Archetype("Academic", "Logic", "Learning",
-                     academic_talents, (4, 6), academic_equipment_list)
-
-doctor_talents = talent_repository.find_for_archetype("Doctor")
-doctor_equipment_list = ["doctor's bag /w medicinal equipment",
-                         ("liquor", "wine"), ("weak horse", "strong poison")]
-doctor = Archetype("Doctor", "Logic", "Medicine",
-                   doctor_talents, (4, 6), doctor_equipment_list)
-
-AVAILABLE_ARCHETYPES = {academic.name: academic, doctor.name: doctor}
+AVAILABLE_ARCHETYPES = archetype_repository.find_all()
 ARCHETYPE_NAMES = list(AVAILABLE_ARCHETYPES.keys())
 
 
