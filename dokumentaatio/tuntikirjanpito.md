@@ -13,5 +13,5 @@
 | | 3 | Arkkityyppi- ja lahjakkuusvaihtoehdot JSON-tiedostoon, repositoriot näille, ympäristömuuttujat käyttöön |
 | | 1 | Hahmolomakkeen täyttämisen sovelluslogiikan siirto käyttöliittymistä CharacterServiceen |
 | 12.4. | 3 | Testejä |
-| | x | Alustavan luokkakaavion luominen, changelogin päivitys |
-| yht | 23 | | 
+| | 1 | Alustavan luokkakaavion luominen, changelogin päivitys |
+| yht | 26 | | 

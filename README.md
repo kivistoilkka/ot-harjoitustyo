@@ -44,3 +44,9 @@ Ohjelmasta voi luoda HTML-muotoisen testikattavuusraportin komennolla:
 poetry run invoke coverage-report
 ```
 Raportti luodaan _htmlcov_-hakemistoon.
+
+### Pylint
+Tiedostossa .pylintrc määritellyt tarkistukset saa suoritettua komennolla:
+```bash
+poetry run invoke lint
+```
