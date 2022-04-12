@@ -12,7 +12,7 @@ Sovelluksessa ei ole erillisiä käyttäjäprofiileja, mutta käyttäjä voi kä
 - Käyttäjä voi valita avaako aiemmin luodun hahmokokoelman vai luoko uuden hahmokokoelmatiedoston
 
 ### Varsinaisessa sovelluksessa
-- ✅ Käyttäjä voi luoda uuden hahmon
+- Käyttäjä voi luoda uuden hahmon
     - ✅ Ensin kysytään hahmon nimi
     - ✅ Hahmosta kysytään sitten seuraavat numeroarvoihin vaikuttavat perustiedot:
         - ✅ Hahmon arkkityyppi
@@ -31,7 +31,7 @@ Sovelluksessa ei ole erillisiä käyttäjäprofiileja, mutta käyttäjä voi kä
         - Hahmon synkkä salaisuus
         - Hahmon suhteet muihin pelaajahahmoihin
         - Hahmon muistoesine
-    - ✅ Hahmo on mahdollista tallentaa nimen, arkkityypin ja iän valitsemisen jälkeen
+    - Hahmo on mahdollista tallentaa nimen, arkkityypin ja iän valitsemisen jälkeen
         - Kaikkia kolmea on mahdollista muuttaa myöhemmin
 - Käyttäjä voi valita aiemman hahmon tarkasteltavaksi
     - Tämä vain siinä tapauksessa, että hahmokokoelmassa on aiempia hahmoja
