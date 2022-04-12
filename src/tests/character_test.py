@@ -1,6 +1,6 @@
 import unittest
-from .test_helper import TestHelper
 from entities.character import Character
+from .test_helper import TestHelper
 
 
 class TestCharacter(unittest.TestCase):
@@ -8,8 +8,9 @@ class TestCharacter(unittest.TestCase):
         self.character = Character("Louis Brugge")
 
     def test_constructor_and_getter_methods_work(self):
-        default_attributes = TestHelper.default_character_attributes()
-        default_skills = TestHelper.default_character_skills()
+        helper = TestHelper()
+        default_attributes = helper.default_character_attributes()
+        default_skills = helper.default_character_skills()
         character = Character("Louis Brugge")
         self.assertEqual(character.name, "Louis Brugge")
         self.assertEqual(character.archetype, None)

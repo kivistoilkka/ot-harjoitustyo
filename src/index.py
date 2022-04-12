@@ -7,24 +7,24 @@ def main():
     window = Tk()
     window.title("Vaesen Character App")
 
-    ui = UI(window)
-    ui.start()
+    user_interface = UI(window)
+    user_interface.start()
 
     window.mainloop()
 
 
 def text_main():
-    ui = CommandLineUI()
-    ui.start()
+    user_interface = CommandLineUI()
+    user_interface.start()
 
 
 if __name__ == "__main__":
     print("UI options: 1 - graphical, 2 - command line")
-    selected_ui = input("Select ui: ")
+    SELECTED_UI = input("Select ui: ")
 
-    if selected_ui == "1":
+    if SELECTED_UI == "1":
         main()
-    elif selected_ui == "2":
+    elif SELECTED_UI == "2":
         text_main()
     else:
         print("Invalid command")

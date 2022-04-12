@@ -10,6 +10,10 @@ except FileNotFoundError:
 
 TALENTS_FILENAME = os.getenv("TALENTS_FILENAME") or "talents.json"
 TALENTS_FILE_PATH = os.path.join(dirname, "..", "data", TALENTS_FILENAME)
+NONEXISTING_TALENTS_FILENAME = os.getenv(
+    "NONEXISTING_TALENTS_FILENAME") or "non-existing.json"
+NONEXISTING_TALENTS_FILE_PATH = os.path.join(
+    dirname, "..", "data", NONEXISTING_TALENTS_FILENAME)
 
 ARCHETYPES_FILENAME = os.getenv("ARCHETYPES_FILENAME") or "archetypes.json"
 ARCHETYPES_FILE_PATH = os.path.join(dirname, "..", "data", ARCHETYPES_FILENAME)

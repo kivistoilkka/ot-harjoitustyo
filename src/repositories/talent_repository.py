@@ -5,7 +5,7 @@ from entities.talent import Talent
 from config import TALENTS_FILE_PATH
 
 
-class TalentRespository:
+class TalentRepository:
     def __init__(self, file_path):
         self._file_path = file_path
 
@@ -33,7 +33,9 @@ class TalentRespository:
         return talents
 
     def _ensure_file_exists(self):
-        Path(self._file_path).touch()
+        file = Path(self._file_path)
+        if not file.exists():
+            file.write_text("[]", encoding="UTF-8")
 
 
-talent_repository = TalentRespository(TALENTS_FILE_PATH)
+talent_repository = TalentRepository(TALENTS_FILE_PATH)

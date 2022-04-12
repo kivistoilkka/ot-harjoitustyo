@@ -3,14 +3,17 @@ from entities.archetype import Archetype
 
 
 class TestHelper:
-    def __dict_of_academic_talents():
-        bookworm = Talent("Bookworm", "Gain +2 to...")
-        erudite = Talent("Erudite", "You can pass a...")
+    def __dict_of_academic_talents(self):
+        bookworm = Talent("Bookworm", "Gain +2 to...", "Academic")
+        erudite = Talent("Erudite", "You can pass a...", "Academic")
         knowledge_is_reassuring = Talent(
-            "Knowledge is Reassuring", "Ignore Conditions when...")
-        return {bookworm.name: bookworm, erudite.name: erudite, knowledge_is_reassuring.name: knowledge_is_reassuring}
+            "Knowledge is Reassuring", "Ignore Conditions when...", "Academic")
+        return {
+            bookworm.name: bookworm,
+            erudite.name: erudite,
+            knowledge_is_reassuring.name: knowledge_is_reassuring}
 
-    def default_character_attributes():
+    def default_character_attributes(self):
         return {
             "Physique": 2,
             "Precision": 2,
@@ -18,7 +21,7 @@ class TestHelper:
             "Empathy": 2
         }
 
-    def default_character_skills():
+    def default_character_skills(self):
         return {
             "Agility": 0,
             "Close combat": 0,
