@@ -14,7 +14,7 @@ Sovelluksessa ei ole erillisiä käyttäjäprofiileja, mutta käyttäjä voi kä
 ### Varsinaisessa sovelluksessa
 - ✅ Käyttäjä voi luoda uuden hahmon
     - ✅ Ensin kysytään hahmon nimi
-    - Hahmosta kysytään sitten seuraavat numeroarvoihin vaikuttavat perustiedot:
+    - ✅ Hahmosta kysytään sitten seuraavat numeroarvoihin vaikuttavat perustiedot:
         - ✅ Hahmon arkkityyppi
             - ✅ Vaikuttaa pääattribuuttiin, pääkykyyn, ensimmäisen erikoistaidon vaihtoehtoihin, alun resurssien haarukkaan ja aloitusvarusteisiin
         - ✅ Hahmon ikä
@@ -37,15 +37,15 @@ Sovelluksessa ei ole erillisiä käyttäjäprofiileja, mutta käyttäjä voi kä
     - Tämä vain siinä tapauksessa, että hahmokokoelmassa on aiempia hahmoja
     - Hahmon tietojen yhteydessä on mahdollista tarkastella numeroarvoihin vaikuttaneita tekijöitä
     - Hahmon tietoja on mahdollista muuttaa ja täydentää
-- Käyttäjä voi viedä valmiin hahmon tekstitiedostoon esimerkiksi tulostusta varten
+- ✅ Käyttäjä voi viedä valmiin hahmon tekstitiedostoon esimerkiksi tulostusta varten
     - Tämä onnistuu vain hahmoilla, joilla on tehty kaikki numeroarvoihin vaikuttavat valinnat
         - Vapaamuotoiset kuvaukset voivat jäädä tyhjiksi
 
 ## Jatkokehitysideat
 
 Perusversiossa hahmojen luonnissa tarjolla olevien vaihtoehtojen määrä on rajattu muutamaan kunkin valinnan kohdalla ja niitä lisätään ajan niin salliessa. Loppuun asti viedyssä sovelluksessa olisi tarjolla seuraavat määrät vaihtoehtoja:
-- 10 arkkityyppiä (2 lisätty)
-- 30 arkkityyppien erikoistaitoa, 3 jokaiselle arkkityypille (6 lisätty)
+- 10 arkkityyppiä (3 lisätty)
+- 30 arkkityyppien erikoistaitoa, 3 jokaiselle arkkityypille (9 lisätty)
 - Pitkä lista varusteita, näitä lisätään lisättyjen arkkityyppien vaatimusten mukaan
 
 Hahmoja voisi jakaa käyttäjien kesken, tämä vaatii että tuotavien hahmojen tietojen oikeellisuus varmisestaan tuonnin yhteydessä.

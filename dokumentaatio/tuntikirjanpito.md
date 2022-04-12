@@ -12,5 +12,6 @@
 | 11.4. | 2 | Koodin laadun parantamista Pylintin ja autopep8:n avulla, tekstikäyttöliittymän eriytys, character_service.py:n luonti |
 | | 3 | Arkkityyppi- ja lahjakkuusvaihtoehdot JSON-tiedostoon, repositoriot näille, ympäristömuuttujat käyttöön |
 | | 1 | Hahmolomakkeen täyttämisen sovelluslogiikan siirto käyttöliittymistä CharacterServiceen |
-| 12.4. | x | Testejä |
-| yht | 20 | | 
+| 12.4. | 3 | Testejä |
+| | x | Alustavan luokkakaavion luominen, changelogin päivitys |
+| yht | 23 | | 
