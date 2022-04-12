@@ -24,7 +24,7 @@ class CharacterService:
         if self._character:
             self._character.name = name
         else:
-            raise AttributeError(
+            raise ValueError(
                 "Character has to be created before it can be renamed")
 
     def set_character_archetype(self, name: str):
