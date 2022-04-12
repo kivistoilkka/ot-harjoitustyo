@@ -43,7 +43,9 @@ class ArchetypeRepository:
         return archetypes
 
     def _ensure_file_exists(self):
-        Path(self._file_path).touch()
+        file = Path(self._file_path)
+        if not file.exists():
+            file.write_text("[]", encoding="UTF-8")
 
 
 archetype_repository = ArchetypeRepository(ARCHETYPES_FILE_PATH)

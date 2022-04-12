@@ -1,0 +1,53 @@
+[
+    {
+        "name": "Academic",
+        "mainAttribute": "Logic",
+        "mainSkill": "Learning",
+        "talents": [
+            "Bookworm",
+            "Erudite",
+            "Knowledge is Reassuring"
+        ],
+        "resourcesLowerBoundary": 4,
+        "resourcesUpperBoundary": 6,
+        "equipment": [
+            ["book collection", "map book"],
+            "writing utensils",
+            ["liquor", "slide rule"]
+        ]
+    },
+    {
+        "name": "Doctor",
+        "mainAttribute": "Logic",
+        "mainSkill": "Medicine",
+        "talents": [
+            "Army medic",
+            "Chief physician",
+            "Emergency medicine"
+        ],
+        "resourcesLowerBoundary": 4,
+        "resourcesUpperBoundary": 6,
+        "equipment": [
+            "doctor's bag /w medicinal equipment",
+            ["liquor", "wine"],
+            ["weak horse", "strong poison"]
+        ]
+    },
+    {
+        "name": "Hunter",
+        "mainAttribute": "Precision",
+        "mainSkill": "Ranged combat",
+        "talents": [
+            "Bloodhound",
+            "Herbalist",
+            "Marksman"
+        ],
+        "resourcesLowerBoundary": 2,
+        "resourcesUpperBoundary": 4,
+        "equipment": [
+            "rifle",
+            ["hunting knife", "hunting dog"],
+            ["hunting trap", "hunting equipment"]
+        ]
+    }
+]
