@@ -20,6 +20,9 @@ class CharacterService:
     def get_character_summary(self):
         return str(self._character)
 
+    def get_character_name(self):
+        return self._character.name
+
     def set_character_name(self, name: str):
         if self._character:
             self._character.name = name
@@ -27,14 +30,23 @@ class CharacterService:
             raise ValueError(
                 "Character has to be created before it can be renamed")
 
+    def get_character_archetype_name(self):
+        return self._character.archetype.name
+
     def set_character_archetype(self, name: str):
         if name in AVAILABLE_ARCHETYPES:
             self._character.set_archetype(AVAILABLE_ARCHETYPES[name])
         else:
             raise ValueError("Given archetype is not available")
 
+    def get_character_age(self):
+        return self._character.age
+
     def set_character_age(self, age: int):
         self._character.age = age
+    
+    def get_character_agegroup(self, age: int):
+        return self._character.age_group(age)
 
     def get_archetype_options(self):
         return list(AVAILABLE_ARCHETYPES.keys())
@@ -46,6 +58,12 @@ class CharacterService:
 
     def give_talent_to_character(self, name: str):
         self._character.give_talent(name)
+
+    def get_character_attributes(self):
+        return self._character.attributes
+
+    def get_character_main_attribute(self):
+        return self._character.main_attribute
 
     def get_character_attribute_points_left(self):
         return self._character.attribute_points_left()
@@ -70,6 +88,12 @@ class CharacterService:
 
     def reset_character_attributes(self):
         self._character.reset_attributes()
+
+    def get_character_skills(self):
+        return self._character.skills
+
+    def get_character_main_skill(self):
+        return self._character.main_skill
 
     def get_character_skill_points_left(self):
         return self._character.skill_points_left()
@@ -160,9 +184,6 @@ class CharacterService:
 
 character_service = CharacterService()
 
-# def get_character_name(self):
-#     return self._character.name
-
 # def character_max_attribute_points(self):
 #     return self._character.max_attribute_points
 
@@ -175,17 +196,7 @@ character_service = CharacterService()
 # def remove_character_talents(self):
 #     self._character.remove_talents()
 
-# def character_attributes(self):
-#     return self._character.attributes
 
-# def character_main_attribute(self):
-#     return self._character.main_attribute
-
-# def character_skills(self):
-#     return self._character.skills
-
-# def character_main_skill(self):
-#     return self._character.main_skill
 
 # def get_character_equipment(self):
 #     return self._character.equipment

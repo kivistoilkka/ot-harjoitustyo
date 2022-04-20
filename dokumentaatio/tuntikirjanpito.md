@@ -14,4 +14,5 @@
 | | 1 | Hahmolomakkeen täyttämisen sovelluslogiikan siirto käyttöliittymistä CharacterServiceen |
 | 12.4. | 3 | Testejä |
 | | 1 | Alustavan luokkakaavion luominen, changelogin päivitys |
-| yht | 26 | | 
+| 20.4. | 3 | Hahmonluontia graafiseen käyttöliittymään |
+| yht | 29 | | 

@@ -6,9 +6,10 @@ AVAILABLE_ARCHETYPES = character_service.get_archetype_options()
 
 
 class CharacterCreationView:
-    def __init__(self, root):
+    def __init__(self, root, _handle_char_modifying):
         self._root = root
         self._frame = None
+        self._handle_char_modifying = _handle_char_modifying
         self._character_name_entry = None
         self._character_archetype_checkbox = None
         self._character_age_spinbox = None
@@ -29,7 +30,7 @@ class CharacterCreationView:
         if name_value and archetype_value and age_value:
             character_service.create_character(
                 name_value, archetype_value, int(age_value))
-            print(character_service.get_character_summary())
+            self._handle_char_modifying()
 
     def _initialize(self):
         self._frame = ttk.Frame(master=self._root)

@@ -1,4 +1,5 @@
-from tkinter import Menu, Toplevel, Button
+from tkinter import Menu
+from ui.character_sheet_view import CharacterSheetView
 from ui.main_view import MainView
 from ui.character_creation_view import CharacterCreationView
 
@@ -31,6 +32,17 @@ class UI:
     def _show_char_creation_view(self):
         self._hide_current_view()
         self._current_view = CharacterCreationView(
+            self._root,
+            self._handle_char_modifying
+        )
+        self._current_view.pack()
+
+    def _handle_char_modifying(self):
+        self._show_char_sheet_view()
+
+    def _show_char_sheet_view(self):
+        self._hide_current_view()
+        self._current_view = CharacterSheetView(
             self._root
         )
         self._current_view.pack()
@@ -52,5 +64,5 @@ class UI:
         self._root.config(menu=menubar)
 
     def _set_visual_settings(self):
-        self._root.geometry("600x500")
+        self._root.geometry("800x900")
         self._root["bg"] = "#f3e7c6"
