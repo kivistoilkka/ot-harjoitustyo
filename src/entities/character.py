@@ -78,6 +78,7 @@ class Character:
         self.reset_attributes()
         self.reset_skills()
         self.reset_resources()
+        self.remove_talents()
 
     @property
     def age(self):

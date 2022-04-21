@@ -64,5 +64,5 @@ class UI:
         self._root.config(menu=menubar)
 
     def _set_visual_settings(self):
-        self._root.geometry("800x900")
+        self._root.geometry("800x1000")
         self._root["bg"] = "#f3e7c6"

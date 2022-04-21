@@ -15,4 +15,5 @@
 | 12.4. | 3 | Testejä |
 | | 1 | Alustavan luokkakaavion luominen, changelogin päivitys |
 | 20.4. | 3 | Hahmonluontia graafiseen käyttöliittymään |
+| 21.4. | x | Hahmonluonnin graafisen käyttöliittymän jatkamista |
 | yht | 29 | | 

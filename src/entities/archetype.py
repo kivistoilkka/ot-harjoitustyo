@@ -1,12 +1,12 @@
 class Archetype:
     def __init__(
-        self, name: str,
-        main_attribute: str,
-        main_skill: str,
-        talents: dict,
-        resource_boundaries: tuple,
-        equipment: list
-    ):
+            self, name: str,
+            main_attribute: str,
+            main_skill: str,
+            talents: dict,
+            resource_boundaries: tuple,
+            equipment: list
+        ):
         self.__name = name
         self.__main_attribute = main_attribute
         self.__main_skill = main_skill

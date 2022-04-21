@@ -11,7 +11,7 @@ class CharacterCreationView:
         self._frame = None
         self._handle_char_modifying = _handle_char_modifying
         self._character_name_entry = None
-        self._character_archetype_checkbox = None
+        self._character_archetype_combobox = None
         self._character_age_spinbox = None
 
         self._initialize()
@@ -24,7 +24,7 @@ class CharacterCreationView:
 
     def _handle_create(self):
         name_value = self._character_name_entry.get()
-        archetype_value = self._character_archetype_checkbox.get()
+        archetype_value = self._character_archetype_combobox.get()
         age_value = self._character_age_spinbox.get()
 
         if name_value and archetype_value and age_value:
@@ -57,11 +57,12 @@ class CharacterCreationView:
             master=self._frame,
             text="Character archetype:",
         )
-        self._character_archetype_checkbox = ttk.Combobox(
+        self._character_archetype_combobox = ttk.Combobox(
             master=self._frame,
+            state="readonly",
             values=AVAILABLE_ARCHETYPES
         )
-        self._character_archetype_checkbox.set(AVAILABLE_ARCHETYPES[0])
+        self._character_archetype_combobox.set(AVAILABLE_ARCHETYPES[0])
 
         character_age_label = ttk.Label(
             master=self._frame,
@@ -91,7 +92,7 @@ class CharacterCreationView:
 
         character_archetype_label.grid(
             row=2, column=0, padx=5, pady=5, sticky=(constants.E, constants.W))
-        self._character_archetype_checkbox.grid(
+        self._character_archetype_combobox.grid(
             row=2, column=1, padx=5, pady=5, sticky=(constants.E, constants.W))
 
         character_age_label.grid(

@@ -44,14 +44,19 @@ class CharacterService:
 
     def set_character_age(self, age: int):
         self._character.age = age
-    
+
     def get_character_agegroup(self, age: int):
         return self._character.age_group(age)
 
     def get_archetype_options(self):
         return list(AVAILABLE_ARCHETYPES.keys())
 
-    def get_talent_options(self):
+    def get_character_talents(self):
+        if len(self._character.talents) == 0:
+            return None
+        return self._character.talents
+
+    def get_talent_options(self) -> dict:
         if self._character.archetype:
             return self._character.archetype.talents
         raise ValueError("Choose archetype first")
@@ -77,14 +82,14 @@ class CharacterService:
             attribute_list.append(attribute_info)
         return attribute_list
 
-    def change_character_attribute(self, attribute: str, amount: int) -> bool:
+    def change_character_attribute(self, attribute: str, amount: int) -> int:
         if attribute in self._character.attributes:
             try:
                 self._character.change_attribute(attribute, amount)
-                return True
+                return self._character.attributes[attribute]
             except ValueError:
-                return False
-        return False
+                return self._character.attributes[attribute]
+        return -1
 
     def reset_character_attributes(self):
         self._character.reset_attributes()
@@ -110,24 +115,24 @@ class CharacterService:
     def get_character_resources(self):
         return self._character.resources
 
-    def change_character_skill(self, skill: str, amount: int) -> bool:
+    def change_character_skill(self, skill: str, amount: int) -> int:
         if skill in self._character.skills:
             try:
                 self._character.change_skill(skill, amount)
-                return True
+                return self._character.skills[skill]
             except ValueError:
-                return False
-        return False
+                return self._character.skills[skill]
+        return -1
 
     def reset_character_skills(self):
         self._character.reset_skills()
 
-    def change_character_resources(self, amount: int) -> bool:
+    def change_character_resources(self, amount: int) -> int:
         try:
             self._character.change_resources(amount)
-            return True
+            return self._character.resources
         except ValueError:
-            return False
+            return self._character.resources
 
     def reset_character_resources(self):
         self._character.reset_resources()
@@ -190,13 +195,8 @@ character_service = CharacterService()
 # def character_max_skill_points(self):
 #     return self._character.max_skill_points
 
-# def character_talents(self):
-#     return self._character.talents
-
 # def remove_character_talents(self):
 #     self._character.remove_talents()
-
-
 
 # def get_character_equipment(self):
 #     return self._character.equipment
