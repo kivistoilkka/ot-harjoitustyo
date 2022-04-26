@@ -13,10 +13,18 @@
 - Tekstikäyttöliittymään lisätty toiminnallisuus hahmon varusteiden valitsemiseen.
 - Graafinen käyttöliittymä (luokka UI) aloitettu ja tekstikäyttöliittymä eriytetty omaan luokkaansa CommandLineUI, ohjelman käynnistyksen yhteydessä voi valita kumpaa käyttöliittymää käyttää.
 - Graafisen käyttöliittymän toiminnallisuudet:
- - Erilliset aloitus- ja hahmonluontinäkymät
- - Näkymien välillä siirtyminen ylävalikon avulla
- - Hahmotiivistelmän tulostaminen komentoriville, kun hahmolle on valittu nimi, arkkityyppi ja sopiva ikä
+    - Erilliset aloitus- ja hahmonluontinäkymät
+    - Näkymien välillä siirtyminen ylävalikon avulla
+    - Hahmotiivistelmän tulostaminen komentoriville, kun hahmolle on valittu nimi, arkkityyppi ja sopiva ikä
 - Arkkityyppi- ja lahjakkuusvaihtoehdot siirretty omiin JSON-tiedostoihin, joiden lukemista varten luotu ArchetypeRepository- ja TalentRepository-luokat.
 - Sovelluksessa otettu käyttöön ympäristömuuttujat ja konfiguraatiotiedosto.
 - Osa Character-luokan toiminnallisuuksista siirretty uuteen CharacterService-luokkaan, joka on otettu käyttöön käyttöliittymissä.
 - Testejä CharacterServicelle ja molemmille uusille repositorioluokille.
+
+### Viikko 5
+
+- Graafisen käyttöliittymän tominnallisuudet:
+    - Hahmonluontinäkymästä siirrytään uuteen hahmonmuokkausnäkymään hahmon luomisen jälkeen
+    - Hahmonmuokkausnäkymä pilkottu erillisiin komponentteihin ja moduuleihin
+    - Hahmonluonti vastaa toiminnallisuudeltaan tekstikäyttöliittymää, minkä lisäksi hahmo on mahdollista viedä tekstitiedostoon muokkaamisen aikana ja tiedostolle on mahdollista valita tiedostosijainti
+- Lisää testejä CharacterServicelle ja pientä refaktorointia.

@@ -19,4 +19,5 @@
 | 26.4. | 3 | Hahmonluonnin graafinen käyttöliittymä käyttökuntoon, varusteiden valinta |
 | | 1 | Testejä ja koodin laadun parannusta |
 | | 1 | Hahmon luomista kuvaavan sekvenssikaavion luominen |
-| yht | 38 | | 
+| | 1 | Changelogin päivitys, GitHub release ja koodikatselmointiin valmistautuminen |
+| yht | 39 | | 
