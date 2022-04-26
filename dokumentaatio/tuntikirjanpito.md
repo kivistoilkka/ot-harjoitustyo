@@ -18,4 +18,5 @@
 | 21.4. | 4 | Hahmonluonnin graafisen käyttöliittymän jatkamista, refaktorointia, lahjakkuuksien valinta, tiedostoon tallennus |
 | 26.4. | 3 | Hahmonluonnin graafinen käyttöliittymä käyttökuntoon, varusteiden valinta |
 | | 1 | Testejä ja koodin laadun parannusta |
-| yht | 37 | | 
+| | 1 | Hahmon luomista kuvaavan sekvenssikaavion luominen |
+| yht | 38 | | 
