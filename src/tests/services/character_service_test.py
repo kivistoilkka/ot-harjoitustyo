@@ -38,6 +38,11 @@ class TestCharacterService(unittest.TestCase):
         created_by_service = self.character_service.get_character_summary()
         self.assertEqual(created_by_service, str(created_manually))
 
+    def test_name_getter_works(self):
+        self.character_service.create_character("Tester", "Doctor", 42)
+        name = self.character_service.get_character_name()
+        self.assertEqual(name, "Tester")
+
     def test_character_renaming(self):
         self.tester_character.name = "Supertester"
         self.character_service.create_character("Tester", "Doctor", 42)
@@ -68,3 +73,69 @@ class TestCharacterService(unittest.TestCase):
         self.assertTrue("Academic" in options)
         self.assertTrue("Doctor" in options)
         self.assertTrue("Hunter" in options)
+
+    def test_archetype_name_getter_works(self):
+        self.character_service.create_character("Tester", "Doctor", 42)
+        archetype_name = self.character_service.get_character_archetype_name()
+        self.assertEqual(archetype_name, "Doctor")
+
+    def test_archetype_changing_works(self):
+        self.character_service.create_character("Tester", "Doctor", 42)
+        self.character_service.set_character_archetype("Academic")
+        archetype_name = self.character_service.get_character_archetype_name()
+        self.assertEqual(archetype_name, "Academic")
+
+    def test_archetype_changing_does_not_work_with_invalid_archetype_name(self):
+        self.character_service.create_character("Tester", "Doctor", 42)
+        with self.assertRaises(ValueError) as cm:
+            self.character_service.set_character_archetype("Imaginary")
+        self.assertEqual(str(cm.exception), "Given archetype is not available")
+
+    def test_age_getter_works(self):
+        self.character_service.create_character("Tester", "Doctor", 42)
+        age = self.character_service.get_character_age()
+        self.assertEqual(age, 42)
+
+    def test_age_setter_works_with_valid_age(self):
+        self.character_service.create_character("Tester", "Doctor", 42)
+        self.character_service.set_character_age(17)
+        age = self.character_service.get_character_age()
+        self.assertEqual(age, 17)
+
+    def test_age_setter_does_not_work_with_age_under_17(self):
+        self.character_service.create_character("Tester", "Doctor", 42)
+        with self.assertRaises(ValueError) as cm:
+            self.character_service.set_character_age(16)
+        self.assertEqual(str(cm.exception), "Age must be 17 or higher")
+
+    def test_age_setter_does_not_work_with_wrong_type_of_input(self):
+        self.character_service.create_character("Tester", "Doctor", 42)
+        with self.assertRaises(ValueError) as cm:
+            self.character_service.set_character_age("fourty-two")
+        self.assertEqual(str(cm.exception), "Give the value as an integer")
+
+    def test_age_group_getter_works_with_correct_inputs(self):
+        self.assertEqual(
+            self.character_service.get_character_agegroup(99), "Old")
+        self.character_service.create_character("Tester", "Doctor", 26)
+        self.assertEqual(
+            self.character_service.get_character_agegroup(), "Middle aged")
+        self.assertEqual(
+            self.character_service.get_character_agegroup(17), "Young")
+        self.assertEqual(
+            self.character_service.get_character_agegroup(25), "Young")
+        self.assertEqual(
+            self.character_service.get_character_agegroup(50), "Middle aged")
+        self.assertEqual(
+            self.character_service.get_character_agegroup(51), "Old")
+        self.character_service.set_character_age(72)
+        self.assertEqual(
+            self.character_service.get_character_agegroup(), "Old")
+
+    def test_list_of_talent_options_is_correct(self):
+        self.character_service.create_character("Tester", "Doctor", 26)
+        options = self.character_service.get_talent_options()
+        self.assertEqual(len(options), 3)
+        self.assertTrue("Army medic" in options)
+        self.assertTrue("Chief physician" in options)
+        self.assertTrue("Emergency medicine" in options)

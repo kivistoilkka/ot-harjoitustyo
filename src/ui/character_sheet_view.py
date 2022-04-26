@@ -6,6 +6,7 @@ from ui.sheet_components.talents_equipment_view import TalentsEquipmentView
 from ui.sheet_components.attribute_list_view import AttributeListView
 from ui.sheet_components.skill_list_resources_view import SkillListResourcesView
 
+
 class CharacterSheetView:
     def __init__(self, root):
         self._root = root
@@ -36,19 +37,23 @@ class CharacterSheetView:
         self._initialize_basic_info()
 
     def _handle_attribute_change(self, attribute, amount, value_label_var, attribute_points_var):
-        new_value = character_service.change_character_attribute(attribute, amount)
+        new_value = character_service.change_character_attribute(
+            attribute, amount)
         value_label_var.set(new_value)
-        attribute_points_var.set(character_service.get_character_attribute_points_left())
+        attribute_points_var.set(
+            character_service.get_character_attribute_points_left())
 
     def _handle_resource_change(self, amount, resources_label_var, skill_points_var):
         new_value = character_service.change_character_resources(amount)
         resources_label_var.set(new_value)
-        skill_points_var.set(character_service.get_character_skill_points_left())
+        skill_points_var.set(
+            character_service.get_character_skill_points_left())
 
     def _handle_skill_change(self, skill, amount, value_label_var, skill_points_var):
         new_value = character_service.change_character_skill(skill, amount)
         value_label_var.set(new_value)
-        skill_points_var.set(character_service.get_character_skill_points_left())
+        skill_points_var.set(
+            character_service.get_character_skill_points_left())
 
     def _handle_talent_change(self, talent_name):
         character_service.give_talent_to_character(talent_name)
@@ -125,7 +130,8 @@ class CharacterSheetView:
 
     def _handle_export(self):
         files = [("Text Document", "*.txt"), ("All files", "*.*")]
-        file = filedialog.asksaveasfile(filetypes=files, defaultextension=".txt")
+        file = filedialog.asksaveasfile(
+            filetypes=files, defaultextension=".txt")
         if file:
             character_service.save_character_to_file(file.name)
 
@@ -156,8 +162,13 @@ class CharacterSheetView:
         self._root.grid_columnconfigure(1, weight=1)
         header_label.grid(row=0, column=0, columnspan=2,
                           padx=5, pady=5, sticky=constants.W)
-        self._basic_info_frame.grid(row=1, column=0, padx=5, pady=5, sticky=constants.NW)
-        self._attribute_list_frame.grid(row=1, column=1, padx=5, pady=5, sticky=constants.NW)
-        self._skill_list_frame.grid(row=1, column=3, rowspan=2, padx=5, pady=5, sticky=constants.NW)
-        self._talents_equipment_frame.grid(row=1, column=2, padx=5, pady=5, sticky=constants.NW)
-        export_button.grid(row=1, column=4, padx=5, pady=5, sticky=constants.NW)
+        self._basic_info_frame.grid(
+            row=1, column=0, padx=5, pady=5, sticky=constants.NW)
+        self._attribute_list_frame.grid(
+            row=1, column=1, padx=5, pady=5, sticky=constants.NW)
+        self._skill_list_frame.grid(
+            row=1, column=3, rowspan=2, padx=5, pady=5, sticky=constants.NW)
+        self._talents_equipment_frame.grid(
+            row=1, column=2, padx=5, pady=5, sticky=constants.NW)
+        export_button.grid(row=1, column=4, padx=5,
+                           pady=5, sticky=constants.NW)

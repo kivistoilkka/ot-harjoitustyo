@@ -14,14 +14,26 @@ class CharacterService:
         if name == "":
             raise ValueError("Name cannot be an empty string")
         self._character = Character(name)
+        if archetype not in AVAILABLE_ARCHETYPES:
+            raise ValueError("Given archetype is not available")
         self._character.set_archetype(AVAILABLE_ARCHETYPES[archetype])
+        if not isinstance(age, int):
+            raise ValueError("Give the age value as an integer")
+        if age < 17:
+            raise ValueError("Character age must be over 17")
         self._character.age = age
 
     def get_character_summary(self):
-        return str(self._character)
+        if self._character:
+            return str(self._character)
+        raise ValueError(
+            "Character has to be created before it can be summarized")
 
     def get_character_name(self):
-        return self._character.name
+        if self._character:
+            return self._character.name
+        raise ValueError(
+            "Character has to be created before it can have a name")
 
     def set_character_name(self, name: str):
         if self._character:
@@ -31,22 +43,47 @@ class CharacterService:
                 "Character has to be created before it can be renamed")
 
     def get_character_archetype_name(self):
-        return self._character.archetype.name
+        if self._character:
+            return self._character.archetype.name
+        raise ValueError(
+            "Character has to be created before it can have an archetype")
 
     def set_character_archetype(self, name: str):
-        if name in AVAILABLE_ARCHETYPES:
-            self._character.set_archetype(AVAILABLE_ARCHETYPES[name])
+        if self._character:
+            if name in AVAILABLE_ARCHETYPES:
+                self._character.set_archetype(AVAILABLE_ARCHETYPES[name])
+            else:
+                raise ValueError("Given archetype is not available")
         else:
-            raise ValueError("Given archetype is not available")
+            raise ValueError(
+                "Character has to be created before the archetype can be changed")
 
     def get_character_age(self):
-        return self._character.age
+        if self._character:
+            return self._character.age
+        raise ValueError(
+            "Character has to be created before it can have an age")
 
     def set_character_age(self, age: int):
-        self._character.age = age
+        if self._character:
+            if isinstance(age, int):
+                self._character.age = age
+            else:
+                raise ValueError("Give the value as an integer")
+        else:
+            raise ValueError(
+                "Character has to be created before the age can be changed")
 
-    def get_character_agegroup(self, age: int):
-        return self._character.age_group(age)
+    def get_character_agegroup(self, age: int = None):
+        if self._character:
+            if not age:
+                age = self._character.age
+            return self._character.age_group(age)
+        dummy = Character("Dummy")
+        if not age or not isinstance(age, int):
+            raise ValueError(
+                "Character not created, give an age value in integer")
+        return dummy.age_group(age)
 
     def get_archetype_options(self):
         return list(AVAILABLE_ARCHETYPES.keys())

@@ -1,5 +1,6 @@
 from tkinter import ttk, constants, IntVar
 
+
 class SkillListResourcesView:
     skill_to_attribute = {
         "Agility": "Physique",
@@ -17,15 +18,15 @@ class SkillListResourcesView:
     }
 
     def __init__(
-            self,
-            root,
-            skills: dict,
-            handle_skill_change,
-            main_skill,
-            resources,
-            handle_resource_change,
-            skill_points_left
-        ):
+        self,
+        root,
+        skills: dict,
+        handle_skill_change,
+        main_skill,
+        resources,
+        handle_resource_change,
+        skill_points_left
+    ):
         self._root = root
         self._frame = None
         self._skills = skills
@@ -48,21 +49,26 @@ class SkillListResourcesView:
 
     def _initialize_resources(self):
         item_frame = ttk.Frame(master=self._frame)
-        value_label = ttk.Label(master=item_frame, textvariable=self._resources_var)
+        value_label = ttk.Label(
+            master=item_frame, textvariable=self._resources_var)
         decrease_button = ttk.Button(
             master=item_frame,
             text="-",
-            command=lambda: self._handle_resource_change(-1, self._resources_var, self._skill_points_var)
+            command=lambda: self._handle_resource_change(
+                -1, self._resources_var, self._skill_points_var)
         )
         increase_button = ttk.Button(
             master=item_frame,
             text="+",
-            command=lambda: self._handle_resource_change(1, self._resources_var, self._skill_points_var)
+            command=lambda: self._handle_resource_change(
+                1, self._resources_var, self._skill_points_var)
         )
 
-        decrease_button.grid(row=0, column=0, padx=5, pady=5, sticky=constants.W)
+        decrease_button.grid(row=0, column=0, padx=5,
+                             pady=5, sticky=constants.W)
         value_label.grid(row=0, column=1, padx=5, pady=5, sticky=constants.W)
-        increase_button.grid(row=0, column=2, padx=5, pady=5, sticky=constants.W)
+        increase_button.grid(row=0, column=2, padx=5,
+                             pady=5, sticky=constants.W)
 
         item_frame.pack(fill=constants.X)
 
@@ -82,22 +88,27 @@ class SkillListResourcesView:
 
         value_label_var = IntVar()
         value_label_var.set(value)
-        value_label = ttk.Label(master=item_frame, textvariable=value_label_var)
+        value_label = ttk.Label(
+            master=item_frame, textvariable=value_label_var)
         decrease_button = ttk.Button(
             master=item_frame,
             text="-",
-            command=lambda: self._handle_skill_change(name, -1, value_label_var, self._skill_points_var)
+            command=lambda: self._handle_skill_change(
+                name, -1, value_label_var, self._skill_points_var)
         )
         increase_button = ttk.Button(
             master=item_frame,
             text="+",
-            command=lambda: self._handle_skill_change(name, 1, value_label_var, self._skill_points_var)
+            command=lambda: self._handle_skill_change(
+                name, 1, value_label_var, self._skill_points_var)
         )
 
         name_label.grid(row=0, column=0, padx=5, pady=5, sticky=constants.W)
-        decrease_button.grid(row=0, column=1, padx=5, pady=5, sticky=constants.W)
+        decrease_button.grid(row=0, column=1, padx=5,
+                             pady=5, sticky=constants.W)
         value_label.grid(row=0, column=2, padx=5, pady=5, sticky=constants.W)
-        increase_button.grid(row=0, column=3, padx=5, pady=5, sticky=constants.W)
+        increase_button.grid(row=0, column=3, padx=5,
+                             pady=5, sticky=constants.W)
 
         item_frame.pack(fill=constants.X)
 
@@ -108,8 +119,10 @@ class SkillListResourcesView:
         self._resources_var = IntVar()
         self._resources_var.set(self._resources)
 
-        resources_label = ttk.Label(master=self._frame, text="Resources", font=("", 15, "bold"))
-        skills_label = ttk.Label(master=self._frame, text="Skills", font=("", 15, "bold"))
+        resources_label = ttk.Label(
+            master=self._frame, text="Resources", font=("", 15, "bold"))
+        skills_label = ttk.Label(
+            master=self._frame, text="Skills", font=("", 15, "bold"))
         points_left_label = ttk.Label(
             master=self._frame,
             text="Skill/resource points left:"

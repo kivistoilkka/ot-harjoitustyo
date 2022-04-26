@@ -17,4 +17,5 @@
 | 20.4. | 3 | Hahmonluontia graafiseen käyttöliittymään, perustietojen muuttaminen, attribuuttien ja taitojen muokkaus |
 | 21.4. | 4 | Hahmonluonnin graafisen käyttöliittymän jatkamista, refaktorointia, lahjakkuuksien valinta, tiedostoon tallennus |
 | 26.4. | 3 | Hahmonluonnin graafinen käyttöliittymä käyttökuntoon, varusteiden valinta |
-| yht | 36 | | 
+| | 1 | Testejä ja koodin laadun parannusta |
+| yht | 37 | | 

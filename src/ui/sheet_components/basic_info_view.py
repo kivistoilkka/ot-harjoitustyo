@@ -4,6 +4,7 @@ from services.character_service import character_service
 
 AVAILABLE_ARCHETYPES = character_service.get_archetype_options()
 
+
 class BasicInfoView:
     def __init__(self, root, handle_update):
         self._root = root
@@ -34,7 +35,8 @@ class BasicInfoView:
         self._character_name_var = StringVar()
         self._character_name_var.set(character_service.get_character_name())
         self._character_archetype_var = StringVar()
-        self._character_archetype_var.set(character_service.get_character_archetype_name())
+        self._character_archetype_var.set(
+            character_service.get_character_archetype_name())
         self._character_age_var = IntVar()
         self._character_age_var.set(character_service.get_character_age())
 
@@ -56,7 +58,8 @@ class BasicInfoView:
             state="readonly",
             values=AVAILABLE_ARCHETYPES
         )
-        self._character_archetype_combobox.set(self._character_archetype_var.get())
+        self._character_archetype_combobox.set(
+            self._character_archetype_var.get())
 
         character_age_label = ttk.Label(
             master=self._frame,
@@ -70,7 +73,8 @@ class BasicInfoView:
         self._character_age_spinbox.set(self._character_age_var.get())
         character_agegroup_label = ttk.Label(
             master=self._frame,
-            text=character_service.get_character_agegroup(int(self._character_age_var.get()))
+            text=character_service.get_character_agegroup(
+                int(self._character_age_var.get()))
         )
 
         update_button = ttk.Button(

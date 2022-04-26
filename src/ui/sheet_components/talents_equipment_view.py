@@ -1,16 +1,17 @@
 from tkinter import ttk, constants, StringVar
 
+
 class TalentsEquipmentView:
     def __init__(
-            self,
-            root,
-            talent_options,
-            talent,
-            handle_talent_change,
-            equipment_options,
-            character_equipment,
-            handle_equipment_change
-        ):
+        self,
+        root,
+        talent_options,
+        talent,
+        handle_talent_change,
+        equipment_options,
+        character_equipment,
+        handle_equipment_change
+    ):
         self._root = root
         self._frame = None
         self._talent_options = talent_options
@@ -60,7 +61,8 @@ class TalentsEquipmentView:
 
     def _set_character_equipment(self):
         selected_equipment = [item.get() for item in self._equipment_names_var]
-        self._character_equipment = self._handle_equipment_change(selected_equipment)
+        self._character_equipment = self._handle_equipment_change(
+            selected_equipment)
         i = 0
         while i < 3:
             self._equipment_saved_var[i].set(selected_equipment[i])
@@ -84,7 +86,8 @@ class TalentsEquipmentView:
             values=self._talent_options_names,
             state="readonly"
         )
-        self._talent_combobox.bind("<<ComboboxSelected>>", self._set_current_talent)
+        self._talent_combobox.bind(
+            "<<ComboboxSelected>>", self._set_current_talent)
         self._talent_description_label = ttk.Label(
             master=self._frame,
             textvariable=self._talent_desc_var
@@ -162,4 +165,5 @@ class TalentsEquipmentView:
         self._equipment_save_button.pack()
         self._equipment_selected_label.pack(fill=constants.X, pady=5)
         for item in self._equipment_saved_var:
-            ttk.Label(master=self._frame, textvariable=item).pack(fill=constants.X)
+            ttk.Label(master=self._frame, textvariable=item).pack(
+                fill=constants.X)

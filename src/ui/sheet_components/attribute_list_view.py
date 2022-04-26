@@ -1,14 +1,15 @@
 from tkinter import ttk, constants, IntVar
 
+
 class AttributeListView:
     def __init__(
-            self,
-            root,
-            attributes: dict,
-            handle_attribute_change,
-            main_attribute,
-            attribute_points_left
-        ):
+        self,
+        root,
+        attributes: dict,
+        handle_attribute_change,
+        main_attribute,
+        attribute_points_left
+    ):
         self._root = root
         self._frame = None
         self._attributes = attributes
@@ -30,26 +31,32 @@ class AttributeListView:
 
         name_label = ttk.Label(master=item_frame, text=name)
         if name == self._main_attribute:
-            name_label = ttk.Label(master=item_frame, text=name, font=("", 11, "bold"))
+            name_label = ttk.Label(
+                master=item_frame, text=name, font=("", 11, "bold"))
 
         value_label_var = IntVar()
         value_label_var.set(value)
-        value_label = ttk.Label(master=item_frame, textvariable=value_label_var)
+        value_label = ttk.Label(
+            master=item_frame, textvariable=value_label_var)
         decrease_button = ttk.Button(
             master=item_frame,
             text="-",
-            command=lambda: self._handle_attribute_change(name, -1, value_label_var, self._attribute_points_var)
+            command=lambda: self._handle_attribute_change(
+                name, -1, value_label_var, self._attribute_points_var)
         )
         increase_button = ttk.Button(
             master=item_frame,
             text="+",
-            command=lambda: self._handle_attribute_change(name, 1, value_label_var, self._attribute_points_var)
+            command=lambda: self._handle_attribute_change(
+                name, 1, value_label_var, self._attribute_points_var)
         )
 
         name_label.grid(row=0, column=0, padx=5, pady=5, sticky=constants.W)
-        decrease_button.grid(row=0, column=1, padx=5, pady=5, sticky=constants.W)
+        decrease_button.grid(row=0, column=1, padx=5,
+                             pady=5, sticky=constants.W)
         value_label.grid(row=0, column=2, padx=5, pady=5, sticky=constants.W)
-        increase_button.grid(row=0, column=3, padx=5, pady=5, sticky=constants.W)
+        increase_button.grid(row=0, column=3, padx=5,
+                             pady=5, sticky=constants.W)
 
         item_frame.pack(fill=constants.X)
 
@@ -58,7 +65,8 @@ class AttributeListView:
         self._attribute_points_var = IntVar()
         self._attribute_points_var.set(self._attribute_points_left)
 
-        header_label = ttk.Label(master=self._frame, text="Attributes", font=("", 15, "bold"))
+        header_label = ttk.Label(
+            master=self._frame, text="Attributes", font=("", 15, "bold"))
         points_left_label = ttk.Label(
             master=self._frame,
             text="Attribute points left:"
