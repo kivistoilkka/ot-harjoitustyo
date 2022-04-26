@@ -12,6 +12,8 @@ Sovelluksen avulla käyttäjä voi luoda hahmoja ***Vaesen***-roolipeliin ([peli
 
 [Changelog](https://github.com/kivistoilkka/ot-harjoitustyo/blob/master/dokumentaatio/changelog.md)
 
+[Viikon 5 release](https://github.com/kivistoilkka/ot-harjoitustyo/releases/tag/viikko5)
+
 ## Asennus
 
 1. Asenna riippuvuudet komennolla:
