@@ -79,6 +79,7 @@ class Character:
         self.reset_skills()
         self.reset_resources()
         self.remove_talents()
+        self.reset_equipment()
 
     @property
     def age(self):
@@ -237,3 +238,6 @@ class Character:
     @equipment.setter
     def equipment(self, equipment: list):
         self._equipment = equipment
+
+    def reset_equipment(self):
+        self._equipment = []

@@ -16,7 +16,7 @@ Sovelluksessa ei ole erillisiä käyttäjäprofiileja, mutta käyttäjä voi kä
     - ✅ Ensin kysytään hahmon nimi
     - ✅ Hahmosta kysytään sitten seuraavat numeroarvoihin vaikuttavat perustiedot:
         - ✅ Hahmon arkkityyppi
-            - ✅ Vaikuttaa pääattribuuttiin, pääkykyyn, ensimmäisen erikoistaidon vaihtoehtoihin, alun resurssien haarukkaan ja aloitusvarusteisiin
+            - ✅ Vaikuttaa pääattribuuttiin, pääkykyyn, ensimmäiseen erikoistaidon vaihtoehtoihin, alun resurssien haarukkaan ja aloitusvarusteisiin
         - ✅ Hahmon ikä
             - ✅ Vaikuttaa attribuuttipisteisiin ja taitopisteisiin/resursseihin
         - ✅ Hahmon attribuuttipisteiden jakautuminen
@@ -31,8 +31,8 @@ Sovelluksessa ei ole erillisiä käyttäjäprofiileja, mutta käyttäjä voi kä
         - Hahmon synkkä salaisuus
         - Hahmon suhteet muihin pelaajahahmoihin
         - Hahmon muistoesine
-    - Hahmo on mahdollista tallentaa nimen, arkkityypin ja iän valitsemisen jälkeen
-        - Kaikkia kolmea on mahdollista muuttaa myöhemmin
+    - ✅ Hahmo on mahdollista tallentaa nimen, arkkityypin ja iän valitsemisen jälkeen
+        - ✅ Kaikkia kolmea on mahdollista muuttaa myöhemmin
 - Käyttäjä voi valita aiemman hahmon tarkasteltavaksi
     - Tämä vain siinä tapauksessa, että hahmokokoelmassa on aiempia hahmoja
     - Hahmon tietojen yhteydessä on mahdollista tarkastella numeroarvoihin vaikuttaneita tekijöitä

@@ -140,8 +140,12 @@ class CharacterService:
     def get_equipment_options(self):
         return self._character.archetype.equipment
 
-    def set_character_equipment(self, equipment: list):
+    def get_character_equipment(self):
+        return self._character.equipment
+
+    def set_character_equipment(self, equipment: list) -> list:
         self._character.equipment = equipment
+        return self._character.equipment
 
     def full_character_sheet(self) -> list:
         character_sheet = []
@@ -197,6 +201,3 @@ character_service = CharacterService()
 
 # def remove_character_talents(self):
 #     self._character.remove_talents()
-
-# def get_character_equipment(self):
-#     return self._character.equipment

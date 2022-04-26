@@ -49,9 +49,12 @@ class CharacterSheetView:
         new_value = character_service.change_character_skill(skill, amount)
         value_label_var.set(new_value)
         skill_points_var.set(character_service.get_character_skill_points_left())
-    
+
     def _handle_talent_change(self, talent_name):
         character_service.give_talent_to_character(talent_name)
+
+    def _handle_equipment_change(self, equipment):
+        return character_service.set_character_equipment(equipment)
 
     def _initialize_basic_info(self):
         if self._basic_info_view:
@@ -73,12 +76,17 @@ class CharacterSheetView:
 
         talent_options = character_service.get_talent_options()
         character_talent = character_service.get_character_talents()
+        equipment_options = character_service.get_equipment_options()
+        character_equipment = character_service.get_character_equipment()
 
         self._talents_equipment_view = TalentsEquipmentView(
             self._talents_equipment_frame,
             talent_options,
             character_talent,
-            self._handle_talent_change
+            self._handle_talent_change,
+            equipment_options,
+            character_equipment,
+            self._handle_equipment_change
         )
 
         self._talents_equipment_view.pack()
@@ -115,9 +123,9 @@ class CharacterSheetView:
 
         self._skill_list_view.pack()
 
-    def _handle_save(self):
+    def _handle_export(self):
         files = [("Text Document", "*.txt"), ("All files", "*.*")]
-        file = filedialog.asksaveasfile(filetypes=files)
+        file = filedialog.asksaveasfile(filetypes=files, defaultextension=".txt")
         if file:
             character_service.save_character_to_file(file.name)
 
@@ -139,10 +147,10 @@ class CharacterSheetView:
             font=("", 20, "bold")
         )
 
-        save_button = ttk.Button(
+        export_button = ttk.Button(
             master=self._frame,
-            text="Save to file",
-            command=self._handle_save
+            text="Export to text file",
+            command=self._handle_export
         )
 
         self._root.grid_columnconfigure(1, weight=1)
@@ -150,6 +158,6 @@ class CharacterSheetView:
                           padx=5, pady=5, sticky=constants.W)
         self._basic_info_frame.grid(row=1, column=0, padx=5, pady=5, sticky=constants.NW)
         self._attribute_list_frame.grid(row=1, column=1, padx=5, pady=5, sticky=constants.NW)
-        self._talents_equipment_frame.grid(row=2, column=0, padx=5, pady=5, sticky=constants.NW)
-        self._skill_list_frame.grid(row=2, column=1, rowspan=2, padx=5, pady=5, sticky=constants.NW)
-        save_button.grid(row=4, column=1, padx=5, pady=5, sticky=constants.SW)
+        self._skill_list_frame.grid(row=1, column=3, rowspan=2, padx=5, pady=5, sticky=constants.NW)
+        self._talents_equipment_frame.grid(row=1, column=2, padx=5, pady=5, sticky=constants.NW)
+        export_button.grid(row=1, column=4, padx=5, pady=5, sticky=constants.NW)
