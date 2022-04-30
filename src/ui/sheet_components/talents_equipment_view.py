@@ -5,18 +5,18 @@ class TalentsEquipmentView:
     def __init__(
         self,
         root,
-        talent_options,
-        talent,
+        talent_options: dict,
+        talents: list,
         handle_talent_change,
-        equipment_options,
-        character_equipment,
+        equipment_options: list,
+        character_equipment: list,
         handle_equipment_change
     ):
         self._root = root
         self._frame = None
         self._talent_options = talent_options
         self._talent_options_names = list(talent_options.keys())
-        self._talent = talent
+        self._talents = talents
         self._handle_talent_change = handle_talent_change
         self._equipment_options = equipment_options
         self._character_equipment = character_equipment
@@ -70,10 +70,10 @@ class TalentsEquipmentView:
 
     def _initialize_talent_section(self):
         self._talent_name_var = StringVar()
-        self._talent_name_var.set(self._talent)
+        self._talent_name_var.set(self._talents)
         self._talent_desc_var = StringVar()
         self._talent_desc_var.set(
-            "" if self._talent is None else f"{self._talent[0].name}: {self._talent[0].description}"
+            "" if self._talents is None else f"{self._talents[0].name}: {self._talents[0].description}"
         )
 
         self._talent_header_label = ttk.Label(
@@ -88,6 +88,8 @@ class TalentsEquipmentView:
         )
         self._talent_combobox.bind(
             "<<ComboboxSelected>>", self._set_current_talent)
+        if self._talents is not None:
+            self._talent_combobox.set(self._talents[0].name)
         self._talent_description_label = ttk.Label(
             master=self._frame,
             textvariable=self._talent_desc_var

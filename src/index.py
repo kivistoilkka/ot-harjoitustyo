@@ -19,12 +19,13 @@ def text_main():
 
 
 if __name__ == "__main__":
-    print("UI options: 1 - graphical, 2 - command line")
-    SELECTED_UI = input("Select ui: ")
+    main()
+    # print("UI options: 1 - graphical, 2 - command line")
+    # SELECTED_UI = input("Select ui: ")
 
-    if SELECTED_UI == "1":
-        main()
-    elif SELECTED_UI == "2":
-        text_main()
-    else:
-        print("Invalid command")
+    # if SELECTED_UI == "1":
+    #     main()
+    # elif SELECTED_UI == "2":
+    #     text_main()
+    # else:
+    #     print("Invalid command")

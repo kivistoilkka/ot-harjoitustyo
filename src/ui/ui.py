@@ -1,8 +1,9 @@
-from tkinter import Menu
+from tkinter import Menu, filedialog
 from ui.character_sheet_view import CharacterSheetView
 from ui.main_view import MainView
 from ui.character_creation_view import CharacterCreationView
 
+from services.character_service import character_service
 
 class UI:
     def __init__(self, root):
@@ -47,6 +48,13 @@ class UI:
         )
         self._current_view.pack()
 
+    def _handle_open(self):
+        files = [("JSON", "*.json"), ("All files", "*.*")]
+        file = filedialog.askopenfilename(filetypes=files)
+        if file:
+            character_service.load_character_from_file(file)
+            self._handle_char_modifying()
+
     def _handle_exit(self):
         self._root.destroy()
 
@@ -55,6 +63,8 @@ class UI:
         filemenu = Menu(menubar, tearoff=0)
         filemenu.add_command(label="Create new character",
                              command=self._show_char_creation_view)
+        filemenu.add_command(label="Open existing character",
+                             command=self._handle_open)
         filemenu.add_command(label="Close current character",
                              command=self._show_main_view)
         filemenu.add_separator()

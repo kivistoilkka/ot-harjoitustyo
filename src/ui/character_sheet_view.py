@@ -80,14 +80,14 @@ class CharacterSheetView:
             self._talents_equipment_view.destroy()
 
         talent_options = character_service.get_talent_options()
-        character_talent = character_service.get_character_talents()
+        character_talents = character_service.get_character_talents()
         equipment_options = character_service.get_equipment_options()
         character_equipment = character_service.get_character_equipment()
 
         self._talents_equipment_view = TalentsEquipmentView(
             self._talents_equipment_frame,
             talent_options,
-            character_talent,
+            character_talents,
             self._handle_talent_change,
             equipment_options,
             character_equipment,
@@ -133,6 +133,13 @@ class CharacterSheetView:
         file = filedialog.asksaveasfile(
             filetypes=files, defaultextension=".txt")
         if file:
+            character_service.export_character_to_file(file.name)
+
+    def _handle_save(self):
+        files = [("JSON", "*.json"), ("All files", "*.*")]
+        file = filedialog.asksaveasfile(
+            filetypes=files, defaultextension=".json")
+        if file:
             character_service.save_character_to_file(file.name)
 
     def _initialize(self):
@@ -159,6 +166,12 @@ class CharacterSheetView:
             command=self._handle_export
         )
 
+        save_button = ttk.Button(
+            master=self._frame,
+            text="Save to file",
+            command=self._handle_save
+        )
+
         self._root.grid_columnconfigure(1, weight=1)
         header_label.grid(row=0, column=0, columnspan=2,
                           padx=5, pady=5, sticky=constants.W)
@@ -171,4 +184,6 @@ class CharacterSheetView:
         self._talents_equipment_frame.grid(
             row=1, column=2, padx=5, pady=5, sticky=constants.NW)
         export_button.grid(row=1, column=4, padx=5,
+                           pady=5, sticky=constants.NW)
+        save_button.grid(row=2, column=4, padx=5,
                            pady=5, sticky=constants.NW)

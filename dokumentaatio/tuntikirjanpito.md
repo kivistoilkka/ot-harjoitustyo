@@ -20,4 +20,6 @@
 | | 1 | Testejä ja koodin laadun parannusta |
 | | 1 | Hahmon luomista kuvaavan sekvenssikaavion luominen |
 | | 1 | Changelogin päivitys, GitHub release ja koodikatselmointiin valmistautuminen |
-| yht | 39 | | 
+| 30.4. | 1 | Testejä |
+| | 2 | CharacterRepositoryn luominen hahmotiedostojen tallentamiseen ja lukemiseen ja hahmolomakkeiden vientiin |
+| yht | 42 | | 

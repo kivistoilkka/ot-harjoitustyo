@@ -155,6 +155,10 @@ class Character:
     @property
     def resources(self):
         return self._resources
+    
+    @resources.setter
+    def resources(self, new_resources: int):
+        self._resources = new_resources
 
     def change_resources(self, amount: int):
         if not self._archetype:
@@ -178,6 +182,10 @@ class Character:
     @property
     def attributes(self):
         return self._attributes
+    
+    @attributes.setter
+    def attributes(self, new_attributes: dict):
+        self._attributes = new_attributes
 
     @property
     def main_attribute(self):
@@ -206,6 +214,10 @@ class Character:
     @property
     def skills(self):
         return self._skills
+    
+    @skills.setter
+    def skills(self, new_skills: dict):
+        self._skills = new_skills
 
     @property
     def main_skill(self):

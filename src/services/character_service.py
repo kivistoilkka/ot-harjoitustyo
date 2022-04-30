@@ -2,6 +2,7 @@ from entities.character import Character
 from entities.archetype import Archetype
 
 from repositories.archetype_repository import archetype_repository
+from repositories.character_repository import character_repository
 
 AVAILABLE_ARCHETYPES = archetype_repository.find_all()
 
@@ -89,35 +90,36 @@ class CharacterService:
         return list(AVAILABLE_ARCHETYPES.keys())
 
     def get_character_talents(self):
-        if len(self._character.talents) == 0:
-            return None
-        return self._character.talents
+        if self._character:
+            if len(self._character.talents) == 0:
+                return None
+            return self._character.talents
+        raise ValueError(
+            "Character has to be created before it can have talents")
 
     def get_talent_options(self) -> dict:
-        if self._character.archetype:
+        if self._character:
             return self._character.archetype.talents
-        raise ValueError("Choose archetype first")
+        raise ValueError("Character has to be created before talent options can be returned")
 
     def give_talent_to_character(self, name: str):
-        self._character.give_talent(name)
+        if self._character:
+            self._character.give_talent(name)
+            return
+        raise ValueError(
+            "Character has to be created before talents can be given")
 
-    def get_character_attributes(self):
-        return self._character.attributes
+    def get_character_attributes(self) -> dict:
+        if self._character:
+            return self._character.attributes
+        raise ValueError(
+            "Character has to be created before attributes can be returned")
 
     def get_character_main_attribute(self):
         return self._character.main_attribute
 
     def get_character_attribute_points_left(self):
         return self._character.attribute_points_left()
-
-    def get_character_attributes_as_list(self):
-        attribute_list = []
-        for name, value in self._character.attributes.items():
-            attribute_info = f"{name:15}{value}"
-            if name == self._character.main_attribute:
-                attribute_info += " (Main)"
-            attribute_list.append(attribute_info)
-        return attribute_list
 
     def change_character_attribute(self, attribute: str, amount: int) -> int:
         if attribute in self._character.attributes:
@@ -139,15 +141,6 @@ class CharacterService:
 
     def get_character_skill_points_left(self):
         return self._character.skill_points_left()
-
-    def get_character_skills_as_list(self):
-        skill_list = []
-        for name, value in self._character.skills.items():
-            skill_info = f"{name:15}{value}"
-            if name == self._character.main_skill:
-                skill_info += " (Main)"
-            skill_list.append(skill_info)
-        return skill_list
 
     def get_character_resources(self):
         return self._character.resources
@@ -184,48 +177,14 @@ class CharacterService:
         self._character.equipment = equipment
         return self._character.equipment
 
-    def full_character_sheet(self) -> list:
-        character_sheet = []
-        first_line = f"{self._character.name}, {self._character.age}"
-        first_line += f" ({self._character.age_group(self._character.age)})"
-        character_sheet.append(first_line)
-        character_sheet.append(self._character.archetype.name)
-        character_sheet.append("")
-
-        character_sheet.append("Talents:")
-        for talent in self._character.talents:
-            character_sheet.append(f"{talent.name}: {talent.description}")
-        character_sheet.append("")
-
-        character_sheet.append("Attributes:")
-        for attribute in self.get_character_attributes_as_list():
-            character_sheet.append(attribute)
-        character_sheet.append("")
-
-        character_sheet.append("Skills:")
-        for skill in self.get_character_skills_as_list():
-            character_sheet.append(skill)
-        character_sheet.append("")
-
-        character_sheet.append("Equipment:")
-        for item in self._character.equipment:
-            character_sheet.append(f"- {item}")
-        character_sheet.append("")
-
-        character_sheet.append(
-            f"Attribute points left: {self._character.attribute_points_left()}")
-        character_sheet.append(
-            f"Skill/resource points left: {self._character.skill_points_left()}")
-        character_sheet.append("")
-
-        character_sheet.append(f"Resources: {self._character.resources}")
-
-        return character_sheet
+    def export_character_to_file(self, filename: str):
+        character_repository.export_character_sheet(self._character, filename)
 
     def save_character_to_file(self, filename: str):
-        with open(filename, "w", encoding="UTF-8") as file:
-            for row in self.full_character_sheet():
-                file.write(row + "\n")
+        character_repository.save_character(self._character, filename)
+
+    def load_character_from_file(self, filename: str):
+        self._character = character_repository.open_character(filename)
 
 
 character_service = CharacterService()
