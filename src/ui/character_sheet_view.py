@@ -186,4 +186,4 @@ class CharacterSheetView:
         export_button.grid(row=1, column=4, padx=5,
                            pady=5, sticky=constants.NW)
         save_button.grid(row=2, column=4, padx=5,
-                           pady=5, sticky=constants.NW)
+                         pady=5, sticky=constants.NW)

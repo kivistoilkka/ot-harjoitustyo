@@ -5,6 +5,7 @@ from repositories.archetype_repository import archetype_repository
 
 AVAILABLE_ARCHETYPES = archetype_repository.find_all()
 
+
 class CharacterRepository:
     def __init__(self):
         pass
@@ -107,17 +108,18 @@ class CharacterRepository:
                 character_data["age"]
             )
             character.talents = character_data["talents"]
-            #TODO: Check talent legality
+            # TODO: Check talent legality
             character.attributes = character_data["attributes"]
-            #TODO: Check attribute legality, method for this
+            # TODO: Check attribute legality, method for this
             character.skills = character_data["skills"]
-            #TODO: Check skill legality, method for this
+            # TODO: Check skill legality, method for this
             character.equipment = character_data["equipment"]
-            #TODO: Check equipment legality, method for this
+            # TODO: Check equipment legality, method for this
             character.resources = character_data["resources"]
-            #TODO: Check resource legality, method for this
+            # TODO: Check resource legality, method for this
             return character
         except OSError:
             return False
+
 
 character_repository = CharacterRepository()

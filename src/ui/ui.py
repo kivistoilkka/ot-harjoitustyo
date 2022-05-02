@@ -5,6 +5,7 @@ from ui.character_creation_view import CharacterCreationView
 
 from services.character_service import character_service
 
+
 class UI:
     def __init__(self, root):
         self._root = root

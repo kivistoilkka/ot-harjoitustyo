@@ -103,7 +103,7 @@ class Character:
     def max_skill_points(self):
         return self.__max_skill_points
 
-    def age_group(self, age: int):
+    def age_group(self, age: int) -> str:
         if age < 17:
             raise ValueError("Age must be 17 or higher")
         if age < 26:
@@ -133,12 +133,12 @@ class Character:
     def talents(self, new_talents: list):
         self._talents = new_talents
 
-    def attribute_points_left(self):
+    def attribute_points_left(self) -> int:
         used_points = reduce(lambda total, attribute: total +
                              attribute, self._attributes.values(), 0)
         return self.__max_attribute_points - used_points
 
-    def skill_points_left(self):
+    def skill_points_left(self) -> int:
         points_used_to_resources = self._resources - \
             self._archetype.resource_boundaries[0]
         points_used_to_skills = reduce(

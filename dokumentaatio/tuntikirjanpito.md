@@ -23,4 +23,5 @@
 | 30.4. | 1 | Testejä |
 | | 2 | CharacterRepositoryn luominen hahmotiedostojen tallentamiseen ja lukemiseen ja hahmolomakkeiden vientiin |
 | 2.5. | 1 | Koodin laadun parantelua ja testejä |
+| | x | Docstring-dokumentaation kirjoittamista |
 | yht | 43 | | 
