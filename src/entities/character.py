@@ -70,16 +70,17 @@ class Character:
     def archetype(self):
         return self._archetype
 
-    def set_archetype(self, archetype: Archetype):
+    @archetype.setter
+    def archetype(self, archetype: Archetype):
         self._archetype = archetype
         self.__main_attribute = archetype.main_attribute
         self.__main_skill = archetype.main_skill
         self._resources = archetype.resource_boundaries[0]
-        self.reset_attributes()
-        self.reset_skills()
+        self._attributes = Character.default_attributes
+        self._skills = Character.default_skills
         self.reset_resources()
-        self.remove_talents()
-        self.reset_equipment()
+        self._talents = []
+        self._equipment = []
 
     @property
     def age(self):
@@ -91,8 +92,8 @@ class Character:
             raise ValueError("Age must be 17 or higher")
         self.__age = age
         self.__set_age_related_modifiers(age)
-        self.reset_attributes()
-        self.reset_skills()
+        self._attributes = Character.default_attributes
+        self._skills = Character.default_skills
         self.reset_resources()
 
     @property
@@ -126,19 +127,12 @@ class Character:
             self.__max_skill_points = 14
 
     @property
-    def talents(self):
+    def talents(self) -> list:
         return self._talents
 
-    def give_talent(self, name: str):
-        if not self._archetype:
-            raise ValueError("Choose archetype before giving talent")
-        if name not in self._archetype.talents:
-            raise ValueError("Talent not available for the current archetype")
-        self.remove_talents()
-        self._talents.append(self._archetype.talents[name])
-
-    def remove_talents(self):
-        self._talents = []
+    @talents.setter
+    def talents(self, new_talents: list):
+        self._talents = new_talents
 
     def attribute_points_left(self):
         used_points = reduce(lambda total, attribute: total +
@@ -155,7 +149,7 @@ class Character:
     @property
     def resources(self):
         return self._resources
-    
+
     @resources.setter
     def resources(self, new_resources: int):
         self._resources = new_resources
@@ -182,7 +176,7 @@ class Character:
     @property
     def attributes(self):
         return self._attributes
-    
+
     @attributes.setter
     def attributes(self, new_attributes: dict):
         self._attributes = new_attributes
@@ -207,14 +201,10 @@ class Character:
         else:
             raise ValueError("Given value is not allowed")
 
-    def reset_attributes(self):
-        for name in self._attributes:
-            self._attributes[name] = 2
-
     @property
     def skills(self):
         return self._skills
-    
+
     @skills.setter
     def skills(self, new_skills: dict):
         self._skills = new_skills
@@ -239,10 +229,6 @@ class Character:
         else:
             raise ValueError("Given value is not allowed")
 
-    def reset_skills(self):
-        for name in self._skills:
-            self._skills[name] = 0
-
     @property
     def equipment(self):
         return self._equipment
@@ -250,6 +236,3 @@ class Character:
     @equipment.setter
     def equipment(self, equipment: list):
         self._equipment = equipment
-
-    def reset_equipment(self):
-        self._equipment = []

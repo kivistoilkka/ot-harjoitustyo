@@ -106,8 +106,8 @@ class CharacterRepository:
                 AVAILABLE_ARCHETYPES[character_data["archetype"]],
                 character_data["age"]
             )
-            for talent in character_data["talents"]:
-                character.give_talent(talent)
+            character.talents = character_data["talents"]
+            #TODO: Check talent legality
             character.attributes = character_data["attributes"]
             #TODO: Check attribute legality, method for this
             character.skills = character_data["skills"]

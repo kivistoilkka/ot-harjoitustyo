@@ -17,7 +17,7 @@ class CharacterService:
         self._character = Character(name)
         if archetype not in AVAILABLE_ARCHETYPES:
             raise ValueError("Given archetype is not available")
-        self._character.set_archetype(AVAILABLE_ARCHETYPES[archetype])
+        self._character.archetype = AVAILABLE_ARCHETYPES[archetype]
         if not isinstance(age, int):
             raise ValueError("Give the age value as an integer")
         if age < 17:
@@ -52,7 +52,7 @@ class CharacterService:
     def set_character_archetype(self, name: str):
         if self._character:
             if name in AVAILABLE_ARCHETYPES:
-                self._character.set_archetype(AVAILABLE_ARCHETYPES[name])
+                self._character.archetype = AVAILABLE_ARCHETYPES[name]
             else:
                 raise ValueError("Given archetype is not available")
         else:
@@ -104,8 +104,10 @@ class CharacterService:
 
     def give_talent_to_character(self, name: str):
         if self._character:
-            self._character.give_talent(name)
-            return
+            if name in self._character.archetype.talents:
+                self._character.talents = [self._character.archetype.talents[name]]
+                return
+            raise ValueError("Talent not available for the current archetype")
         raise ValueError(
             "Character has to be created before talents can be given")
 
