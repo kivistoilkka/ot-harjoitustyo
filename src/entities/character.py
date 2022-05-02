@@ -25,14 +25,13 @@ class Character:
         "Observation": 0
     }
 
-    def __init__(self, name: str, archetype: Archetype = None, age: int = None):
+    def __init__(self, name: str, archetype: Archetype, age: int):
         self._name = name
 
         self._archetype = archetype
-        self.__main_attribute = None if not self._archetype else self._archetype.main_attribute
-        self.__main_skill = None if not self._archetype else self._archetype.main_skill
-        self._resources = None if not self._archetype else self._archetype.resource_boundaries[
-            0]
+        self.__main_attribute = self._archetype.main_attribute
+        self.__main_skill = self._archetype.main_skill
+        self._resources = self._archetype.resource_boundaries[0]
 
         self.__age = age
         self.__max_attribute_points = None
@@ -119,7 +118,7 @@ class Character:
         if age < 26:
             self.__max_attribute_points = 15
             self.__max_skill_points = 10
-        if age < 51:
+        elif age < 51:
             self.__max_attribute_points = 14
             self.__max_skill_points = 12
         else:

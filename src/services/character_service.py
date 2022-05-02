@@ -14,15 +14,13 @@ class CharacterService:
     def create_character(self, name: str, archetype: Archetype, age: int):
         if name == "":
             raise ValueError("Name cannot be an empty string")
-        self._character = Character(name)
         if archetype not in AVAILABLE_ARCHETYPES:
             raise ValueError("Given archetype is not available")
-        self._character.archetype = AVAILABLE_ARCHETYPES[archetype]
         if not isinstance(age, int):
             raise ValueError("Give the age value as an integer")
         if age < 17:
             raise ValueError("Character age must be over 17")
-        self._character.age = age
+        self._character = Character(name, AVAILABLE_ARCHETYPES[archetype], age)
 
     def get_character_summary(self):
         if self._character:
@@ -80,7 +78,7 @@ class CharacterService:
             if not age:
                 age = self._character.age
             return self._character.age_group(age)
-        dummy = Character("Dummy")
+        dummy = Character("Dummy", Archetype("Tester", "Logic", "Testing", {}, (0,1), []), 100)
         if not age or not isinstance(age, int):
             raise ValueError(
                 "Character not created, give an age value in integer")
@@ -133,7 +131,7 @@ class CharacterService:
         return -1
 
     def reset_character_attributes(self):
-        self._character.reset_attributes()
+        self._character.attributes = Character.default_attributes
 
     def get_character_skills(self):
         return self._character.skills

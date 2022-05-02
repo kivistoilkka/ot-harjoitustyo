@@ -22,4 +22,5 @@
 | | 1 | Changelogin päivitys, GitHub release ja koodikatselmointiin valmistautuminen |
 | 30.4. | 1 | Testejä |
 | | 2 | CharacterRepositoryn luominen hahmotiedostojen tallentamiseen ja lukemiseen ja hahmolomakkeiden vientiin |
-| yht | 42 | | 
+| 2.5. | 1 | Koodin laadun parantelua ja testejä |
+| yht | 43 | | 

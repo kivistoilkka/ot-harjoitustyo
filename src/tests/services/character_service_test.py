@@ -239,3 +239,19 @@ class TestCharacterService(unittest.TestCase):
         with self.assertRaises(ValueError) as cm:
             self.character_service.get_character_attributes()
         self.assertEqual(str(cm.exception), "Character has to be created before attributes can be returned")
+
+    def test_main_attribute_getter_works(self):
+        self.character_service.create_character("Tester", "Doctor", 26)
+        main_attribute = self.character_service.get_character_main_attribute()
+        self.assertEqual(main_attribute, "Logic")
+
+    def test_main_attribute_points_left_works(self):
+        self.character_service.create_character("First", "Doctor", 17)
+        points_left = self.character_service.get_character_attribute_points_left()
+        self.assertEqual(points_left, 15-4*2)
+        self.character_service.create_character("Second", "Doctor", 26)
+        points_left = self.character_service.get_character_attribute_points_left()
+        self.assertEqual(points_left, 14-4*2)
+        self.character_service.create_character("Third", "Doctor", 51)
+        points_left = self.character_service.get_character_attribute_points_left()
+        self.assertEqual(points_left, 13-4*2)
