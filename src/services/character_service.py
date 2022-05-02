@@ -51,6 +51,8 @@ class CharacterService:
         if self._character:
             if name in AVAILABLE_ARCHETYPES:
                 self._character.archetype = AVAILABLE_ARCHETYPES[name]
+                self._character.attributes = Character.default_attributes
+                self._character.skills = Character.default_skills
             else:
                 raise ValueError("Given archetype is not available")
         else:

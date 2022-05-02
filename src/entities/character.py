@@ -40,8 +40,8 @@ class Character:
             self.__set_age_related_modifiers(age)
 
         self._talents = []
-        self._attributes = Character.default_attributes
-        self._skills = Character.default_skills
+        self._attributes = Character.default_attributes.copy()
+        self._skills = Character.default_skills.copy()
         self._equipment = []
 
     def __str__(self) -> str:
@@ -75,9 +75,9 @@ class Character:
         self.__main_attribute = archetype.main_attribute
         self.__main_skill = archetype.main_skill
         self._resources = archetype.resource_boundaries[0]
-        self._attributes = Character.default_attributes
-        self._skills = Character.default_skills
-        self.reset_resources()
+        self._attributes = Character.default_attributes.copy()
+        self._skills = Character.default_skills.copy()
+        self._resources = self._archetype.resource_boundaries[0]
         self._talents = []
         self._equipment = []
 
@@ -91,9 +91,9 @@ class Character:
             raise ValueError("Age must be 17 or higher")
         self.__age = age
         self.__set_age_related_modifiers(age)
-        self._attributes = Character.default_attributes
-        self._skills = Character.default_skills
-        self.reset_resources()
+        self._attributes = Character.default_attributes.copy()
+        self._skills = Character.default_skills.copy()
+        self._resources = self._archetype.resource_boundaries[0]
 
     @property
     def max_attribute_points(self):
@@ -167,10 +167,6 @@ class Character:
             error_message += f"{boundaries[0]} - {boundaries[1]}"
             raise ValueError(error_message)
         self._resources = new_resources
-
-    def reset_resources(self):
-        self._resources = None if not self._archetype else self._archetype.resource_boundaries[
-            0]
 
     @property
     def attributes(self):
