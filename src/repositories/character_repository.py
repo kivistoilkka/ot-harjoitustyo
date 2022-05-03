@@ -66,9 +66,8 @@ class CharacterRepository:
 
         return character_sheet
 
-    def _check_character_legality(self, character: Character) -> bool:
-        # TODO: Write the method
-        return True
+    # def _check_character_legality(self, character: Character) -> bool:
+    #     return True
 
     def export_character_sheet(self, character: Character, filename: str) -> bool:
         """Saves character sheet to text file.
@@ -145,10 +144,11 @@ class CharacterRepository:
             character.skills = character_data["skills"]
             character.equipment = character_data["equipment"]
             character.resources = character_data["resources"]
-            if self._check_character_legality(character):
-                return character
-            raise ValueError(
-                "Character in the file does not follow the rules of the game")
+            # if self._check_character_legality(character):
+            #     return character
+            # raise ValueError(
+            #     "Character in the file does not follow the rules of the game")
+            return character
         except OSError:
             return None
 
