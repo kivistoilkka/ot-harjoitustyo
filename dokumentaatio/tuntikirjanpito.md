@@ -24,5 +24,5 @@
 | | 2 | CharacterRepositoryn luominen hahmotiedostojen tallentamiseen ja lukemiseen ja hahmolomakkeiden vientiin |
 | 2.5. | 1 | Koodin laadun parantelua ja testejä |
 | | 2 | Docstring-dokumentaation kirjoittamista |
-| 3.5. | x | Testejä, koodin laadun parantelua ja docstring-dokumentaation kirjoittamista |
+| 3.5. | x | Testejä, koodin laadun parantelua, docstring-dokumentaation kirjoittamista, vaatimusmäärittelyn päivitystä ja käyttöohjeen kirjoitusta |
 | yht | 45 | |
