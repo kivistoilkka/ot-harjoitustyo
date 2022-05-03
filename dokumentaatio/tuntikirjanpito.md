@@ -25,5 +25,5 @@
 | 2.5. | 1 | Koodin laadun parantelua ja testejä |
 | | 2 | Docstring-dokumentaation kirjoittamista |
 | 3.5. | 1 | Testejä, koodin laadun parantelua, docstring-dokumentaation kirjoittamista, vaatimusmäärittelyn päivitystä ja käyttöohjeen kirjoitusta |
-| | x | Arkkitehtuurikuvauksen kirjoitusta, changelogin päivitystä ja uusi Github release |
-| yht | 46 | |
+| | 2 | Arkkitehtuurikuvauksen kirjoitusta, changelogin päivitystä ja uusi Github release |
+| yht | 48 | |
