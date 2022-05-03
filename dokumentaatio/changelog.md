@@ -28,3 +28,15 @@
     - Hahmonmuokkausnäkymä pilkottu erillisiin komponentteihin ja moduuleihin
     - Hahmonluonti vastaa toiminnallisuudeltaan tekstikäyttöliittymää, minkä lisäksi hahmo on mahdollista viedä tekstitiedostoon muokkaamisen aikana ja tiedostolle on mahdollista valita tiedostosijainti
 - Lisää testejä CharacterServicelle ja pientä refaktorointia.
+
+### Viikko 6
+
+- Komentorivikäyttöliittymä poistettu kokonaan käytöstä
+- Lisätty CharacterRepository-luokka hahmoon liittyvien tiedostojen käsittelyyn
+    - Hahmolomakkeen vienti siirretty pois CharacterService-luokasta
+    - Hahmo on mahdollista tallentaa JSON-muotoiseen tiedostoon
+    - Hahmo on mahdollista ladata JSON-muotoisesta tiedostosta
+- Käyttöliittymä tukee hahmon tallentamista ja lataamista
+- Character- ja CharacterService-luokkien refaktorointia
+- Docstring-dokumentaatioita lisätty Character, CharacterService ja kaikille kolmelle repository-luokalle
+- Testejä CharacterServicelle ja CharacterRepositorylle
