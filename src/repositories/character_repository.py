@@ -7,8 +7,8 @@ AVAILABLE_ARCHETYPES = archetype_repository.find_all()
 
 
 class CharacterRepository:
-    def __init__(self):
-        pass
+    """Class responsible for saving, opening and exporting characters
+    """
 
     def _attributes_as_list(self, character: Character) -> list:
         attribute_list = []
@@ -66,10 +66,21 @@ class CharacterRepository:
 
         return character_sheet
 
-    def _check_character_legality(self) -> bool:
-        pass
+    def _check_character_legality(self, character: Character) -> bool:
+        #TODO: Write the method
+        return True
 
     def export_character_sheet(self, character: Character, filename: str) -> bool:
+        """Saves character sheet to text file.
+
+        Args:
+            character (Character): Character object to be exported
+            filename (str): Name of the file in which will be created
+
+        Returns:
+            bool: True if saving is successfull, False if saving fails
+        """
+
         try:
             with open(filename, "w", encoding="UTF-8") as file:
                 for row in self._character_sheet_as_list(character):
@@ -79,6 +90,16 @@ class CharacterRepository:
             return False
 
     def save_character(self, character: Character, filename: str) -> bool:
+        """Saves character in JSON-format to file.
+
+        Args:
+            character (Character): Character object to be saved
+            filename (str): Name of the file which will be created
+
+        Returns:
+            bool: True if saving is successfull, False is saving fails
+        """
+
         character_to_save = {
             "name": character.name,
             "archetype": character.archetype.name,
@@ -98,6 +119,15 @@ class CharacterRepository:
             return False
 
     def open_character(self, filename: str) -> Character:
+        """Opens character from JSON-file.
+
+        Args:
+            filename (str): Name of the character file
+
+        Returns:
+            Character: Character object if successful, None if opening fails
+        """
+
         try:
             with open(filename, encoding="UTF-8") as file:
                 data = file.read()
@@ -108,18 +138,15 @@ class CharacterRepository:
                 character_data["age"]
             )
             character.talents = character_data["talents"]
-            # TODO: Check talent legality
             character.attributes = character_data["attributes"]
-            # TODO: Check attribute legality, method for this
             character.skills = character_data["skills"]
-            # TODO: Check skill legality, method for this
             character.equipment = character_data["equipment"]
-            # TODO: Check equipment legality, method for this
             character.resources = character_data["resources"]
-            # TODO: Check resource legality, method for this
-            return character
+            if self._check_character_legality(character):
+                return character
+            raise ValueError("Character in the file does not follow the rules of the game")
         except OSError:
-            return False
+            return None
 
 
 character_repository = CharacterRepository()

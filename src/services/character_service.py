@@ -9,9 +9,18 @@ AVAILABLE_ARCHETYPES = archetype_repository.find_all()
 
 class CharacterService:
     """Class responsible for creation and modification of the character
+
+    Attributes:
+        Character: Character object
     """
 
     def __init__(self, character: Character = None):
+        """Constructor which can take an existing Character object as a parameter.
+
+        Args:
+            character (Character, optional): Character to be modified. Defaults to None.
+        """
+
         self._character = character
 
     def create_character(self, name: str, archetype: Archetype, age: int):
@@ -416,12 +425,3 @@ class CharacterService:
 
 
 character_service = CharacterService()
-
-# def character_max_attribute_points(self):
-#     return self._character.max_attribute_points
-
-# def character_max_skill_points(self):
-#     return self._character.max_skill_points
-
-# def remove_character_talents(self):
-#     self._character.remove_talents()

@@ -4,6 +4,29 @@ from entities.archetype import Archetype
 
 
 class Character:
+    """Object for saving the information of the character.
+
+
+    Attributes:
+        _name (str): Name of the character, cannot be an empty string
+        _archetype (Archetype): Archetype of the character
+        __main_attribute (str): Main character attribute of the character as determined
+                                by the archetype
+        __main_skill (str): Main skill of the character as determined by the archetype
+        _resources (int): Character resources, minimum value and available range is
+                                determined by the archetype, skill points can be used
+                                to increase the value
+        __age (int): Age of the character
+        __max_attribute_points (int): Maximum amount of attribute points as determined by the age
+        __max_skill_points (int): Maximum amount of skill points as determined by the age
+        _talents (list): List of Talent objects, currently character can only have one talent
+        _attributes (dict): Dictionary of character attributes, names and default values can be
+                                found in class variable default_attributes
+        _skills (dict): Dictionary of character skills, names and default values can be
+                                found in class variable default_skills
+        _equipment (list): List of equipment names as strings
+    """
+
     default_attributes = {
         "Physique": 2,
         "Precision": 2,

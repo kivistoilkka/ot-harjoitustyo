@@ -7,10 +7,23 @@ from repositories.talent_repository import talent_repository
 
 
 class ArchetypeRepository:
+    """Class responsible for loading Archetype objects from JSON-file
+
+    Attributes:
+        _file_path (str): File path to the location of archetypes json-file
+    """
+
     def __init__(self, file_path):
         self._file_path = file_path
 
-    def find_all(self):
+    def find_all(self) -> dict:
+        """Returns archetypes from the file containing all available archetypes
+
+        Returns:
+            dict: Dictionary with archetype names as keys and Archetype objects
+                    as values
+        """
+
         archetypes = self._read()
         archetypes_dict = {}
         for archetype in archetypes:
