@@ -2,7 +2,7 @@ import unittest
 from entities.character import Character
 from entities.talent import Talent
 from entities.archetype import Archetype
-from .test_helper import TestHelper
+from tests.test_helper import TestHelper
 
 
 class TestCharacter(unittest.TestCase):

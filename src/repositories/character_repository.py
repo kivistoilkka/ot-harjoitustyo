@@ -67,7 +67,7 @@ class CharacterRepository:
         return character_sheet
 
     def _check_character_legality(self, character: Character) -> bool:
-        #TODO: Write the method
+        # TODO: Write the method
         return True
 
     def export_character_sheet(self, character: Character, filename: str) -> bool:
@@ -137,14 +137,18 @@ class CharacterRepository:
                 AVAILABLE_ARCHETYPES[character_data["archetype"]],
                 character_data["age"]
             )
-            character.talents = character_data["talents"]
+            talent_list = []
+            for talent_name in character_data["talents"]:
+                talent_list.append(character.archetype.talents[talent_name])
+            character.talents = talent_list
             character.attributes = character_data["attributes"]
             character.skills = character_data["skills"]
             character.equipment = character_data["equipment"]
             character.resources = character_data["resources"]
             if self._check_character_legality(character):
                 return character
-            raise ValueError("Character in the file does not follow the rules of the game")
+            raise ValueError(
+                "Character in the file does not follow the rules of the game")
         except OSError:
             return None
 
