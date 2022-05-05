@@ -128,20 +128,6 @@ class CharacterSheetView:
 
         self._skill_list_view.pack()
 
-    def _handle_export(self):
-        files = [("Text Document", "*.txt"), ("All files", "*.*")]
-        file = filedialog.asksaveasfile(
-            filetypes=files, defaultextension=".txt")
-        if file:
-            character_service.export_character_to_file(file.name)
-
-    def _handle_save(self):
-        files = [("JSON", "*.json"), ("All files", "*.*")]
-        file = filedialog.asksaveasfile(
-            filetypes=files, defaultextension=".json")
-        if file:
-            character_service.save_character_to_file(file.name)
-
     def _initialize(self):
         self._frame = ttk.Frame(master=self._root)
         self._basic_info_frame = ttk.Frame(master=self._frame)
@@ -160,18 +146,6 @@ class CharacterSheetView:
             font=("", 20, "bold")
         )
 
-        export_button = ttk.Button(
-            master=self._frame,
-            text="Export to text file",
-            command=self._handle_export
-        )
-
-        save_button = ttk.Button(
-            master=self._frame,
-            text="Save to file",
-            command=self._handle_save
-        )
-
         self._root.grid_columnconfigure(1, weight=1)
         header_label.grid(row=0, column=0, columnspan=2,
                           padx=5, pady=5, sticky=constants.W)
@@ -183,7 +157,3 @@ class CharacterSheetView:
             row=1, column=3, rowspan=2, padx=5, pady=5, sticky=constants.NW)
         self._talents_equipment_frame.grid(
             row=1, column=2, padx=5, pady=5, sticky=constants.NW)
-        export_button.grid(row=1, column=4, padx=5,
-                           pady=5, sticky=constants.NW)
-        save_button.grid(row=2, column=4, padx=5,
-                         pady=5, sticky=constants.NW)

@@ -26,4 +26,5 @@
 | | 2 | Docstring-dokumentaation kirjoittamista |
 | 3.5. | 1 | Testejä, koodin laadun parantelua, docstring-dokumentaation kirjoittamista, vaatimusmäärittelyn päivitystä ja käyttöohjeen kirjoitusta |
 | | 2 | Arkkitehtuurikuvauksen kirjoitusta, changelogin päivitystä ja uusi Github release |
-| yht | 48 | |
+| 5.5. | 1 | Käyttöliittymän hiomista, hahmon tallennus ja vienti ylävalikkoon ja valikon komentojen saatavilla olon säätely |
+| yht | 49 | |
