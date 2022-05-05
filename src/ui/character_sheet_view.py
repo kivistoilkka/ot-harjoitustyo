@@ -1,4 +1,4 @@
-from tkinter import ttk, constants, filedialog
+from tkinter import ttk, constants
 
 from services.character_service import character_service
 from ui.sheet_components.basic_info_view import BasicInfoView
@@ -22,6 +22,8 @@ class CharacterSheetView:
         self._skill_list_frame = None
         self._skill_list_view = None
 
+        self._header_label = None
+
         self._initialize()
 
     def pack(self):
@@ -30,10 +32,14 @@ class CharacterSheetView:
     def destroy(self):
         self._frame.destroy()
 
-    def _handle_basic_info_update(self, name_value, archetype_value, age_value):
+    def _name_updater(self, name_value):
         character_service.set_character_name(name_value)
+        self._initialize_label()
+
+    def _archetype_age_updater(self, archetype_value, age_value):
         character_service.set_character_archetype(archetype_value)
         character_service.set_character_age(int(age_value))
+        self._initialize_label()
         self._initialize_basic_info()
 
     def _handle_attribute_change(self, attribute, amount, value_label_var, attribute_points_var):
@@ -49,17 +55,32 @@ class CharacterSheetView:
         skill_points_var.set(
             character_service.get_character_skill_points_left())
 
-    def _handle_skill_change(self, skill, amount, value_label_var, skill_points_var):
+    def _skill_updater(self, skill, amount):
         new_value = character_service.change_character_skill(skill, amount)
-        value_label_var.set(new_value)
-        skill_points_var.set(
-            character_service.get_character_skill_points_left())
+        points_left = character_service.get_character_skill_points_left()
+        return (new_value, points_left)
 
     def _handle_talent_change(self, talent_name):
         character_service.give_talent_to_character(talent_name)
 
     def _handle_equipment_change(self, equipment):
         return character_service.set_character_equipment(equipment)
+
+    def _initialize_label(self):
+        name = character_service.get_character_name()
+        age = character_service.get_character_age()
+        agegroup = character_service.get_character_agegroup()
+        archetype = character_service.get_character_archetype_name()
+        if self._header_label:
+            self._header_label.config(
+                text=f"Character sheet: {name}, {age} ({agegroup}), {archetype}"
+            )
+        else:    
+            self._header_label = ttk.Label(
+                master=self._frame,
+                text=f"Character sheet: {name}, {age} ({agegroup}), {archetype}",
+                font=("", 20, "bold")
+            )
 
     def _initialize_basic_info(self):
         if self._basic_info_view:
@@ -70,7 +91,8 @@ class CharacterSheetView:
 
         self._basic_info_view = BasicInfoView(
             self._basic_info_frame,
-            self._handle_basic_info_update
+            self._name_updater,
+            self._archetype_age_updater
         )
 
         self._basic_info_view.pack()
@@ -119,7 +141,7 @@ class CharacterSheetView:
         self._skill_list_view = SkillListResourcesView(
             self._attribute_list_frame,
             skills,
-            self._handle_skill_change,
+            self._skill_updater,
             character_service.get_character_main_skill(),
             character_service.get_character_resources(),
             self._handle_resource_change,
@@ -135,19 +157,14 @@ class CharacterSheetView:
         self._attribute_list_frame = ttk.Frame(master=self._frame)
         self._skill_list_frame = ttk.Frame(master=self._frame)
 
+        self._initialize_label()
         self._initialize_basic_info()
         self._initialize_talents_equipment()
         self._initialize_attribute_list()
         self._initialize_skill_list()
 
-        header_label = ttk.Label(
-            master=self._frame,
-            text="Character sheet",
-            font=("", 20, "bold")
-        )
-
         self._root.grid_columnconfigure(1, weight=1)
-        header_label.grid(row=0, column=0, columnspan=2,
+        self._header_label.grid(row=0, column=0, columnspan=4,
                           padx=5, pady=5, sticky=constants.W)
         self._basic_info_frame.grid(
             row=1, column=0, padx=5, pady=5, sticky=constants.NW)

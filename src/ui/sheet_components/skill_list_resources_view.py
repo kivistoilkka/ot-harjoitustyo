@@ -21,7 +21,7 @@ class SkillListResourcesView:
         self,
         root,
         skills: dict,
-        handle_skill_change,
+        skill_updater,
         main_skill,
         resources,
         handle_resource_change,
@@ -30,7 +30,7 @@ class SkillListResourcesView:
         self._root = root
         self._frame = None
         self._skills = skills
-        self._handle_skill_change = handle_skill_change
+        self._skill_updater = skill_updater
         self._main_skill = main_skill
         self._resources = resources
         self._handle_resource_change = handle_resource_change
@@ -46,6 +46,13 @@ class SkillListResourcesView:
 
     def destroy(self):
         self._frame.destroy()
+
+    def _handle_skill_change(self, skill, amount, value_label_var, skill_points_var):
+        response = self._skill_updater(skill, amount)
+        new_value = response[0]
+        points_left = response[1]
+        value_label_var.set(new_value)
+        skill_points_var.set(points_left)
 
     def _initialize_resources(self):
         item_frame = ttk.Frame(master=self._frame)

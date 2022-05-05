@@ -6,10 +6,13 @@ AVAILABLE_ARCHETYPES = character_service.get_archetype_options()
 
 
 class BasicInfoView:
-    def __init__(self, root, handle_update):
+    def __init__(self, root, name_updater, archetype_age_updater):
         self._root = root
         self._frame = None
-        self._handle_update = handle_update
+        self._name_updater = name_updater
+        self._archetype_age_updater = archetype_age_updater
+
+        self._character_name_var = None
 
         self._character_name_entry = None
         self._character_archetype_combobox = None
@@ -22,6 +25,21 @@ class BasicInfoView:
 
     def destroy(self):
         self._frame.destroy()
+
+    def _handle_name_update(self):
+        try:
+            self._name_updater(self._character_name_entry.get())
+        except ValueError:
+            pass
+
+    def _handle_archetype_age_update(self):
+        try:
+            self._archetype_age_updater(
+                self._character_archetype_combobox.get(),
+                self._character_age_spinbox.get()
+            )
+        except ValueError:
+            pass
 
     def _initialize(self):
         self._frame = ttk.Frame(master=self._root)
@@ -42,11 +60,21 @@ class BasicInfoView:
 
         character_name_label = ttk.Label(
             master=self._frame,
-            text="Character name:",
+            text=f"Character name: {self._character_name_var.get()}",
         )
         self._character_name_entry = ttk.Entry(
             master=self._frame,
             textvariable=self._character_name_var
+        )
+        name_update_button = ttk.Button(
+            master=self._frame,
+            text="Change name",
+            command=self._handle_name_update
+        )
+
+        sep = ttk.Separator(
+            master=self._frame,
+            orient="horizontal"
         )
 
         character_archetype_label = ttk.Label(
@@ -71,20 +99,14 @@ class BasicInfoView:
             to_=999
         )
         self._character_age_spinbox.set(self._character_age_var.get())
-        character_agegroup_label = ttk.Label(
-            master=self._frame,
-            text=character_service.get_character_agegroup(
-                int(self._character_age_var.get()))
-        )
-
         update_button = ttk.Button(
             master=self._frame,
             text="Update",
-            command=lambda: self._handle_update(
-                self._character_name_entry.get(),
-                self._character_archetype_combobox.get(),
-                self._character_age_spinbox.get()
-            )
+            command=self._handle_archetype_age_update
+        )
+        update_note_label = ttk.Label(
+            master=self._frame,
+            text="Updating age and/or archetype will reset attributes,\nskills, resources, talent and equipment."
         )
 
         self._root.grid_columnconfigure(1, weight=1)
@@ -94,18 +116,18 @@ class BasicInfoView:
         character_name_label.grid(
             row=2, column=0, columnspan=2, padx=5, pady=2, sticky=(constants.E, constants.W))
         self._character_name_entry.grid(
-            row=3, column=0, columnspan=2, padx=5, pady=5, sticky=(constants.E, constants.W))
-
+            row=3, column=0, padx=5, pady=5, sticky=(constants.E, constants.W))
+        name_update_button.grid(
+            row=3, column=1, padx=5, pady=5, sticky=(constants.E, constants.W))
+        sep.grid(row=4, columnspan=2, sticky=(constants.E, constants.W))
         character_age_label.grid(
-            row=4, column=0, padx=5, pady=2, sticky=(constants.E, constants.W))
+            row=5, column=0, padx=5, pady=2, sticky=(constants.E, constants.W))
         self._character_age_spinbox.grid(
-            row=5, column=0, padx=5, pady=5, sticky=(constants.E, constants.W))
-        character_agegroup_label.grid(
-            row=5, column=1, padx=5, pady=5, sticky=(constants.E, constants.W))
+            row=6, column=0, padx=5, pady=5, sticky=(constants.E, constants.W))
 
         character_archetype_label.grid(
-            row=6, column=0, columnspan=2, padx=5, pady=2, sticky=(constants.E, constants.W))
+            row=7, column=0, columnspan=2, padx=5, pady=2, sticky=(constants.E, constants.W))
         self._character_archetype_combobox.grid(
-            row=7, column=0, columnspan=1, padx=5, pady=5, sticky=(constants.E, constants.W))
-
-        update_button.grid(row=7, column=1)
+            row=8, column=0, columnspan=1, padx=5, pady=5, sticky=(constants.E, constants.W))
+        update_button.grid(row=8, column=1)
+        update_note_label.grid(row=9, columnspan=2, sticky=(constants.E, constants.W))

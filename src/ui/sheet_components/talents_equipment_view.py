@@ -47,7 +47,7 @@ class TalentsEquipmentView:
         if talent_name:
             talent_description = self._talent_options[talent_name].description
             self._handle_talent_change(talent_name)
-            self._talent_desc_var.set(f"{talent_name}: {talent_description}")
+            self._talent_desc_var.set(f"{talent_name}:\n{talent_description}")
 
     def _change_current_equipment(self, equipment_name):
         another_option = ""
@@ -73,7 +73,7 @@ class TalentsEquipmentView:
         self._talent_name_var.set(self._talents)
         self._talent_desc_var = StringVar()
         self._talent_desc_var.set(
-            "" if self._talents is None else f"{self._talents[0].name}: {self._talents[0].description}"
+            "" if self._talents is None else f"{self._talents[0].name}:\n{self._talents[0].description}"
         )
 
         self._talent_header_label = ttk.Label(
