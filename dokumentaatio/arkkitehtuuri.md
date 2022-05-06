@@ -140,7 +140,8 @@ Hahmojen käsittelystä huolehtiva `CharacterRepository`-luokka käsittelee sek�
         "writing utensils",
         "liquor"
     ],
-    "resources": 5
+    "resources": 5,
+    "description": "Brief summary of e.g. character motivation, dark secret and relationships."
 }
 ```
 
@@ -181,6 +182,9 @@ Attribute points left: 0
 Skill/resource points left: 0
 
 Resources: 5
+
+Character description:
+Brief summary of e.g. character motivation, dark secret and relationships.
 
 ```
 

@@ -63,6 +63,10 @@ class CharacterRepository:
         character_sheet.append("")
 
         character_sheet.append(f"Resources: {character.resources}")
+        character_sheet.append("")
+
+        character_sheet.append("Character description:")
+        character_sheet.append(character.description)
 
         return character_sheet
 
@@ -107,7 +111,8 @@ class CharacterRepository:
             "attributes": character.attributes,
             "skills": character.skills,
             "equipment": character.equipment,
-            "resources": character.resources
+            "resources": character.resources,
+            "description": character.description
         }
 
         try:
@@ -144,6 +149,7 @@ class CharacterRepository:
             character.skills = character_data["skills"]
             character.equipment = character_data["equipment"]
             character.resources = character_data["resources"]
+            character.description = character_data["description"]
             # if self._check_character_legality(character):
             #     return character
             # raise ValueError(

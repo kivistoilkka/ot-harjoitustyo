@@ -25,6 +25,7 @@ class Character:
         _skills (dict): Dictionary of character skills, names and default values can be
                                 found in class variable default_skills
         _equipment (list): List of equipment names as strings
+        _description (str): Description of the character
     """
 
     default_attributes = {
@@ -66,6 +67,7 @@ class Character:
         self._attributes = Character.default_attributes.copy()
         self._skills = Character.default_skills.copy()
         self._equipment = []
+        self._description = ""
 
     def __str__(self) -> str:
         description = f"{self._name}"
@@ -254,3 +256,11 @@ class Character:
     @equipment.setter
     def equipment(self, equipment: list):
         self._equipment = equipment
+
+    @property
+    def description(self):
+        return self._description
+
+    @description.setter
+    def description(self, text: str):
+        self._description = text

@@ -11,16 +11,22 @@ class CharacterService:
     """Class responsible for creation and modification of the character
 
     Attributes:
-        Character: Character object
+        _repository (CharacterRepository): Repository for character files
+        _character (Character): Character object
     """
 
-    def __init__(self, character: Character = None):
+    def __init__(
+            self,
+            repository,
+            character: Character = None):
         """Constructor which can take an existing Character object as a parameter.
 
         Args:
+            repository (CharacterRepository): Repository for character files
             character (Character, optional): Character to be modified. Defaults to None.
         """
 
+        self._repository = repository
         self._character = character
 
     def create_character(self, name: str, archetype: Archetype, age: int):
@@ -394,6 +400,26 @@ class CharacterService:
         self._character.equipment = equipment
         return self._character.equipment
 
+    def get_character_description(self) -> str:
+        """Returns freeform description of the character
+
+        Returns:
+            str: Saved character description
+        """
+        return self._character.description
+
+    def change_character_description(self, text: str) -> str:
+        """Changes freeform description of the character
+
+        Args:
+            text (str): New character description
+
+        Returns:
+            str: Saved character description
+        """
+        self._character.description = text
+        return self._character.description
+
     def export_character_to_file(self, filename: str):
         """Calls CharacterRepository object to export current character as a character sheet
         to a text file.
@@ -402,7 +428,7 @@ class CharacterService:
             filename (str): Name of the file to which the character sheet will be saved.
         """
 
-        character_repository.export_character_sheet(self._character, filename)
+        self._repository.export_character_sheet(self._character, filename)
 
     def save_character_to_file(self, filename: str):
         """Calls CharacterRepository object to save current character to a JSON file.
@@ -411,7 +437,7 @@ class CharacterService:
             filename (str): Name of the file to which the character will be saved.
         """
 
-        character_repository.save_character(self._character, filename)
+        self._repository.save_character(self._character, filename)
 
     def load_character_from_file(self, filename: str):
         """Calls CharacterRepository object to load a character from a JSON file and sets it
@@ -421,7 +447,7 @@ class CharacterService:
             filename (str): Name of the file from which the character will be loaded.
         """
 
-        self._character = character_repository.open_character(filename)
+        self._character = self._repository.open_character(filename)
 
 
-character_service = CharacterService()
+character_service = CharacterService(character_repository)

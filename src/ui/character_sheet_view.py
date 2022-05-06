@@ -42,6 +42,9 @@ class CharacterSheetView:
         self._initialize_label()
         self._initialize_basic_info()
 
+    def _character_description_updater(self, text):
+        return character_service.change_character_description(text)
+
     def _attribute_updater(self, attribute, amount):
         new_value = character_service.change_character_attribute(
             attribute, amount)
@@ -90,7 +93,8 @@ class CharacterSheetView:
         self._basic_info_view = BasicInfoView(
             self._basic_info_frame,
             self._name_updater,
-            self._archetype_age_updater
+            self._archetype_age_updater,
+            self._character_description_updater
         )
 
         self._basic_info_view.pack()

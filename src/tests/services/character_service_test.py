@@ -5,10 +5,14 @@ from entities.talent import Talent
 from services.character_service import CharacterService
 from tests.test_helper import TestHelper
 
+class StubRepository:
+    def __init__(self):
+        pass
 
 class TestCharacterService(unittest.TestCase):
     def setUp(self):
-        self.character_service = CharacterService()
+        repository = StubRepository()
+        self.character_service = CharacterService(repository)
         self.talent_army_medic = Talent(
             "Army medic", "Gain +2 to...", "Doctor")
         self.talent_chief = Talent(

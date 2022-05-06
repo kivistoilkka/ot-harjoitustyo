@@ -30,5 +30,6 @@
         "hunting dog",
         "hunting equipment"
     ],
-    "resources": 3
+    "resources": 3,
+    "description": "This is a story of a man named JSON-tester."
 }
