@@ -42,18 +42,16 @@ class CharacterSheetView:
         self._initialize_label()
         self._initialize_basic_info()
 
-    def _handle_attribute_change(self, attribute, amount, value_label_var, attribute_points_var):
+    def _attribute_updater(self, attribute, amount):
         new_value = character_service.change_character_attribute(
             attribute, amount)
-        value_label_var.set(new_value)
-        attribute_points_var.set(
-            character_service.get_character_attribute_points_left())
+        points_left = character_service.get_character_attribute_points_left()
+        return (new_value, points_left)
 
-    def _handle_resource_change(self, amount, resources_label_var, skill_points_var):
+    def _resource_updater(self, amount):
         new_value = character_service.change_character_resources(amount)
-        resources_label_var.set(new_value)
-        skill_points_var.set(
-            character_service.get_character_skill_points_left())
+        points_left = character_service.get_character_skill_points_left()
+        return (new_value, points_left)
 
     def _skill_updater(self, skill, amount):
         new_value = character_service.change_character_skill(skill, amount)
@@ -75,7 +73,7 @@ class CharacterSheetView:
             self._header_label.config(
                 text=f"Character sheet: {name}, {age} ({agegroup}), {archetype}"
             )
-        else:    
+        else:
             self._header_label = ttk.Label(
                 master=self._frame,
                 text=f"Character sheet: {name}, {age} ({agegroup}), {archetype}",
@@ -125,7 +123,7 @@ class CharacterSheetView:
         self._attribute_list_view = AttributeListView(
             self._attribute_list_frame,
             character_service.get_character_attributes(),
-            self._handle_attribute_change,
+            self._attribute_updater,
             character_service.get_character_main_attribute(),
             character_service.get_character_attribute_points_left()
         )
@@ -144,7 +142,7 @@ class CharacterSheetView:
             self._skill_updater,
             character_service.get_character_main_skill(),
             character_service.get_character_resources(),
-            self._handle_resource_change,
+            self._resource_updater,
             character_service.get_character_skill_points_left(),
         )
 
@@ -165,7 +163,7 @@ class CharacterSheetView:
 
         self._root.grid_columnconfigure(1, weight=1)
         self._header_label.grid(row=0, column=0, columnspan=4,
-                          padx=5, pady=5, sticky=constants.W)
+                                padx=5, pady=5, sticky=constants.W)
         self._basic_info_frame.grid(
             row=1, column=0, padx=5, pady=5, sticky=constants.NW)
         self._attribute_list_frame.grid(

@@ -28,4 +28,5 @@
 | | 2 | Arkkitehtuurikuvauksen kirjoitusta, changelogin päivitystä ja uusi Github release |
 | 5.5. | 1 | Käyttöliittymän hiomista, hahmon tallennus ja vienti ylävalikkoon ja valikon komentojen saatavilla olon säätely |
 | | 1 | Käyttöliittymän hiomista, hahmon nimen päivityksen erottaminen iän ja arkkityypin päivityksestä, muuttujien käsittelyn refaktorointia |
+| 6.5. | x | Käyttöliittymän hiomista, lisää muuttujien käsittelyn refaktorointia, tekstielementtien siistimistä |
 | yht | 50 | |

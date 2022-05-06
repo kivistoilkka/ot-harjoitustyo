@@ -72,7 +72,7 @@ class BasicInfoView:
             command=self._handle_name_update
         )
 
-        sep = ttk.Separator(
+        sep1 = ttk.Separator(
             master=self._frame,
             orient="horizontal"
         )
@@ -109,6 +109,12 @@ class BasicInfoView:
             text="Updating age and/or archetype will reset attributes,\nskills, resources, talent and equipment."
         )
 
+        sep2 = ttk.Separator(
+            master=self._frame,
+            orient="horizontal"
+        )
+
+
         self._root.grid_columnconfigure(1, weight=1)
         header_label.grid(row=0, column=0, columnspan=2,
                           padx=5, pady=5, sticky=constants.W)
@@ -119,7 +125,7 @@ class BasicInfoView:
             row=3, column=0, padx=5, pady=5, sticky=(constants.E, constants.W))
         name_update_button.grid(
             row=3, column=1, padx=5, pady=5, sticky=(constants.E, constants.W))
-        sep.grid(row=4, columnspan=2, sticky=(constants.E, constants.W))
+        sep1.grid(row=4, columnspan=2, pady=2, sticky=(constants.E, constants.W))
         character_age_label.grid(
             row=5, column=0, padx=5, pady=2, sticky=(constants.E, constants.W))
         self._character_age_spinbox.grid(
@@ -130,4 +136,6 @@ class BasicInfoView:
         self._character_archetype_combobox.grid(
             row=8, column=0, columnspan=1, padx=5, pady=5, sticky=(constants.E, constants.W))
         update_button.grid(row=8, column=1)
-        update_note_label.grid(row=9, columnspan=2, sticky=(constants.E, constants.W))
+        update_note_label.grid(row=9, columnspan=2,
+                               sticky=(constants.E, constants.W))
+        sep2.grid(row=10, columnspan=2, pady=2, sticky=(constants.E, constants.W))

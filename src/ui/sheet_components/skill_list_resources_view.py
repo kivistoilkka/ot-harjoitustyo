@@ -24,7 +24,7 @@ class SkillListResourcesView:
         skill_updater,
         main_skill,
         resources,
-        handle_resource_change,
+        resource_updater,
         skill_points_left
     ):
         self._root = root
@@ -33,7 +33,7 @@ class SkillListResourcesView:
         self._skill_updater = skill_updater
         self._main_skill = main_skill
         self._resources = resources
-        self._handle_resource_change = handle_resource_change
+        self._resource_updater = resource_updater
         self._skill_points_left = skill_points_left
 
         self._resources_var = None
@@ -49,10 +49,13 @@ class SkillListResourcesView:
 
     def _handle_skill_change(self, skill, amount, value_label_var, skill_points_var):
         response = self._skill_updater(skill, amount)
-        new_value = response[0]
-        points_left = response[1]
-        value_label_var.set(new_value)
-        skill_points_var.set(points_left)
+        value_label_var.set(response[0])
+        skill_points_var.set(response[1])
+
+    def _handle_resource_change(self, amount):
+        response = self._resource_updater(amount)
+        self._resources_var.set(response[0])
+        self._skill_points_var.set(response[1])
 
     def _initialize_resources(self):
         item_frame = ttk.Frame(master=self._frame)
@@ -61,14 +64,12 @@ class SkillListResourcesView:
         decrease_button = ttk.Button(
             master=item_frame,
             text="-",
-            command=lambda: self._handle_resource_change(
-                -1, self._resources_var, self._skill_points_var)
+            command=lambda: self._handle_resource_change(-1)
         )
         increase_button = ttk.Button(
             master=item_frame,
             text="+",
-            command=lambda: self._handle_resource_change(
-                1, self._resources_var, self._skill_points_var)
+            command=lambda: self._handle_resource_change(1)
         )
 
         decrease_button.grid(row=0, column=0, padx=5,
@@ -87,11 +88,7 @@ class SkillListResourcesView:
             text=f"{name} ({SkillListResourcesView.skill_to_attribute[name]})"
         )
         if name == self._main_skill:
-            name_label = ttk.Label(
-                master=item_frame,
-                text=f"{name} ({SkillListResourcesView.skill_to_attribute[name]})",
-                font=("", 11, "bold")
-            )
+            name_label.config(font=("", 11, "bold"))
 
         value_label_var = IntVar()
         value_label_var.set(value)

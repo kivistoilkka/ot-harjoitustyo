@@ -92,20 +92,19 @@ class UI:
         self._filemenu = Menu(menubar, tearoff=0)
         menubar.add_cascade(label="File", menu=self._filemenu)
         self._filemenu.add_command(label="Create new character",
-                             command=self._show_char_creation_view)
+                                   command=self._show_char_creation_view)
         self._filemenu.add_command(label="Open existing character",
-                             command=self._handle_open)
+                                   command=self._handle_open)
         self._filemenu.add_command(label="Close current character",
-                             command=self._show_main_view)
+                                   command=self._show_main_view)
         self._filemenu.add_separator()
         self._filemenu.add_command(label="Save character as...",
-                             command=self._handle_save, state="disabled")
+                                   command=self._handle_save, state="disabled")
         self._filemenu.add_separator()
         self._filemenu.add_command(label="Export to text file",
-                             command=self._handle_export, state="disabled")
+                                   command=self._handle_export, state="disabled")
         self._filemenu.add_separator()
         self._filemenu.add_command(label="Exit", command=self._handle_exit)
-
 
     def _set_visual_settings(self):
         self._root.geometry("1200x900")

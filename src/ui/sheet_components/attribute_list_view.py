@@ -6,14 +6,14 @@ class AttributeListView:
         self,
         root,
         attributes: dict,
-        handle_attribute_change,
+        attribute_updater,
         main_attribute,
         attribute_points_left
     ):
         self._root = root
         self._frame = None
         self._attributes = attributes
-        self._handle_attribute_change = handle_attribute_change
+        self._attribute_updater = attribute_updater
         self._main_attribute = main_attribute
         self._attribute_points_left = attribute_points_left
         self._attribute_points_var = None
@@ -26,13 +26,23 @@ class AttributeListView:
     def destroy(self):
         self._frame.destroy()
 
+    def _handle_attribute_change(
+        self,
+        attribute,
+        amount,
+        value_label_var,
+        attribute_points_var
+    ):
+        response = self._attribute_updater(attribute, amount)
+        value_label_var.set(response[0])
+        attribute_points_var.set(response[1])
+
     def _initialize_attribute_item(self, name, value):
         item_frame = ttk.Frame(master=self._frame)
 
         name_label = ttk.Label(master=item_frame, text=name)
         if name == self._main_attribute:
-            name_label = ttk.Label(
-                master=item_frame, text=name, font=("", 11, "bold"))
+            name_label.config(font=("", 11, "bold"))
 
         value_label_var = IntVar()
         value_label_var.set(value)
