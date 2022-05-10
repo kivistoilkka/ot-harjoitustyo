@@ -1,0 +1,21 @@
+{
+    "name": "Stanley",
+    "archetype": "Hunter",
+    "age": 42,
+    "talents": [
+        "Marksman"
+    ],
+    "attributes": {
+        "Physique": 2,
+        "Precision": 5,
+        "Logic": 4,
+        "Empathy": 3
+    },
+    "equipment": [
+        "rifle",
+        "hunting dog",
+        "hunting equipment"
+    ],
+    "resources": 3,
+    "description": "This is a story of a man named Stanley."
+}

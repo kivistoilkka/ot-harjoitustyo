@@ -1,0 +1,35 @@
+{
+    "name": "Stanley",
+    "archetype": "Hunter",
+    "age": 16,
+    "talents": [
+        "Marksman"
+    ],
+    "attributes": {
+        "Physique": 2,
+        "Precision": 5,
+        "Logic": 4,
+        "Empathy": 1
+    },
+    "skills": {
+        "Agility": 0,
+        "Close combat": 0,
+        "Force": 0,
+        "Medicine": 0,
+        "Ranged combat": 3,
+        "Stealth": 2,
+        "Investigation": 0,
+        "Learning": 1,
+        "Vigilance": 1,
+        "Inspiration": 0,
+        "Manipulation": 0,
+        "Observation": 1
+    },
+    "equipment": [
+        "rifle",
+        "hunting dog",
+        "hunting equipment"
+    ],
+    "resources": 3,
+    "description": "This is a story of a man named Stanley."
+}

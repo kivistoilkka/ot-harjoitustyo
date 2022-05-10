@@ -30,4 +30,5 @@
 | | 1 | Käyttöliittymän hiomista, hahmon nimen päivityksen erottaminen iän ja arkkityypin päivityksestä, muuttujien käsittelyn refaktorointia |
 | 6.5. | 1 | Käyttöliittymän hiomista, lisää muuttujien käsittelyn ja niihin liittyvien tekstielementtien refaktorointia |
 | | 1 | Vapaamuotoisen tekstikuvauksen lisäämisen mahdollistaminen käyttöliittymässä, CharacterServicessä ja CharacterRepositoryssa, hahmorepositorioriippuvuuden injektointi CharacterServiceen |
-| yht | 52 | |
+| 10.5. | 3 | Sääntöjenmukaisuuden tarkistus hahmon tiedostosta lataamisen yhteydessä testeineen, testi hahmon viemiselle tekstitiedostoon |
+| yht | 55 | |
