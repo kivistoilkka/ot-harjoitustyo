@@ -61,6 +61,7 @@ class AttributeListView:
                 name, 1, value_label_var, self._attribute_points_var)
         )
 
+        item_frame.grid_columnconfigure(0, minsize=190)
         name_label.grid(row=0, column=0, padx=5, pady=5, sticky=constants.W)
         decrease_button.grid(row=0, column=1, padx=5,
                              pady=5, sticky=constants.W)
@@ -86,8 +87,8 @@ class AttributeListView:
             textvariable=self._attribute_points_var
         )
 
-        header_label.pack(fill=constants.X)
+        header_label.pack(fill=constants.X, padx=5)
         for name, value in self._attributes.items():
             self._initialize_attribute_item(name, value)
-        points_left_label.pack(fill=constants.X)
-        points_left_value_label.pack(fill=constants.X)
+        points_left_label.pack(fill=constants.X, padx=5)
+        points_left_value_label.pack(fill=constants.X, padx=5)

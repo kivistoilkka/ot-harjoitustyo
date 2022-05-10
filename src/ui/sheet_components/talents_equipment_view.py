@@ -162,14 +162,14 @@ class TalentsEquipmentView:
         self._initialize_talent_section()
         self._initialize_equipment_section()
 
-        self._talent_header_label.pack(fill=constants.X)
-        self._talent_combobox.pack(fill=constants.X)
-        self._talent_description_label.pack(fill=constants.X)
-        self._equipment_header_label.pack(fill=constants.X)
+        self._talent_header_label.pack(fill=constants.X, padx=5, pady=5)
+        self._talent_combobox.pack(fill=constants.X, padx=5)
+        self._talent_description_label.pack(fill=constants.X, padx=5)
+        self._equipment_header_label.pack(fill=constants.X, padx=5, pady=5)
         for item in self._equipment_selection_fields:
-            item.pack(fill=constants.X)
-        self._equipment_save_button.pack()
-        self._equipment_selected_label.pack(fill=constants.X, pady=5)
+            item.pack(fill=constants.X, padx=5, pady=3)
+        self._equipment_save_button.pack(pady=5)
+        self._equipment_selected_label.pack(fill=constants.X, padx=5, pady=5)
         for item in self._equipment_saved_var:
             ttk.Label(master=self._frame, textvariable=item).pack(
-                fill=constants.X)
+                fill=constants.X, padx=5)

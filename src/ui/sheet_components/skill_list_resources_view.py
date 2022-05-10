@@ -72,12 +72,12 @@ class SkillListResourcesView:
             command=lambda: self._handle_resource_change(1)
         )
 
-        decrease_button.grid(row=0, column=0, padx=5,
+        item_frame.grid_columnconfigure(0, minsize=190)
+        decrease_button.grid(row=0, column=1, padx=5,
                              pady=5, sticky=constants.W)
-        value_label.grid(row=0, column=1, padx=5, pady=5, sticky=constants.W)
-        increase_button.grid(row=0, column=2, padx=5,
+        value_label.grid(row=0, column=2, padx=5, pady=5, sticky=constants.W)
+        increase_button.grid(row=0, column=3, padx=5,
                              pady=5, sticky=constants.W)
-
         item_frame.pack(fill=constants.X)
 
     def _initialize_skill_item(self, name, value):
@@ -107,6 +107,7 @@ class SkillListResourcesView:
                 name, 1, value_label_var, self._skill_points_var)
         )
 
+        item_frame.grid_columnconfigure(0, minsize=190)
         name_label.grid(row=0, column=0, padx=5, pady=5, sticky=constants.W)
         decrease_button.grid(row=0, column=1, padx=5,
                              pady=5, sticky=constants.W)
@@ -136,10 +137,10 @@ class SkillListResourcesView:
             textvariable=self._skill_points_var
         )
 
-        resources_label.pack(fill=constants.X)
+        resources_label.pack(fill=constants.X, padx=5)
         self._initialize_resources()
-        skills_label.pack(fill=constants.X)
+        skills_label.pack(fill=constants.X, padx=5)
         for name, value in self._skills.items():
             self._initialize_skill_item(name, value)
-        points_left_label.pack(fill=constants.X)
-        points_left_value_label.pack(fill=constants.X)
+        points_left_label.pack(fill=constants.X, padx=5)
+        points_left_value_label.pack(fill=constants.X, padx=5)
