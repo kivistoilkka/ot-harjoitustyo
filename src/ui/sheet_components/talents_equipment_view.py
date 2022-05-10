@@ -1,5 +1,5 @@
 from tkinter import ttk, constants, StringVar
-
+from tkinter.messagebox import showinfo
 
 class TalentsEquipmentView:
     def __init__(
@@ -67,6 +67,10 @@ class TalentsEquipmentView:
         while i < 3:
             self._equipment_saved_var[i].set(selected_equipment[i])
             i += 1
+
+    def _update_character_equipment(self):
+        self._set_character_equipment()
+        showinfo("Updated", "Character equipment has been updated")
 
     def _initialize_talent_section(self):
         self._talent_name_var = StringVar()
@@ -149,7 +153,7 @@ class TalentsEquipmentView:
         self._equipment_save_button = ttk.Button(
             master=self._frame,
             text="Change equipment",
-            command=self._set_character_equipment
+            command=self._update_character_equipment
         )
 
     def _initialize(self):

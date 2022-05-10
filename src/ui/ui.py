@@ -1,4 +1,5 @@
 from tkinter import Menu, filedialog
+from tkinter.messagebox import showerror, showinfo
 from ui.character_sheet_view import CharacterSheetView
 from ui.main_view import MainView
 from ui.character_creation_view import CharacterCreationView
@@ -65,8 +66,15 @@ class UI:
         files = [("JSON", "*.json"), ("All files", "*.*")]
         file = filedialog.askopenfilename(filetypes=files)
         if file:
-            character_service.load_character_from_file(file)
-            self._handle_char_modifying()
+            try:
+                character_service.load_character_from_file(file)
+                self._handle_char_modifying()
+            except ValueError:
+                showerror(
+                    "Error",
+                    "The file could not be opened, this could be because the character \
+in the file does not follow the rules of the character creation."
+                )
 
     def _handle_save(self):
         files = [("JSON", "*.json"), ("All files", "*.*")]
@@ -74,6 +82,7 @@ class UI:
             filetypes=files, defaultextension=".json")
         if file:
             character_service.save_character_to_file(file.name)
+            showinfo("Saved", "Character saved")
 
     def _handle_export(self):
         files = [("Text Document", "*.txt"), ("All files", "*.*")]
@@ -81,6 +90,7 @@ class UI:
             filetypes=files, defaultextension=".txt")
         if file:
             character_service.export_character_to_file(file.name)
+            showinfo("Exported", "Character sheet exported")
 
     def _handle_exit(self):
         self._root.destroy()

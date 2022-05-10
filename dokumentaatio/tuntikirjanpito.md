@@ -31,4 +31,5 @@
 | 6.5. | 1 | Käyttöliittymän hiomista, lisää muuttujien käsittelyn ja niihin liittyvien tekstielementtien refaktorointia |
 | | 1 | Vapaamuotoisen tekstikuvauksen lisäämisen mahdollistaminen käyttöliittymässä, CharacterServicessä ja CharacterRepositoryssa, hahmorepositorioriippuvuuden injektointi CharacterServiceen |
 | 10.5. | 3 | Sääntöjenmukaisuuden tarkistus hahmon tiedostosta lataamisen yhteydessä testeineen, testi hahmon viemiselle tekstitiedostoon |
+| 11.5. | x | Vääräntyyppisten hahmojen avaamisen käsittely käyttöliittymässä, käyttöliittymän hiomista |
 | yht | 55 | |

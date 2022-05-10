@@ -1,4 +1,5 @@
 from tkinter import ttk, constants, StringVar, IntVar, Text
+from tkinter.messagebox import showinfo
 
 from services.character_service import character_service
 
@@ -37,6 +38,7 @@ class BasicInfoView:
     def _handle_name_update(self):
         try:
             self._name_updater(self._character_name_entry.get())
+            showinfo("Updated", "Character name has been updated")
         except ValueError:
             pass
 
@@ -46,6 +48,7 @@ class BasicInfoView:
                 self._character_archetype_combobox.get(),
                 self._character_age_spinbox.get()
             )
+            showinfo("Updated", "Character age and archetype has been updated")
         except ValueError:
             pass
 
@@ -56,6 +59,7 @@ class BasicInfoView:
             )
             self._character_description_text.delete("1.0", "end")
             self._character_description_text.insert("1.0", response)
+            showinfo("Updated", "Character description has been updated")
         except ValueError:
             pass
 
