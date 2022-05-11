@@ -1,4 +1,4 @@
-from tkinter import ttk, constants, StringVar, IntVar
+from tkinter import ttk, constants, StringVar, IntVar, Frame
 
 from services.character_service import character_service
 
@@ -33,7 +33,7 @@ class CharacterCreationView:
             self._handle_char_modifying()
 
     def _initialize(self):
-        self._frame = ttk.Frame(master=self._root)
+        self._frame = Frame(master=self._root, bg=self._root["bg"])
         self._character_archetype_var = StringVar()
         self._character_archetype_var.set(AVAILABLE_ARCHETYPES[0])
         self._character_age_var = IntVar()
@@ -42,12 +42,14 @@ class CharacterCreationView:
         header_label = ttk.Label(
             master=self._frame,
             text="Create a new character",
-            font=("", 20)
+            font=("", 20),
+            background=self._root["bg"]
         )
 
         character_name_label = ttk.Label(
             master=self._frame,
             text="Character name:",
+            background=self._root["bg"]
         )
         self._character_name_entry = ttk.Entry(
             master=self._frame
@@ -56,6 +58,7 @@ class CharacterCreationView:
         character_archetype_label = ttk.Label(
             master=self._frame,
             text="Character archetype:",
+            background=self._root["bg"]
         )
         self._character_archetype_combobox = ttk.Combobox(
             master=self._frame,
@@ -66,7 +69,8 @@ class CharacterCreationView:
 
         character_age_label = ttk.Label(
             master=self._frame,
-            text="Character age:"
+            text="Character age:",
+            background=self._root["bg"]
         )
         self._character_age_spinbox = ttk.Spinbox(
             master=self._frame,
@@ -100,4 +104,4 @@ class CharacterCreationView:
         self._character_age_spinbox.grid(
             row=3, column=1, padx=5, pady=5, sticky=(constants.E, constants.W))
 
-        create_button.grid()
+        create_button.grid(row=4, column=1, padx=5, pady=5, sticky=constants.E)

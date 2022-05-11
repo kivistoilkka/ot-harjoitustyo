@@ -72,7 +72,7 @@ class SkillListResourcesView:
             command=lambda: self._handle_resource_change(1)
         )
 
-        item_frame.grid_columnconfigure(0, minsize=190)
+        item_frame.grid_columnconfigure(0, minsize=240)
         decrease_button.grid(row=0, column=1, padx=5,
                              pady=5, sticky=constants.W)
         value_label.grid(row=0, column=2, padx=5, pady=5, sticky=constants.W)
@@ -107,7 +107,7 @@ class SkillListResourcesView:
                 name, 1, value_label_var, self._skill_points_var)
         )
 
-        item_frame.grid_columnconfigure(0, minsize=190)
+        item_frame.grid_columnconfigure(0, minsize=240)
         name_label.grid(row=0, column=0, padx=5, pady=5, sticky=constants.W)
         decrease_button.grid(row=0, column=1, padx=5,
                              pady=5, sticky=constants.W)

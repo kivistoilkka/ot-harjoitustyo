@@ -1,4 +1,4 @@
-from tkinter import Menu, filedialog
+from tkinter import Menu, filedialog, ttk
 from tkinter.messagebox import showerror, showinfo
 from ui.character_sheet_view import CharacterSheetView
 from ui.main_view import MainView
@@ -117,5 +117,6 @@ in the file does not follow the rules of the character creation."
         self._filemenu.add_command(label="Exit", command=self._handle_exit)
 
     def _set_visual_settings(self):
-        self._root.geometry("1200x900")
-        self._root["bg"] = "#f3e7c6"
+        self._root.config(bg="#f3e7c6")
+        self._root.geometry("1100x870")
+        self._root.resizable(False, False)

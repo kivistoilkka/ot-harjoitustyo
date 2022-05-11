@@ -47,7 +47,7 @@ class TalentsEquipmentView:
         if talent_name:
             talent_description = self._talent_options[talent_name].description
             self._handle_talent_change(talent_name)
-            self._talent_desc_var.set(f"{talent_name}:\n{talent_description}")
+            self._talent_desc_var.set(talent_description)
 
     def _change_current_equipment(self, equipment_name):
         another_option = ""
@@ -77,7 +77,7 @@ class TalentsEquipmentView:
         self._talent_name_var.set(self._talents)
         self._talent_desc_var = StringVar()
         self._talent_desc_var.set(
-            "" if self._talents is None else f"{self._talents[0].name}:\n{self._talents[0].description}"
+            "" if self._talents is None else self._talents[0].description
         )
 
         self._talent_header_label = ttk.Label(
@@ -96,7 +96,8 @@ class TalentsEquipmentView:
             self._talent_combobox.set(self._talents[0].name)
         self._talent_description_label = ttk.Label(
             master=self._frame,
-            textvariable=self._talent_desc_var
+            textvariable=self._talent_desc_var,
+            wraplength=250
         )
 
     def _initialize_equipment_section(self):
@@ -162,14 +163,23 @@ class TalentsEquipmentView:
         self._initialize_talent_section()
         self._initialize_equipment_section()
 
-        self._talent_header_label.pack(fill=constants.X, padx=5, pady=5)
-        self._talent_combobox.pack(fill=constants.X, padx=5)
-        self._talent_description_label.pack(fill=constants.X, padx=5)
-        self._equipment_header_label.pack(fill=constants.X, padx=5, pady=5)
+        sep = ttk.Separator(
+            master=self._frame,
+            orient="horizontal"
+        )
+
+        self._frame.columnconfigure(0, weight=1, minsize=250)
+        self._talent_header_label.grid(row=0, padx=5, pady=5, sticky=constants.W)
+        self._talent_combobox.grid(row=1, padx=5, sticky=(constants.E, constants.W))
+        self._talent_description_label.grid(row=2, padx=5, sticky=(constants.E, constants.W))
+
+        sep.grid(row=3, columnspan=2, padx=5, pady=5,
+            sticky=(constants.E, constants.W))
+
+        self._equipment_header_label.grid(row=4, padx=5, pady=5, sticky=constants.W)
         for item in self._equipment_selection_fields:
-            item.pack(fill=constants.X, padx=5, pady=3)
-        self._equipment_save_button.pack(pady=5)
-        self._equipment_selected_label.pack(fill=constants.X, padx=5, pady=5)
+            item.grid(padx=5, pady=3, sticky=(constants.E, constants.W))
+        self._equipment_save_button.grid(row=8, pady=5, sticky=constants.W)
+        self._equipment_selected_label.grid(row=9, padx=5, pady=5, sticky=constants.W)
         for item in self._equipment_saved_var:
-            ttk.Label(master=self._frame, textvariable=item).pack(
-                fill=constants.X, padx=5)
+            ttk.Label(master=self._frame, textvariable=item).grid(padx=5, sticky=(constants.E, constants.W))

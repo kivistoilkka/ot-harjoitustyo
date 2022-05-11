@@ -32,4 +32,5 @@
 | | 1 | Vapaamuotoisen tekstikuvauksen lisäämisen mahdollistaminen käyttöliittymässä, CharacterServicessä ja CharacterRepositoryssa, hahmorepositorioriippuvuuden injektointi CharacterServiceen |
 | 10.5. | 3 | Sääntöjenmukaisuuden tarkistus hahmon tiedostosta lataamisen yhteydessä testeineen, testi hahmon viemiselle tekstitiedostoon |
 | 11.5. | 1 | Vääräntyyppisten hahmojen avaamisen käsittely käyttöliittymässä, käyttöliittymän hiomista |
+| | x | Käyttöliittymän hiomista |
 | yht | 56 | |

@@ -1,4 +1,4 @@
-from tkinter import ttk, constants
+from tkinter import ttk, constants, Frame
 
 from services.character_service import character_service
 from ui.sheet_components.basic_info_view import BasicInfoView
@@ -80,7 +80,8 @@ class CharacterSheetView:
             self._header_label = ttk.Label(
                 master=self._frame,
                 text=f"Character sheet: {name}, {age} ({agegroup}), {archetype}",
-                font=("", 20, "bold")
+                font=("", 20, "bold"),
+                background=self._root["bg"]
             )
 
     def _initialize_basic_info(self):
@@ -153,11 +154,11 @@ class CharacterSheetView:
         self._skill_list_view.pack()
 
     def _initialize(self):
-        self._frame = ttk.Frame(master=self._root)
-        self._basic_info_frame = ttk.Frame(master=self._frame)
-        self._talents_equipment_frame = ttk.Frame(master=self._frame)
-        self._attribute_list_frame = ttk.Frame(master=self._frame)
-        self._skill_list_frame = ttk.Frame(master=self._frame)
+        self._frame = Frame(master=self._root, bg=self._root["bg"])
+        self._basic_info_frame = Frame(master=self._frame, bg=self._root["bg"])
+        self._talents_equipment_frame = Frame(master=self._frame, bg=self._root["bg"])
+        self._attribute_list_frame = Frame(master=self._frame, bg=self._root["bg"])
+        self._skill_list_frame = Frame(master=self._frame, bg=self._root["bg"])
 
         self._initialize_label()
         self._initialize_basic_info()

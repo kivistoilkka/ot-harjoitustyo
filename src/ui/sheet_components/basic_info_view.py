@@ -163,27 +163,27 @@ resources, skills, talent and equipment."""
         character_name_label.grid(
             row=2, column=0, columnspan=2, padx=5, pady=2, sticky=(constants.E, constants.W))
         self._character_name_entry.grid(
-            row=3, column=0, padx=5, pady=5, sticky=(constants.E, constants.W))
+            row=3, column=0, padx=5, pady=2, sticky=(constants.E, constants.W))
         name_update_button.grid(
-            row=3, column=1, padx=5, pady=5, sticky=(constants.E))
+            row=3, column=1, padx=5, pady=2, sticky=(constants.E))
 
-        sep1.grid(row=4, columnspan=2, pady=2,
+        sep1.grid(row=4, columnspan=2, padx=5, pady=5,
                   sticky=(constants.E, constants.W))
 
         character_age_label.grid(
             row=5, column=0, padx=5, pady=2, sticky=(constants.E, constants.W))
         self._character_age_spinbox.grid(
-            row=6, column=0, padx=5, pady=5, sticky=(constants.E, constants.W))
+            row=6, column=0, padx=5, pady=2, sticky=(constants.E, constants.W))
 
         character_archetype_label.grid(
             row=7, column=0, columnspan=2, padx=5, pady=2, sticky=(constants.E, constants.W))
         self._character_archetype_combobox.grid(
-            row=8, column=0, columnspan=1, padx=5, pady=5, sticky=(constants.E, constants.W))
+            row=8, column=0, columnspan=1, padx=5, pady=2, sticky=(constants.E, constants.W))
         archetype_age_update_button.grid(row=8, column=1, sticky=(constants.E))
-        archetype_age_update_note_label.grid(row=9, columnspan=2,
+        archetype_age_update_note_label.grid(row=9, columnspan=2, padx=5,
                                              sticky=(constants.E, constants.W))
 
-        sep2.grid(row=10, columnspan=2, pady=2,
+        sep2.grid(row=10, columnspan=2, padx=5, pady=5,
                   sticky=(constants.E, constants.W))
 
         description_label.grid(
