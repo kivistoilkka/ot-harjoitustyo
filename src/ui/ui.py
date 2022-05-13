@@ -69,7 +69,7 @@ class UI:
             try:
                 character_service.load_character_from_file(file)
                 self._handle_char_modifying()
-            except ValueError:
+            except (ValueError, KeyError):
                 showerror(
                     "Error",
                     "The file could not be opened, this could be because the character \

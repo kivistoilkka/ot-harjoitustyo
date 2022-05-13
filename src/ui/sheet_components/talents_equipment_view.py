@@ -1,6 +1,7 @@
 from tkinter import ttk, constants, StringVar, Frame
 from tkinter.messagebox import showinfo
 
+
 class TalentsEquipmentView:
     def __init__(
         self,
@@ -174,17 +175,23 @@ class TalentsEquipmentView:
         )
 
         self._frame.columnconfigure(0, weight=1, minsize=250)
-        self._talent_header_label.grid(row=0, padx=5, pady=5, sticky=constants.W)
-        self._talent_combobox.grid(row=1, padx=5, sticky=(constants.E, constants.W))
-        self._talent_description_label.grid(row=2, padx=5, sticky=(constants.E, constants.W))
+        self._talent_header_label.grid(
+            row=0, padx=5, pady=5, sticky=constants.W)
+        self._talent_combobox.grid(
+            row=1, padx=5, sticky=(constants.E, constants.W))
+        self._talent_description_label.grid(
+            row=2, padx=5, sticky=(constants.E, constants.W))
 
-        sep.grid(row=3, columnspan=2, padx=5, pady=5, sticky=(constants.E, constants.W))
+        sep.grid(row=3, columnspan=2, padx=5, pady=5,
+                 sticky=(constants.E, constants.W))
 
-        self._equipment_header_label.grid(row=4, padx=5, pady=5, sticky=constants.W)
+        self._equipment_header_label.grid(
+            row=4, padx=5, pady=5, sticky=constants.W)
         for item in self._equipment_selection_fields:
             item.grid(padx=5, pady=3, sticky=(constants.E, constants.W))
         self._equipment_save_button.grid(row=8, pady=5, sticky=constants.W)
-        self._equipment_selected_label.grid(row=9, padx=5, pady=5, sticky=constants.W)
+        self._equipment_selected_label.grid(
+            row=9, padx=5, pady=5, sticky=constants.W)
         for item in self._equipment_saved_var:
             ttk.Label(
                 master=self._frame,

@@ -47,8 +47,10 @@ class TestHelper:
         return {academic.name: academic}
 
     def create_character(self):
-        stanley = Character("Stanley", self.dict_of_archetypes()["Academic"], 42)
-        stanley.talents = [stanley.archetype.talents["Knowledge is Reassuring"]]
+        stanley = Character(
+            "Stanley", self.dict_of_archetypes()["Academic"], 42)
+        stanley.talents = [
+            stanley.archetype.talents["Knowledge is Reassuring"]]
         stanley.attributes = {
             "Physique": 2,
             "Precision": 5,

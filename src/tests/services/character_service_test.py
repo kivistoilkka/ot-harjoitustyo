@@ -5,9 +5,11 @@ from entities.talent import Talent
 from services.character_service import CharacterService
 from tests.test_helper import TestHelper
 
+
 class StubRepository:
     def __init__(self):
         pass
+
 
 class TestCharacterService(unittest.TestCase):
     def setUp(self):
@@ -250,6 +252,14 @@ class TestCharacterService(unittest.TestCase):
         self.assertEqual(
             str(talent[0]), "Chief physician: When you use... (available for Doctor)")
 
+    def test_talent_giver_does_not_work_if_talent_is_not_available_for_current_archetype(self):
+        self.character_service.create_character("Tester", "Doctor", 26)
+        with self.assertRaises(ValueError) as cm:
+            self.character_service.give_talent_to_character("Bookworm")
+        self.assertEqual(
+            str(cm.exception), "Talent not available for the current archetype")
+
+
     def test_attribute_getter_works(self):
         helper = TestHelper()
         self.character_service.create_character("Tester", "Doctor", 26)
@@ -268,7 +278,7 @@ class TestCharacterService(unittest.TestCase):
         main_attribute = self.character_service.get_character_main_attribute()
         self.assertEqual(main_attribute, "Logic")
 
-    def test_main_attribute_points_left_works(self):
+    def test_attribute_points_left_works(self):
         self.character_service.create_character("First", "Doctor", 17)
         points_left = self.character_service.get_character_attribute_points_left()
         self.assertEqual(points_left, 15-4*2)
@@ -278,3 +288,53 @@ class TestCharacterService(unittest.TestCase):
         self.character_service.create_character("Third", "Doctor", 51)
         points_left = self.character_service.get_character_attribute_points_left()
         self.assertEqual(points_left, 13-4*2)
+
+    def test_attribute_changer_works(self):
+        helper = TestHelper()
+        self.character_service.create_character("Tester", "Doctor", 26)
+        self.assertEqual(
+            self.character_service.get_character_attributes(),
+            helper.default_character_attributes()
+        )
+        self.character_service.change_character_attribute("Physique", 1)
+        self.assertEqual(
+            self.character_service.get_character_attributes()["Physique"],
+            3
+        )
+        self.character_service.change_character_attribute("Logic", 3)
+        self.assertEqual(
+            self.character_service.get_character_attributes()["Logic"],
+            5
+        )
+        self.character_service.change_character_attribute("Logic", -1)
+        self.assertEqual(
+            self.character_service.get_character_attributes()["Logic"],
+            4
+        )
+        self.character_service.change_character_attribute("Precision", -1)
+        self.assertEqual(
+            self.character_service.get_character_attributes()["Precision"],
+            2
+        )
+        self.character_service.change_character_attribute("Logic", 1)
+        self.assertEqual(
+            self.character_service.get_character_attributes()["Logic"],
+            5
+        )
+        self.character_service.change_character_attribute("Logic", 5)
+        self.assertEqual(
+            self.character_service.get_character_attributes()["Logic"],
+            5
+        )
+        self.character_service.change_character_attribute("Logic", -3)
+        self.assertEqual(
+            self.character_service.get_character_attributes()["Logic"],
+            2
+        )
+
+    def test_attribute_changer_does_not_work_with_incorrect_attribute_name(self):
+        self.character_service.create_character("Tester", "Doctor", 26)
+        with self.assertRaises(ValueError) as cm:
+            self.character_service.change_character_attribute("Imaginary", 1)
+        self.assertEqual(
+            str(cm.exception), "The name of the attribute is incorrect")

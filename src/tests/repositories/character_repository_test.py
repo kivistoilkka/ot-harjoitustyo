@@ -35,7 +35,8 @@ class TestCharacterRepository(unittest.TestCase):
             Path(f"{os.path.dirname(__file__)}/stanley.txt").unlink()
         helper = TestHelper()
         stanley = helper.create_character()
-        self.repository.export_character_sheet(stanley, f"{os.path.dirname(__file__)}/stanley.txt")
+        self.repository.export_character_sheet(
+            stanley, f"{os.path.dirname(__file__)}/stanley.txt")
         expected = [
             "Stanley, 42 (Middle aged)\n",
             "Academic\n",
@@ -105,8 +106,7 @@ class TestCharacterRepository(unittest.TestCase):
     def test_character_with_wrong_basic_information_cannot_be_opened(self):
         basic_information_filenames = [
             "name_empty_string.json",
-            "archetype_does_not_exist.json",
-            "age_too_low.json",
+            "age_too_low.json"
         ]
         for file in basic_information_filenames:
             with self.assertRaises(ValueError):
@@ -114,19 +114,25 @@ class TestCharacterRepository(unittest.TestCase):
                     f"{os.path.dirname(__file__)}/../test_characters/{file}"
                 )
 
+    def test_character_with_non_existing_archetype_cannot_be_opened(self):
+        with self.assertRaises(KeyError):
+            self.repository.open_character(
+                f"{os.path.dirname(__file__)}/../test_characters/archetype_does_not_exist.json"
+            )
+
     def test_character_with_wrong_talent_cannot_be_opened(self):
-        with self.assertRaises(ValueError):
+        with self.assertRaises(KeyError):
             self.repository.open_character(
                 f"{os.path.dirname(__file__)}/../test_characters/talent_does_not_exist.json"
             )
 
     def test_character_with_wrong_attributes_cannot_be_opened(self):
-        #TODO: test too many points in main attribute
         attributes_filenames = [
             "attributes_missing_attribute.json",
             "attributes_too_many_points_used.json",
             "attributes_too_many_points_in_non_main_attribute.json",
-            "attributes_too_low_value.json"
+            "attributes_too_low_value.json",
+            "attributes_too_many_points_in_main_attribute.json"
         ]
         for file in attributes_filenames:
             with self.assertRaises(ValueError):

@@ -156,8 +156,10 @@ class CharacterSheetView:
     def _initialize(self):
         self._frame = Frame(master=self._root, bg=self._root["bg"])
         self._basic_info_frame = Frame(master=self._frame, bg=self._root["bg"])
-        self._talents_equipment_frame = Frame(master=self._frame, bg=self._root["bg"])
-        self._attribute_list_frame = Frame(master=self._frame, bg=self._root["bg"])
+        self._talents_equipment_frame = Frame(
+            master=self._frame, bg=self._root["bg"])
+        self._attribute_list_frame = Frame(
+            master=self._frame, bg=self._root["bg"])
         self._skill_list_frame = Frame(master=self._frame, bg=self._root["bg"])
 
         self._initialize_label()

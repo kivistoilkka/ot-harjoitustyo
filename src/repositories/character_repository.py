@@ -97,13 +97,13 @@ class CharacterRepository:
         return True
 
     def _check_skills(
-            self,
-            skills: dict,
-            age: int,
-            resources: int,
-            resource_minimum: int,
-            main_skill: str
-        ) -> bool:
+        self,
+        skills: dict,
+        age: int,
+        resources: int,
+        resource_minimum: int,
+        main_skill: str
+    ) -> bool:
         required = [
             "Agility",
             "Close combat",
@@ -154,7 +154,8 @@ class CharacterRepository:
                     if isinstance(available_item, tuple):
                         if equipment[i] in available_item:
                             item_legal[i] = True
-                            chosen = available_equipment_copy.index(available_item)
+                            chosen = available_equipment_copy.index(
+                                available_item)
                             available_equipment_copy[chosen] = None
                 i += 1
         return item_legal[0] and item_legal[1] and item_legal[2]
@@ -168,28 +169,28 @@ class CharacterRepository:
         if character.name == "":
             return False
         if not self._check_attributes(
-                character.attributes,
-                character.age,
-                character.archetype.main_attribute
-            ):
+            character.attributes,
+            character.age,
+            character.archetype.main_attribute
+        ):
             return False
         if not self._check_skills(
-                character.skills,
-                character.age,
-                character.resources,
-                character.archetype.resource_boundaries[0],
-                character.archetype.main_skill
-            ):
+            character.skills,
+            character.age,
+            character.resources,
+            character.archetype.resource_boundaries[0],
+            character.archetype.main_skill
+        ):
             return False
         if not self._check_equipment(
-                character.equipment,
-                character.archetype.equipment
-            ):
+            character.equipment,
+            character.archetype.equipment
+        ):
             return False
         if not self._check_resources(
-                character.resources,
-                character.archetype.resource_boundaries
-            ):
+            character.resources,
+            character.archetype.resource_boundaries
+        ):
             return False
         return True
 
@@ -273,23 +274,18 @@ class CharacterRepository:
                 if key not in character_data:
                     all_keys_included = False
             if not all_keys_included:
-                raise ValueError("Some of the required character information is missing")
+                raise ValueError(
+                    "Some of the required character information is missing")
 
-            try:
-                character = Character(
-                    character_data["name"],
-                    AVAILABLE_ARCHETYPES[character_data["archetype"]],
-                    character_data["age"]
-                    )
-            except KeyError:
-                raise ValueError("Character name, archetype or age is not allowed")
+            character = Character(
+                character_data["name"],
+                AVAILABLE_ARCHETYPES[character_data["archetype"]],
+                character_data["age"]
+            )
 
             talent_list = []
-            try:
-                for talent_name in character_data["talents"]:
-                    talent_list.append(character.archetype.talents[talent_name])
-            except KeyError:
-                raise ValueError("Talent is not available")
+            for talent_name in character_data["talents"]:
+                talent_list.append(character.archetype.talents[talent_name])
             character.talents = talent_list
             character.attributes = character_data["attributes"]
             character.skills = character_data["skills"]
