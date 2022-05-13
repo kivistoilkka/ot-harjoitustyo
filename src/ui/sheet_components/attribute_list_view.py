@@ -1,4 +1,4 @@
-from tkinter import ttk, constants, IntVar
+from tkinter import ttk, constants, IntVar, Frame
 
 
 class AttributeListView:
@@ -38,16 +38,23 @@ class AttributeListView:
         attribute_points_var.set(response[1])
 
     def _initialize_attribute_item(self, name, value):
-        item_frame = ttk.Frame(master=self._frame)
+        item_frame = Frame(master=self._frame, bg=self._root["bg"])
 
-        name_label = ttk.Label(master=item_frame, text=name)
+        name_label = ttk.Label(
+            master=item_frame,
+            text=name,
+            background=self._root["bg"]
+        )
         if name == self._main_attribute:
             name_label.config(font=("", 11, "bold"))
 
         value_label_var = IntVar()
         value_label_var.set(value)
         value_label = ttk.Label(
-            master=item_frame, textvariable=value_label_var)
+            master=item_frame,
+            textvariable=value_label_var,
+            background=self._root["bg"]
+        )
         decrease_button = ttk.Button(
             master=item_frame,
             text="-",
@@ -72,19 +79,25 @@ class AttributeListView:
         item_frame.pack(fill=constants.X)
 
     def _initialize(self):
-        self._frame = ttk.Frame(master=self._root)
+        self._frame = Frame(master=self._root, bg=self._root["bg"])
         self._attribute_points_var = IntVar()
         self._attribute_points_var.set(self._attribute_points_left)
 
         header_label = ttk.Label(
-            master=self._frame, text="Attributes", font=("", 15, "bold"))
+            master=self._frame,
+            text="Attributes",
+            font=("", 15, "bold"),
+            background=self._root["bg"]
+        )
         points_left_label = ttk.Label(
             master=self._frame,
-            text="Attribute points left:"
+            text="Attribute points left:",
+            background=self._root["bg"]
         )
         points_left_value_label = ttk.Label(
             master=self._frame,
-            textvariable=self._attribute_points_var
+            textvariable=self._attribute_points_var,
+            background=self._root["bg"]
         )
         sep = ttk.Separator(
             master=self._frame,

@@ -1,4 +1,4 @@
-from tkinter import ttk, constants, IntVar
+from tkinter import ttk, constants, IntVar, Frame
 
 
 class SkillListResourcesView:
@@ -58,9 +58,12 @@ class SkillListResourcesView:
         self._skill_points_var.set(response[1])
 
     def _initialize_resources(self):
-        item_frame = ttk.Frame(master=self._frame)
+        item_frame = Frame(master=self._frame, bg=self._root["bg"])
         value_label = ttk.Label(
-            master=item_frame, textvariable=self._resources_var)
+            master=item_frame,
+            textvariable=self._resources_var,
+            background=self._root["bg"]
+        )
         decrease_button = ttk.Button(
             master=item_frame,
             text="-",
@@ -81,11 +84,12 @@ class SkillListResourcesView:
         item_frame.pack(fill=constants.X)
 
     def _initialize_skill_item(self, name, value):
-        item_frame = ttk.Frame(master=self._frame)
+        item_frame = Frame(master=self._frame, bg=self._root["bg"])
 
         name_label = ttk.Label(
             master=item_frame,
-            text=f"{name} ({SkillListResourcesView.skill_to_attribute[name]})"
+            text=f"{name} ({SkillListResourcesView.skill_to_attribute[name]})",
+            background=self._root["bg"]
         )
         if name == self._main_skill:
             name_label.config(font=("", 11, "bold"))
@@ -93,7 +97,10 @@ class SkillListResourcesView:
         value_label_var = IntVar()
         value_label_var.set(value)
         value_label = ttk.Label(
-            master=item_frame, textvariable=value_label_var)
+            master=item_frame,
+            textvariable=value_label_var,
+            background=self._root["bg"]
+        )
         decrease_button = ttk.Button(
             master=item_frame,
             text="-",
@@ -118,23 +125,32 @@ class SkillListResourcesView:
         item_frame.pack(fill=constants.X)
 
     def _initialize(self):
-        self._frame = ttk.Frame(master=self._root)
+        self._frame = Frame(master=self._root, bg=self._root["bg"])
         self._skill_points_var = IntVar()
         self._skill_points_var.set(self._skill_points_left)
         self._resources_var = IntVar()
         self._resources_var.set(self._resources)
 
         resources_label = ttk.Label(
-            master=self._frame, text="Resources", font=("", 15, "bold"))
+            master=self._frame, text="Resources",
+            font=("", 15, "bold"),
+            background=self._root["bg"]
+        )
         skills_label = ttk.Label(
-            master=self._frame, text="Skills", font=("", 15, "bold"))
+            master=self._frame,
+            text="Skills",
+            font=("", 15, "bold"),
+            background=self._root["bg"]
+        )
         points_left_label = ttk.Label(
             master=self._frame,
-            text="Skill/resource points left:"
+            text="Skill/resource points left:",
+            background=self._root["bg"]
         )
         points_left_value_label = ttk.Label(
             master=self._frame,
-            textvariable=self._skill_points_var
+            textvariable=self._skill_points_var,
+            background=self._root["bg"]
         )
 
         resources_label.pack(fill=constants.X, padx=5)

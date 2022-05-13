@@ -1,4 +1,4 @@
-from tkinter import ttk, constants, StringVar
+from tkinter import ttk, constants, StringVar, Frame
 from tkinter.messagebox import showinfo
 
 class TalentsEquipmentView:
@@ -83,7 +83,8 @@ class TalentsEquipmentView:
         self._talent_header_label = ttk.Label(
             master=self._frame,
             text="Talent",
-            font=("", 15, "bold")
+            font=("", 15, "bold"),
+            background=self._root["bg"]
         )
         self._talent_combobox = ttk.Combobox(
             master=self._frame,
@@ -97,7 +98,8 @@ class TalentsEquipmentView:
         self._talent_description_label = ttk.Label(
             master=self._frame,
             textvariable=self._talent_desc_var,
-            wraplength=250
+            wraplength=250,
+            background=self._root["bg"]
         )
 
     def _initialize_equipment_section(self):
@@ -122,12 +124,14 @@ class TalentsEquipmentView:
         self._equipment_header_label = ttk.Label(
             master=self._frame,
             text="Equipment",
-            font=("", 15, "bold")
+            font=("", 15, "bold"),
+            background=self._root["bg"]
         )
         self._equipment_selected_label = ttk.Label(
             master=self._frame,
             text="Currently selected:",
-            font=("", 11, "italic")
+            font=("", 11, "italic"),
+            background=self._root["bg"]
         )
         self._equipment_selection_fields = []
         for item in self._equipment_options:
@@ -149,6 +153,7 @@ class TalentsEquipmentView:
                 label = ttk.Label(
                     master=self._frame,
                     text=item,
+                    background=self._root["bg"]
                 )
                 self._equipment_selection_fields.append(label)
         self._equipment_save_button = ttk.Button(
@@ -158,7 +163,7 @@ class TalentsEquipmentView:
         )
 
     def _initialize(self):
-        self._frame = ttk.Frame(master=self._root)
+        self._frame = Frame(master=self._root, bg=self._root["bg"])
 
         self._initialize_talent_section()
         self._initialize_equipment_section()
@@ -173,8 +178,7 @@ class TalentsEquipmentView:
         self._talent_combobox.grid(row=1, padx=5, sticky=(constants.E, constants.W))
         self._talent_description_label.grid(row=2, padx=5, sticky=(constants.E, constants.W))
 
-        sep.grid(row=3, columnspan=2, padx=5, pady=5,
-            sticky=(constants.E, constants.W))
+        sep.grid(row=3, columnspan=2, padx=5, pady=5, sticky=(constants.E, constants.W))
 
         self._equipment_header_label.grid(row=4, padx=5, pady=5, sticky=constants.W)
         for item in self._equipment_selection_fields:
@@ -182,4 +186,8 @@ class TalentsEquipmentView:
         self._equipment_save_button.grid(row=8, pady=5, sticky=constants.W)
         self._equipment_selected_label.grid(row=9, padx=5, pady=5, sticky=constants.W)
         for item in self._equipment_saved_var:
-            ttk.Label(master=self._frame, textvariable=item).grid(padx=5, sticky=(constants.E, constants.W))
+            ttk.Label(
+                master=self._frame,
+                textvariable=item,
+                background=self._root["bg"]
+            ).grid(padx=5, sticky=(constants.E, constants.W))

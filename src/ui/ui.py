@@ -1,4 +1,4 @@
-from tkinter import Menu, filedialog, ttk
+from tkinter import Menu, filedialog
 from tkinter.messagebox import showerror, showinfo
 from ui.character_sheet_view import CharacterSheetView
 from ui.main_view import MainView

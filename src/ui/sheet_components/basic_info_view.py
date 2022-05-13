@@ -1,4 +1,4 @@
-from tkinter import ttk, constants, StringVar, IntVar, Text
+from tkinter import ttk, constants, StringVar, IntVar, Text, Frame
 from tkinter.messagebox import showinfo
 
 from services.character_service import character_service
@@ -64,11 +64,12 @@ class BasicInfoView:
             pass
 
     def _initialize(self):
-        self._frame = ttk.Frame(master=self._root)
+        self._frame = Frame(master=self._root, bg=self._root["bg"])
         header_label = ttk.Label(
             master=self._frame,
             text="Basic information",
-            font=("", 15, "bold")
+            font=("", 15, "bold"),
+            background=self._root["bg"]
         )
         header_label.pack(fill=constants.X)
 
@@ -83,6 +84,7 @@ class BasicInfoView:
         character_name_label = ttk.Label(
             master=self._frame,
             text=f"Character name: {self._character_name_var.get()}",
+            background=self._root["bg"]
         )
         self._character_name_entry = ttk.Entry(
             master=self._frame,
@@ -99,21 +101,10 @@ class BasicInfoView:
             orient="horizontal"
         )
 
-        character_archetype_label = ttk.Label(
-            master=self._frame,
-            text="Character archetype:",
-        )
-        self._character_archetype_combobox = ttk.Combobox(
-            master=self._frame,
-            state="readonly",
-            values=AVAILABLE_ARCHETYPES
-        )
-        self._character_archetype_combobox.set(
-            self._character_archetype_var.get())
-
         character_age_label = ttk.Label(
             master=self._frame,
-            text="Character age:"
+            text="Character age:",
+            background=self._root["bg"]
         )
         self._character_age_spinbox = ttk.Spinbox(
             master=self._frame,
@@ -126,10 +117,25 @@ class BasicInfoView:
             text="Update",
             command=self._handle_archetype_age_update
         )
+
+        character_archetype_label = ttk.Label(
+            master=self._frame,
+            text="Character archetype:",
+            background=self._root["bg"]
+        )
+        self._character_archetype_combobox = ttk.Combobox(
+            master=self._frame,
+            state="readonly",
+            values=AVAILABLE_ARCHETYPES
+        )
+        self._character_archetype_combobox.set(
+            self._character_archetype_var.get())
+
         archetype_age_update_note_label = ttk.Label(
             master=self._frame,
             text="""Updating age and/or archetype will reset attributes,
-resources, skills, talent and equipment."""
+resources, skills, talent and equipment.""",
+            background=self._root["bg"]
         )
 
         sep2 = ttk.Separator(
@@ -139,7 +145,8 @@ resources, skills, talent and equipment."""
 
         description_label = ttk.Label(
             master=self._frame,
-            text="Short description of the character:"
+            text="Short description of the character:",
+            background=self._root["bg"]
         )
         self._character_description_text = Text(
             master=self._frame,
