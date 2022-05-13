@@ -150,13 +150,12 @@ class CharacterRepository:
                 available_equipment_copy[chosen] = None
                 i += 1
             else:
-                for available_item in available_equipment_copy:
-                    if isinstance(available_item, tuple):
-                        if equipment[i] in available_item:
-                            item_legal[i] = True
-                            chosen = available_equipment_copy.index(
-                                available_item)
-                            available_equipment_copy[chosen] = None
+                for available_pair in available_equipment_copy:
+                    if isinstance(available_pair, tuple) and equipment[i] in available_pair:
+                        item_legal[i] = True
+                        chosen = available_equipment_copy.index(
+                            available_pair)
+                        available_equipment_copy[chosen] = None
                 i += 1
         return item_legal[0] and item_legal[1] and item_legal[2]
 
