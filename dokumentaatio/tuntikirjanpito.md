@@ -34,5 +34,7 @@
 | 11.5. | 1 | Vääräntyyppisten hahmojen avaamisen käsittely käyttöliittymässä, käyttöliittymän hiomista |
 | 13.5. | 1 | Käyttöliittymän hiomista, koodin siistimistä, testejä |
 | 14.5. | 1 | Dokumentaation kirjoitusta |
-| 15.5. | x | Dokumentaation kirjoitusta, GUI:n aloitusnäkymän tekstin kirjoitusta, järjestelmätestausta |
-| yht | 58 | |
+| 15.5. | 1 | Dokumentaation kirjoitusta, GUI:n aloitusnäkymän tekstin kirjoitusta |
+| | x | Järjestelmätestausta, testausdokumentin täydentämistä, sovelluksen pakkauskaavion lisäys arkkitehtuuridokumenttiin ja CharacterRepositoryn lisääminen luokkakaavioon |
+| | x | Changelogin päivitystä, loppupalautus-niminen GitHub-release |
+| yht | 59 | |
