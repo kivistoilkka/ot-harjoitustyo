@@ -70,14 +70,14 @@ class Character:
         self._description = ""
 
     def __str__(self) -> str:
-        description = f"{self._name}"
+        response = f"{self._name}"
         if self.__age is not None:
-            description += f", {self.__age} ({self.age_group(self.__age)})"
+            response += f", {self.__age} ({self.age_group(self.__age)})"
         if self._archetype:
-            description += f", {self._archetype.name}"
-            description += f" (main attribute {self.__main_attribute}"
-            description += f", main skill {self.__main_skill})"
-        return description
+            response += f", {self._archetype.name}"
+            response += f" (main attribute {self.__main_attribute}"
+            response += f", main skill {self.__main_skill})"
+        return response
 
     @property
     def name(self):

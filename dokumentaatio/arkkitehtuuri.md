@@ -19,6 +19,7 @@ classDiagram
         attributes
         skills
         equipment
+        description
     }
     class CharacterService {
         characters
