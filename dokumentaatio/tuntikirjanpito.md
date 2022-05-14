@@ -33,5 +33,6 @@
 | 10.5. | 3 | Sääntöjenmukaisuuden tarkistus hahmon tiedostosta lataamisen yhteydessä testeineen, testi hahmon viemiselle tekstitiedostoon |
 | 11.5. | 1 | Vääräntyyppisten hahmojen avaamisen käsittely käyttöliittymässä, käyttöliittymän hiomista |
 | 13.5. | 1 | Käyttöliittymän hiomista, koodin siistimistä, testejä |
-| | x | Dokumentaation kirjoitusta |
-| yht | 57 | |
+| 14.5. | 1 | Dokumentaation kirjoitusta |
+| 15.5. | x | Dokumentaation kirjoitusta |
+| yht | 58 | |

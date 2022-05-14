@@ -20,7 +20,7 @@ Repositorioluokista `ArchetypeRepository` ja `TalentRepository` ovat toiminnalta
 
 Sovelluksen testauksen haarautumakattavuus on 88%, minkä lisäksi kaikkein luokkien testien haarautumakattavuus on vähintään 82%. Käyttöliittymä jätettiin testien ulkopuolelle.
 
-![](.kuvat/CoverageReport_2022_05_14.png)
+![Testauskattavuus](.kuvat/CoverageReport_2022_05_14.png)
 
 ## Järjestelmätestaus
 

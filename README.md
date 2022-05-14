@@ -10,6 +10,8 @@ Sovelluksen avulla käyttäjä voi luoda hahmoja ***Vaesen***-roolipeliin ([peli
 
 [Arkkitehtuurikuvaus](https://github.com/kivistoilkka/ot-harjoitustyo/blob/master/dokumentaatio/arkkitehtuuri.md)
 
+[Testausdokumentti](https://github.com/kivistoilkka/ot-harjoitustyo/blob/master/dokumentaatio/testaus.md)
+
 [Työaikakirjanpito](https://github.com/kivistoilkka/ot-harjoitustyo/blob/master/dokumentaatio/tuntikirjanpito.md)
 
 [Changelog](https://github.com/kivistoilkka/ot-harjoitustyo/blob/master/dokumentaatio/changelog.md)
