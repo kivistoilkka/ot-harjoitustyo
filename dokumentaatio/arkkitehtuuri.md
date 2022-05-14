@@ -69,9 +69,9 @@ Sovelluksen _repositories_ pakkauksen luokat `ArchetypeRepository`, `TalentRepos
 
 ### Tiedostot
 
-Sovellus tallentaa tietoja kahdessa eri tiedostomuodossa: teksti- ja JSON-tiedostoina. Ohjelman käynnistyksen yhteydessä `TalentRepository` ja `ArchetypeRepository` luokat lataavat hahmonluonnissa tarjolla olevat erikoiskyky- ja arkkityyppivaihtoehdot JSON-tiedostoista, joiden nimet määrittelee sovelluksen juuresta löytyvä .env-tiedosto. Tiedostoihin on mahdollista lisätä uusia erikoiskyky- ja arkkityyppivaihtoehtoja, kunhan jokaista lisättyä arkkityyppiä kohti lisätään kolme sille kuuluvaa aloituserikoiskykyvaihtoehtoa.
+Sovellus tallentaa tietoja kahdessa eri tiedostomuodossa: teksti- ja JSON-tiedostoina. Ohjelman käynnistyksen yhteydessä `TalentRepository` ja `ArchetypeRepository` luokat lataavat hahmonluonnissa tarjolla olevat lahjakkuus- ja arkkityyppivaihtoehdot JSON-tiedostoista, joiden nimet määrittelee sovelluksen juuresta löytyvä .env-tiedosto. Tiedostoihin on mahdollista lisätä uusia lahjakkuus- ja arkkityyppivaihtoehtoja, kunhan jokaista lisättyä arkkityyppiä kohti lisätään kolme sille kuuluvaa aloituslahjakkuusvaihtoehtoa.
 
-Erikoiskykytiedosto noudattaa seuraavaa formaattia:
+Lahjakkuustiedosto noudattaa seuraavaa formaattia:
 ```
 [
     {
@@ -79,7 +79,7 @@ Erikoiskykytiedosto noudattaa seuraavaa formaattia:
         "description": "Gain +2 to...",     # Kuvaus
         "startingOptionFor": "Academic"     # Arkkityyppi, jolle kyky on valittavissa aloituskyvyksi
     },
-    #Seuraava erikoiskyky
+    #Seuraava lahjakkuus
 ```
 
 Arkkityyppitiedosto noudattaa seuraavaa formaattia:
@@ -89,8 +89,8 @@ Arkkityyppitiedosto noudattaa seuraavaa formaattia:
         "name": "Academic",                 # Nimi
         "mainAttribute": "Logic",           # Pääattributti
         "mainSkill": "Learning",            # Päätaito
-        "talents": [                        # Lista erikoiskykyjen nimistä (lista on kolmen alkion mittainen)
-            "Bookworm",                         # Vastaavat erikoiskyvyt on lisättävä myös erikoiskykytiedostoon!
+        "talents": [                        # Lista lahjakkuuksien nimistä (lista on kolmen alkion mittainen)
+            "Bookworm",                         # Vastaavat erikoiskyvyt on lisättävä myös lahjakkuustiedostoon!
             "Erudite",
             "Knowledge is Reassuring"
         ],
@@ -145,7 +145,7 @@ Hahmojen käsittelystä huolehtiva `CharacterRepository`-luokka käsittelee sek�
 }
 ```
 
-Luokka voi viedä hahmot tekstitiedostoihin, jotka voi tulostaa ja/tai joista tiedot on kirjoitettavissa viralliselle hahmolomakkeelle. Tiedosto näyttää seuraavalta:
+Luokka voi viedä hahmot tekstitiedostoihin, jotka voi tulostaa ja/tai joista tiedot on manuaalisesti kopioitavissa viralliselle hahmolomakkeelle. Tiedosto näyttää seuraavalta:
 ```
 Albert Brugge, 42 (Middle aged)
 Academic
@@ -219,7 +219,7 @@ sequenceDiagram
 ## Ohjelman rakenteeseen jääneet heikkoudet
 
 ### Käyttöliittymä
-Vaatii vielä hiomista.
+Ohjelmasta puuttuu virheiden käsittely ja sitä kautta virheilmoitukset tilanteissa, joissa käyttäjä on tehnyt vääränlaisia muutoksia arkkityyppien ja lahjakkuuksien tallentamiseen käytettyihin tiedostoihin.
 
 ### Sovelluslogiikka
-Työnjako _entities_-pakkauksen `Character`-luokan, _services_-pakkauksen `CharacterService`-luokan ja _repositories_-pakkauksen `CharacterRepository`-luokan välillä vaatii vielä selkeyttämistä, ainakin hahmojen tietojen käsittelyyn käytettäviä metodeja on siirrettävä `Character`-luokasta kahden muun luokan vastuulle.
+Työnjako _entities_-pakkauksen `Character`-luokan, _services_-pakkauksen `CharacterService`-luokan ja _repositories_-pakkauksen `CharacterRepository`-luokan välillä vaatii selkeyttämistä, ainakin hahmojen tietojen käsittelyyn käytettäviä metodeja on siirrettävä `Character`-luokasta kahden muun luokan vastuulle.
