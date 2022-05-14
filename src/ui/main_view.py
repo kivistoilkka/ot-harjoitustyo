@@ -26,7 +26,8 @@ class MainView:
 
         introduction_label = ttk.Label(
             master=self._frame,
-            text="Character generator for Vaesen: Nordic Horror Roleplaying game (Free League Publishing).",
+            text="""Character generator for Vaesen: Nordic Horror Roleplaying game \
+(Free League Publishing).""",
             background=self._root["bg"]
         )
 

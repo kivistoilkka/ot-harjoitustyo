@@ -216,6 +216,42 @@ sequenceDiagram
 
 `CharacterService` on hakenut sanakirjan tarjolla olevista arkkityypeistä ennen hahmonluontitapahtumaa. Napin painalluksen jälkeen tapahtumakäsittelijä kutsuu `CharacterService`-olion metodia `create_character`, jonka parametreina on hahmon nimi ja arkkityyppi merkkijonoina ja ikä kokonaislukuna. `CharacterService` luo uuden `Character`-olion, jonka name-attribuutiksi tulee hahmon nimi, archetype-attribuutiksi `CharacterService`-olion tallentamasta sanakirjasta haettu sopiva `Archetype`-luokan olio ja age-attribuutiksi hahmon ikä. Kutsun seurauksena `Character`-olio asettaa annetut arvot sopiviin muuttujiin, asettaa hahmon arkkityyppiin liittyvät arvot `Archetype`-olion perusteella sopiviksi, pohjustaa hahmon kyky- ja varustetaulukot ja attributti- ja taitosanakirjat ja asettaa sisäisen metodinsa avulla arvot attribuutti- ja taitopisteiden maksimimääriä kuvaaville muuttujille, koska hahmon ikä vaikuttaa näihin arvoihin. Lopuksi käyttöliittymä kutsuu metodeja, joiden suorittaminen päivittää käyttöliittymän näyttämään hahmon yksityiskohtaiseen muokkaamiseen käytettävää näkymää.
 
+### Aiemmin luodun hahmon avaaminen
+
+Kun käyttäjä on valinnut sovelluksen yläpalkista "Open existing character" ja hakenut hahmon JSON-tiedoston aukeavassa tiedostoselaimessa, niin sovelluksen kontrolli etenee seuraavasti:
+
+```mermaid
+sequenceDiagram
+    actor User
+    participant UI
+    participant CharacterService
+    participant CharacterRepository
+    participant character
+    participant ArchetypeRepository
+
+    CharacterRepository ->> ArchetypeRepository: find_all()
+    ArchetypeRepository -->> CharacterRepository: AVAILABLE_ARCHETYPES 
+    User ->> UI: Select file and click "Open"
+    UI ->> CharacterService: load_character_from_file(filename)
+    CharacterService ->> CharacterRepository: open_character(filename)
+    Note over CharacterRepository: Reads JSON-file with character information, returns dictionary character_data
+    CharacterRepository ->> character: Character(character_data["name"], AVAILABLE_ARCHETYPES[character_data["archetype"]], character_data["age"])
+    Note over CharacterRepository: Creates list of Talent-objects as talent_list from character_data["talents"]
+    CharacterRepository ->> character: character.talents = talent_list
+    CharacterRepository ->> character: character.attributes = character_data["attributes"]
+    CharacterRepository ->> character: character_data["skills"]
+    CharacterRepository ->> character: character_data["equipment"]
+    CharacterRepository ->> character: character_data["resources"]
+    CharacterRepository ->> character: character_data["description"]
+    CharacterRepository ->> CharacterRepository: _check_character_legality(character)
+    CharacterRepository -->> CharacterService: character
+    CharacterService -->> UI: 
+    UI ->> UI: _handle_char_modifying()
+    UI ->> UI: _show_char_sheet_view()
+```
+`CharacterRepository` on hakenut sanakirjan tarjolla olevista arkkityypeistä ennen hahmon avaamista. Jos sopiva tiedosto on valittu, niin sovellus kutsuu `CharacterService`-olion metodia `load_character_from_file`, jonka parametrina on tiedostopolku hahmotiedostoon. `CharacterService` kutsuu `CharacterRepository`-olion metodia `open_character` tiedostopolku parametrinaan. Metodi lukee JSON-tiedoston sanakirjaksi _character\_data_, jonka perusteella luodaan ensin uusi `Character`-olio. Seuraavaksi metodi luo listan Talent-olioita hyödyntäen alussa luotuun _AVAILABLE\_ARCHETYPES_-muuttujaan tallennettua sanakirjaa tarjolla olevista arkkityypeistä, joille on tallennettu sille tarjolla olevat Talent-oliot. Metodi tallentaa tämän listan `Character`-olioon, kuten myös _character\_data_-sanakirjasta löytyvät muut hahmon tiedot. Viimeisenä asiana metodi tarkistaa sisäisellä metodilla `_check_character_legality`, että hahmo noudattaa pelin sääntöjän uuden hahmon luomiselle. Jos kaikki on kunnossa, niin metodi palauttaa `Character`-olion `CharacterService`-oliolle, joka tallentaa olion muuttujaansa. Lopuksi käyttöliittymä kutsuu metodeja, joiden suorittaminen päivittää käyttöliittymän näyttämään hahmon yksityiskohtaiseen muokkaamiseen käytettävää näkymää.
+
+
 ## Ohjelman rakenteeseen jääneet heikkoudet
 
 ### Käyttöliittymä
