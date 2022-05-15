@@ -28,7 +28,11 @@ Sovelluksen järjestelmätason testaus on tehty manuaalisesti.
 
 ### Asennus ja konfigurointi
 
+Sovellus on haettu ja asennettu käyttöohjeen mukaisesti. Konfiguroinnista on testattu arkkityyppi- ja lahjakkuustiedostojen muokkaamista ja näiden tiedostojen vaihtamista toisiksi _env._-tiedoston kautta.
+
 ### Toiminnallisuudet
+
+Kaikki vaatimusmäärittelyssä luetellut toiminnallisuudet on käyty läpi, minkä lisäksi virheellisten syötteiden antamista on testattu.
 
 ## Sovellukseen jääneet laatuongelmat
 

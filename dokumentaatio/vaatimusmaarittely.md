@@ -1,7 +1,7 @@
 # Vaatimusmäärittely
 
 ## Sovelluksen tarkoitus
-Sovelluksen avulla käyttäjä voi luoda hahmoja Vaesen roolipeliin. Sovellus laskee käyttäjän valitsemien ominaisuuksien, eli iän ja arkkityypin (_archetype_), vaikutukset hahmon attribuutteihin (_attributes_), kykyihin (_skills_), resursseihin (_resources_) ja varusteisiin (_equipment_). Käyttäjä voi säätää edellä mainittuja hahmon ominaisuuksia, minkä lisäksi hahmolle voi valita lahjakkuuden (_talent_). Valmiit ja keskeneräiset hahmot voi tallentaa ja valmiit hahmot voi exportata selkeänä tekstitiedostona, josta tiedot on helppo kopioida varsinaiselle hahmolomakkeelle.
+Sovelluksen avulla käyttäjä voi luoda hahmoja Vaesen roolipeliin. Sovellus laskee käyttäjän valitsemien ominaisuuksien, eli iän ja arkkityypin (_archetype_), vaikutukset hahmon attribuutteihin (_attributes_), kykyihin (_skills_), resursseihin (_resources_) ja varusteisiin (_equipment_). Käyttäjä voi säätää edellä mainittuja hahmon ominaisuuksia, minkä lisäksi hahmolle voi valita lahjakkuuden (_talent_). Valmiit ja keskeneräiset hahmot voi tallentaa ja valmiit hahmot voi viedä selkeänä tekstitiedostona, josta tiedot on helppo kopioida varsinaiselle hahmolomakkeelle.
 
 ## Tietojen säilytys
 Valmiita ja keskeneräisiä hahmoja säilytetään käyttäjän osoittamissa JSON-tiedostoissa. Sovelluksen tarjoamien arkkityyppi- ja lahjakkuusvaihtoehtojen määrää on mahdollista kasvattaa näiden tallennukseen käytettyjä JSON-tiedostoja muokkaamalla.
