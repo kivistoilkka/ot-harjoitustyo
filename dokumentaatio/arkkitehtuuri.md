@@ -2,7 +2,26 @@
 
 ## Rakenne
 
-Ohjelman rakennetta kuvaava luokkakaavio on seuraava:
+Seuraava pakkauskaavio kuvaa ohjelman rakennetta:
+
+![Pakkauskaavio](./kuvat/pakkauskaavio.png)
+
+Graafinen käyttöliittymä on pakkauksessa _ui_, sovelluslogiikasta vastaa _services_-pakkauksen sisältämästä luokkasta `CharacterService` luotu olio ja _repositories_-pakkauksen `CharacterRepository`,`ArchetypeRepository` ja `TalentRepository` luokista luodut oliot vastaavat tietojen pysyväistallentamisesta. Hahmojen tallennuksesta vastaava `CharacterRepository`-luokka on injektoitu sovelluslogiikasta vastaavalle luokalle. Pakkauksesta _entities_ löytyvät luokat `Character`, `Archetype` ja `Talent` ovat sovelluksen käyttämiä tietorakenteita, joista `Character` sisältää myös jonkin verran luokan sisältämän tiedon sisäiseen käsittelyyn ja tiedon esittämiseen liittyvää logiikkaa.
+
+Pakkauskaaviossa ja alempaa löytyvässä luokkakaaviossa on yksi suhde, joka poikkeaa ohjelman tämänhetkisen perusversion ja potentiaalisen eteenpäin kehitetyn version välillä. Perusversiossa hahmolla voi olla vain yksi hahmon arkkityypille sopiva aloituslahjakkuus (Talent), kun todellisuudessa hahmo voi kokemusta saatuaan hankkia lisää lahjakkuuksia. Sovelluksessa tämä on huomioitu niin, että lahjakkuudet tallennetaan listaan, mutta tällä hetkellä lista tyhjennetään ennen uuden lahjakkuuden lisäämistä, joten hahmolla voi olla vain yksi lahjakkuus.
+
+## Käyttöliittymä
+
+Sovelluksen käyttöliittymä koostuu kolmesta eri näkymästä:
+- Aloitusnäyttö
+- Uuden hahmon luomisen näkymä
+- Hahmon muokkauksen näkymä
+
+Näkymät on toteutettu omina luokkinaan, minkä lisäksi hahmon muokkauksen näkymä on jaettu neljään alikomponenttiin. UI-luokka vastaa näkymien näyttämisestä ja näkymien välillä siirtymisen mahdollistavan yläpalkin hallinnasta (uuden hahmon luomisesta kuitenkin siirrytään hahmon muokkaukseen näkymästä löytyvällä painikkeella). Käyttöliittymässä olevat muuttujat säilyttävät vain näkymälle tarpeellista tietoa ja käyttöliittymän takaisinkutsufunktiot hakevat tarvittavat tiedot `CharacterService`-luokan metodeja kutsumalla.
+
+## Sovelluslogiikka
+
+Ohjelman rakennetta ja sovelluslogiikkaa kuvaava luokkakaavio on seuraava:
 ```mermaid
 classDiagram
     class UI
@@ -49,22 +68,21 @@ classDiagram
     Archetype "*" -- "*" Talent
     CharacterService ..> ArchetypeRepository
     CharacterService "*" -- "1" CharacterRepository
+    CharacterRepository ..> Character
     CharacterRepository ..> ArchetypeRepository
     ArchetypeRepository ..> Archetype
     ArchetypeRepository ..> TalentRepository
     TalentRepository ..> Talent
 ```
-Perusversiossa hahmolla voi olla vain yksi hahmon arkkityypille sopiva aloituslahjakkuus (Talent)
-    - Lahjakkuudet tallennetaan listaan, mutta tällä hetkellä lista tyhjennetään ennen uuden lahjakkuuden lisäämistä
 
-## Käyttöliittymä
+Luokasta `CharacterService` luotu olio säilyttää muokattavana olevaa hahmoa `Character`-luokan oliona, minkä lisäksi sille on injektoitu hahmojen pysyväistallennuksesta vastaava `CharacterRepository`-luokan olio. Luokka tarjoaa käyttöliittymän toiminnoille metodit, joilla hahmoja voi luoda, muokata ja repositorio-olion kautta tallentaa ja viedä tiedostoihin ja avata aiemmin luotuja hahmoja niistä.
 
-Sovelluksen käyttöliittymä koostuu kolmesta eri näkymästä:
-- Aloitusnäyttö
-- Uuden hahmon luomisen näkymä
-- Hahmon muokkauksen näkymä
+Hahmon tietorakenteena toimiva luokasta `Character` luotu olio säilyttää kaiken yksittäiseen hahmoon liittyvät tiedot, minkä lisäksi se sisältää seuraavanlaisia metodeja:
+ - Metodit, joilla asetetaan joitakin tiettyjä hahmoon liittyviä attribuutteja (esimerkiksi change_resources, change_attribute, change_skill ja hahmon arkkityypin ja iän setterit)
+ - Metodit, joilla ylläpidetään hahmoon liittyviä attribuutteja, jotka riippuvat toisista attribuuteista (esimerkiksi __set_age_related_modifiers-metodia kutsutaan hahmon ikää vaihdettaessa, jolloin hahmolla käytettävissä olevien hahmoattribuutti- ja kykypisteiden määrät asetetaan hahmon iän mukaisiksi).
+ - Metodit, jotka tarjoavat joko nyt tai sovelluksen jatkokehityksen aikana tietoa useammalle sovelluksen luokalle (esimerkiksi attribute_points_left, skill_points_left ja age_group)
 
-Näkymät on toteutettu omina luokkinaan, minkä lisäksi hahmon muokkauksen näkymä on jaettu neljään alikomponenttiin. UI-luokka vastaa näkymien näyttämisestä ja näkymien välillä siirtymisen mahdollistavan yläpalkin hallinnasta (uuden hahmon luomisesta kuitenkin siirrytään hahmon muokkaukseen näkymästä löytyvällä painikkeella). Käyttöliittymässä olevat muuttujat säilyttävät vain näkymälle tarpeellista tietoa ja käyttöliittymän takaisinkutsufunktiot hakevat tarvittavat tiedot `CharacterService`-luokan metodeja kutsumalla.
+Luokat `Archetype` ja `Talent` vastaavat hahmojen arkkityyppien ja lahjakkuuksien tietojen säilytyksestä. Ne luodaan kerran, minkä jälkeen niistä voi vain hakea tietoa.
 
 ## Tietojen pysyväistallennus
 
