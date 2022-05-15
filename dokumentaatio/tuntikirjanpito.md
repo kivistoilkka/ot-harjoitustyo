@@ -36,6 +36,5 @@
 | 14.5. | 1 | Dokumentaation kirjoitusta |
 | 15.5. | 1 | Dokumentaation kirjoitusta, GUI:n aloitusnäkymän päivitys |
 | | 1 | CharacterRepositoryn lisääminen arkkitehtuuridokumentin luokkakaavioon, sovelluksen pakkauskaavion lisäys arkkitehtuuridokumenttiin ja dokumentin täydentämistä |
-| | 1 | Järjestelmätestausta, testausdokumentin täydentämistä |
-| | x | Changelogin päivitys, loppupalautus-niminen GitHub-release |
-| yht | 61 | |
+| | 2 | Järjestelmätestausta, testausdokumentin täydentämistä, changelogin päivitys, koodin läpisilmäily, loppupalautus-niminen GitHub-release |
+| yht | 62 | |

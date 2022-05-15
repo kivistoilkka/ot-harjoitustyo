@@ -24,7 +24,7 @@ Sovelluksen testauksen haarautumakattavuus on 88%, minkä lisäksi kaikkein luok
 
 ## Järjestelmätestaus
 
-Sovelluksen järjestelmätason testaus on tehty manuaalisesti.
+Sovelluksen järjestelmätason testaus on tehty manuaalisesti Cubbli Linux (Cubbli 20) -ympäristössä.
 
 ### Asennus ja konfigurointi
 

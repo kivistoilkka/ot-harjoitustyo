@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "vaesen-character-app"
-version = "0.0.4"
+version = "0.1.0"
 description = "Character generator for Vaesen Nordic Horror Roleplaying game"
 authors = ["Ilkka Kivistö"]
 

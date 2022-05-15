@@ -18,8 +18,6 @@ Sovelluksen avulla käyttäjä voi luoda hahmoja ***Vaesen***-roolipeliin ([peli
 
 ## Asennus
 
-[Viikon 6 release](https://github.com/kivistoilkka/ot-harjoitustyo/releases/tag/viikko6)
-
 1. Asenna riippuvuudet komennolla:
 ```bash
 poetry install

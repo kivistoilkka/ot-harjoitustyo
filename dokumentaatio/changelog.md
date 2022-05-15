@@ -40,3 +40,13 @@
 - Character- ja CharacterService-luokkien refaktorointia
 - Docstring-dokumentaatioita lisätty Character, CharacterService ja kaikille kolmelle repository-luokalle
 - Testejä CharacterServicelle ja CharacterRepositorylle
+
+### Viikko 7
+
+- Hahmontiedostojen käsittelyyn liittyvät toiminnallisuudet käyttöliittymän ylävalikkoon ja toiminnallisuuksien aktivoiminen ja käytöstä pois ottaminen auki olevan näkymän mukaisesti
+- Vapaamuotoisen hahmon kuvauksen lisääminen Character-, CharacterService- ja CharacterRepository-luokkiin ja käyttöliittymään
+- Lisätty pelin sääntöjen noudattamisen tarkistus CharacterRepositoryyn kun hahmo avataan tiedostosta
+- Käyttöliittymän ulkoasun muokkausta ja virhe- ja infoilmoitusten lisäys
+- Useiden luokkien pientä refaktorointia sekä sovelluslogiikassa että käyttöliittymässä
+- Testausdokumentti lisätty ja muita dokumentteja päivitetty
+- Sovelluksen viimeinen järjestelmätestaus ennen palautusta
