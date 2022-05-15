@@ -98,7 +98,7 @@ Lahjakkuustiedosto noudattaa seuraavaa formaattia:
     {
         "name": "Bookworm",                 # Nimi
         "description": "Gain +2 to...",     # Kuvaus
-        "startingOptionFor": "Academic"     # Arkkityyppi, jolle kyky on valittavissa aloituskyvyksi
+        "startingOptionFor": "Academic"     # Arkkityyppi, jolle lahjakkuus on valittavissa aloituslahjakkuudeksi
     },
     #Seuraava lahjakkuus
 ```
@@ -111,7 +111,7 @@ Arkkityyppitiedosto noudattaa seuraavaa formaattia:
         "mainAttribute": "Logic",           # Pääattributti
         "mainSkill": "Learning",            # Päätaito
         "talents": [                        # Lista lahjakkuuksien nimistä (lista on kolmen alkion mittainen)
-            "Bookworm",                         # Vastaavat erikoiskyvyt on lisättävä myös lahjakkuustiedostoon!
+            "Bookworm",                         # Vastaavat lahjakkuudet on lisättävä myös lahjakkuustiedostoon!
             "Erudite",
             "Knowledge is Reassuring"
         ],
