@@ -23,8 +23,10 @@ classDiagram
     }
     class CharacterService {
         characters
+        repository
     }
-    class Archetype{
+    class CharacterRepository
+    class Archetype {
         name
         main_attribute
         main_skill
@@ -41,19 +43,19 @@ classDiagram
     class TalentRepository
 
     UI ..> CharacterService
-    CharacterService "*" -- "*" Character
+    CharacterService "*" -- "1" Character
     Character "*" -- "1" Archetype
     Character "*" -- "*" Talent
     Archetype "*" -- "*" Talent
     CharacterService ..> ArchetypeRepository
+    CharacterService "*" -- "1" CharacterRepository
+    CharacterRepository ..> ArchetypeRepository
     ArchetypeRepository ..> Archetype
     ArchetypeRepository ..> TalentRepository
     TalentRepository ..> Talent
 ```
-Kaaviossa on muutamia ominaisuuksia, joita ei ohjelman perusversiossa ole:
-- Perusversiossa hahmolla voi olla vain yksi hahmon arkkityypille sopiva aloituslahjakkuus (Talent)
+Perusversiossa hahmolla voi olla vain yksi hahmon arkkityypille sopiva aloituslahjakkuus (Talent)
     - Lahjakkuudet tallennetaan listaan, mutta tällä hetkellä lista tyhjennetään ennen uuden lahjakkuuden lisäämistä
-- Toistaiseksi CharacterService tallentaa ja käsittelee vain yhtä Character-luokan oliota
 
 ## Käyttöliittymä
 
