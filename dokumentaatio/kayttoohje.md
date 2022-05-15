@@ -38,7 +38,7 @@ Hahmolle on annettava nimi ja ikä (vähintään 17). Lisäksi hahmolle valitaan
 
 Hahmon luomisen jälkeen avautuu hahmolomakenäkymä:
 
-![Hahmonlomakenäkymä](./kuvat/hahmonlomakenakyma.png)
+![Hahmonlomakenäkymä](./kuvat/hahmolomakenakyma.png)
 
 Näkymässä on seuraavanlaiset toiminnallisuudet:
 - Hahmon nimen voi vaihtaa kirjoittamalla kenttään uuden nimen ja painamalla "Change name"-painiketta.
