@@ -22,7 +22,7 @@ poetry run invoke start
 
 ## Konfigurointi
 
-Sovelluksen tarjoamat arkkityyppi- ja erikoiskykyvaihtoehdot on tallennettu erillisiin tiedostoihin _data_-hakemistossa (_archetypes.json_ ja _talents.json_). Tiedostoihin voi lisätä lisää vaihtoehtoja tai uusille tiedostoille voi määritellä uudet nimet _.env_-tiedostossa, jonka muoto on seuraava:
+Sovelluksen tarjoamat arkkityyppi- ja lahjakkuusvaihtoehdot on tallennettu erillisiin tiedostoihin _data_-hakemistossa (_archetypes.json_ ja _talents.json_). Tiedostoihin voi lisätä lisää vaihtoehtoja tai uusille tiedostoille voi määritellä uudet nimet _.env_-tiedostossa, jonka muoto on seuraava:
 
 ```
 TALENTS_FILENAME=talents.json
@@ -38,9 +38,9 @@ Arkkityyppitiedostoon (oletusarvoisesti _archetypes.json_) on tallennettu kaikki
     {
         "name": "Academic",                 # Nimi
         "mainAttribute": "Logic",           # Pääattributti
-        "mainSkill": "Learning",            # Päätaito
-        "talents": [                        # Lista erikoiskykyjen nimistä (lista on kolmen alkion mittainen)
-            "Bookworm",                         # Vastaavat erikoiskyvyt on lisättävä myös erikoiskykytiedostoon!
+        "mainSkill": "Learning",            # Pääkyky
+        "talents": [                        # Lista lahjakkuuksien nimistä (lista on kolmen alkion mittainen)
+            "Bookworm",                         # Vastaavat lahjakkuudet on lisättävä myös lahjakkuustiedostoon!
             "Erudite",
             "Knowledge is Reassuring"
         ],
@@ -56,14 +56,16 @@ Arkkityyppitiedostoon (oletusarvoisesti _archetypes.json_) on tallennettu kaikki
 ]
 ```
 
-Erikoiskykytiedostoon (oletusarvoisesti _talents.json_) on puolestaan tallennettu kaikki tarjolla olevat erikoiskykyvaihtoehdot. Kullekin arkkityypille on pelin alussa tarjolla kolme erikoiskykyvaihtoehtoa, joten uuden arkkityypin lisäämisen yhteydessä siihen liittyvät erikoiskyvyt tulee lisätä tähän tiedostoon. Tiedosto noudattaa vastaavasti seuraavaa formaattia:
+Lahjakkuustiedostoon (oletusarvoisesti _talents.json_) on puolestaan tallennettu kaikki tarjolla olevat lahjakkuusvaihtoehdot. Kullekin arkkityypille on pelin alussa tarjolla kolme lahjakkuusvaihtoehtoa, joten uuden arkkityypin lisäämisen yhteydessä siihen liittyvät lahjakkuudet tulee lisätä tähän tiedostoon. Tiedosto noudattaa vastaavasti seuraavaa formaattia:
 
 ```
 [
     {
         "name": "Bookworm",                 # Nimi
         "description": "Gain +2 to...",     # Kuvaus
-        "startingOptionFor": "Academic"     # Arkkityyppi, jolle kyky on valittavissa aloituskyvyksi
+        "startingOptionFor": "Academic"     # Arkkityyppi, jolle kyky on valittavissa aloituslahjakkuudeksi
     },
     #Seuraava erikoiskyky
 ```
+
+Molempia tiedostoja muokattaessa tulee huomata, että listan viimeisen alkion jälkeen ei saa lisätä pilkkua, muuten sovellus yrittää ladata olematonta dataa tiedostosta ja antaa _JSONDecodeError_:n.

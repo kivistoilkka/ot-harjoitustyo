@@ -36,8 +36,7 @@ class CharacterCreationView:
             except ValueError:
                 showerror(
                     "Error",
-                    "Character could not be created, make sure that the name is not an empty \
-string and that age is 17 or more."
+                    "Character could not be created, make sure that character age is 17 or more."
                 )
 
     def _initialize(self):
