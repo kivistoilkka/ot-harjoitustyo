@@ -1,4 +1,5 @@
 from tkinter import ttk, constants, StringVar, IntVar, Frame
+from tkinter.messagebox import showerror
 
 from services.character_service import character_service
 
@@ -28,9 +29,16 @@ class CharacterCreationView:
         age_value = self._character_age_spinbox.get()
 
         if name_value and archetype_value and age_value:
-            character_service.create_character(
-                name_value, archetype_value, int(age_value))
-            self._handle_char_modifying()
+            try:
+                character_service.create_character(
+                    name_value, archetype_value, int(age_value))
+                self._handle_char_modifying()
+            except ValueError:
+                showerror(
+                    "Error",
+                    "Character could not be created, make sure that the name is not an empty \
+string and that age is 17 or more."
+                )
 
     def _initialize(self):
         self._frame = Frame(master=self._root, bg=self._root["bg"])

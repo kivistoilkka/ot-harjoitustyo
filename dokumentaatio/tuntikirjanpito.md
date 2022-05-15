@@ -35,6 +35,6 @@
 | 13.5. | 1 | Käyttöliittymän hiomista, koodin siistimistä, testejä |
 | 14.5. | 1 | Dokumentaation kirjoitusta |
 | 15.5. | 1 | Dokumentaation kirjoitusta, GUI:n aloitusnäkymän päivitys |
-| | x | CharacterRepositoryn lisääminen arkkitehtuuridokumentin luokkakaavioon, sovelluksen pakkauskaavion lisäys arkkitehtuuridokumenttiin, järjestelmätestausta ja testausdokumentin täydentämistä |
-| | x | Changelogin päivitys, loppupalautus-niminen GitHub-release |
-| yht | 59 | |
+| | 1 | CharacterRepositoryn lisääminen arkkitehtuuridokumentin luokkakaavioon, sovelluksen pakkauskaavion lisäys arkkitehtuuridokumenttiin ja dokumentin täydentämistä |
+| | x | Järjestelmätestausta, testausdokumentin täydentämistä, changelogin päivitys, loppupalautus-niminen GitHub-release |
+| yht | 60 | |
