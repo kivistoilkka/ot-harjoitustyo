@@ -43,7 +43,7 @@ Hahmon luomisen jälkeen avautuu hahmolomakenäkymä:
 Näkymässä on seuraavanlaiset toiminnallisuudet:
 - Hahmon nimen voi vaihtaa kirjoittamalla kenttään uuden nimen ja painamalla "Change name"-painiketta.
 - Hahmon iän ja/tai arkkityypin voi vaihtaa valitsemalla näiden kenttiin uudet arvot ja painamalla "Update"-painiketta.
- - HUOM! Näiden arvojen päivittäminen palauttaa hahmon attribuuttit, resurssit ja kyvyt oletusarvoihin, poistaa hahmon lahjakkuuden ja asettaa varusteet valittuna olevan arkkityypin oletusarvoiksi.
+    - HUOM! Näiden arvojen päivittäminen palauttaa hahmon attribuuttit, resurssit ja kyvyt oletusarvoihin, poistaa hahmon lahjakkuuden ja asettaa varusteet valittuna olevan arkkityypin oletusarvoiksi.
 - Hahmolle voi kirjoittaa vapaamuotoisen kuvauksen tekstikenttään ja kuvaus lisätään hahmon kuvaukseksi painamalla "Update"-painiketta.
 - Hahmon attribuuttien arvoja voi muuttaa attribuuttien nimien vieressä olevilla "-" ja "+" -painikkeilla. Korostettu attribuutti on valitun arkkityypin pääattribuutti, joka voi olla väliltä 2-5, kun loput kolme attribuuttia voivat olla väliltä 2-4. Painikkeiden alla näytetään jäljellä olevat attribuuttipisteet.
 - Hahmon resursseja voi vaihtaa sille osoitetuilla "-" ja "+" -painikkeilla. Näiden ala- ja ylärajat määräytyvät valitun arkkityypin mukaan. Resurssien kasvattamiseen käytetään kykypisteitä, joiden jäljellä olevan määrä näkyy näkymän alalaidassa.
