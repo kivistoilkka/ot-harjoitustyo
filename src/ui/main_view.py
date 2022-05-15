@@ -49,7 +49,10 @@ TKT20002: Ohjelmistotekniikka (Software Development Methods) in 2022 by Ilkka Ki
         self._frame.grid_columnconfigure(0, minsize=1100)
         self._frame.grid_rowconfigure(0, minsize=100)
         header_label.grid(row=0, column=0, padx=5, pady=5)
-        introduction_label.grid(row=1, column=0, padx=15, pady=5, sticky=constants.NW)
-        publisher_website_button.grid(row=2, column=0, padx=15, pady=5, sticky=constants.NW)
+        introduction_label.grid(row=1, column=0, padx=15,
+                                pady=5, sticky=constants.NW)
+        publisher_website_button.grid(
+            row=2, column=0, padx=15, pady=5, sticky=constants.NW)
         self._frame.grid_rowconfigure(3, minsize=690)
-        program_information_label.grid(row=3, column=0, padx=15, pady=5, sticky=constants.SW)
+        program_information_label.grid(
+            row=3, column=0, padx=15, pady=5, sticky=constants.SW)

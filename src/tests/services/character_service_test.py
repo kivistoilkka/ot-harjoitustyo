@@ -259,7 +259,6 @@ class TestCharacterService(unittest.TestCase):
         self.assertEqual(
             str(cm.exception), "Talent not available for the current archetype")
 
-
     def test_attribute_getter_works(self):
         helper = TestHelper()
         self.character_service.create_character("Tester", "Doctor", 26)
